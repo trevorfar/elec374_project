@@ -1,17 +1,20 @@
+//DOES NOT WORK, DO NOT UTILIZE
 module subtractor_32_bit(
-	input wire [31:0] a,
-	input wire [31:0] b,
+	input wire signed [31:0] a,
+	input wire signed [31:0] b,
 	input wire cin,
-	output wire [31:0] sum,
+	output wire signed [31:0] sum,
 	output cout
 );
 
-	wire [31:0] b_complement;	
-	assign b_complement = ~b + 1;
+	wire signed [31:0] b_complement;	
+	assign b_complement = ~b;
+	
+	
 	adder_32_bit add1(
 	.a(a),
 	.b(b_complement),
-	.cin(cin),
+	.cin(1'b1),
 	.sum(sum),
 	.cout(cout)
 	);
