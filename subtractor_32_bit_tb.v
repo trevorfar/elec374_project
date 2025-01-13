@@ -9,6 +9,7 @@ wire [31:0] sum;
 wire cout;
 
 subtractor_32_bit uut(.a(a), .b(b), .cin(cin), .sum(sum), .cout(cout));
+
 initial begin
 		  a = 32'sb0100_0100_0100_0100_0100_0100_0100; b = 32'sb0100_0100_0100_0100_0100_0100_0100; cin = 1'b0;
 		  #50;	

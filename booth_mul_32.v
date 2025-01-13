@@ -3,13 +3,16 @@ module booth_mul_32(
 	input signed [31:0] Q_input,
 	output reg signed [63:0] Z // output of 2 32 bit multiplications will be 32*2-1:0
 );
+
+	//booth's algorithm 1 bit recoding
+	
 	reg signed [31:0] A, M, Q;
 	reg Q_1;
 	reg [5:0] count;
 	
 	always @(*)
 	begin
-		A = 32'b0;
+		A = 32'b0; // A represents the accumulator, or running sum of the partial products
 		M = M_input;
 		Q = Q_input;
 		Q_1 = 1'b0;
@@ -21,8 +24,9 @@ module booth_mul_32(
 				2'b10: A = A - M; // subtract multiplicand (same as flipping to 2's)
 				default: A = A;
 			endcase
-			{A, Q, Q_1} = {A[31], A, Q}; // shr
+			{A, Q, Q_1} = {A[31], A, Q}; // shifts right by concat into 1 65 bit register, then assigning 
+												//the sign bit followed by the contents of accumulator and finished by the multiplier
 		end
 	   Z = {A, Q}; // combine to create final prod
-	end	
+	end
 endmodule

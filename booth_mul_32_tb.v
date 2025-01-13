@@ -16,7 +16,6 @@ initial begin
 		  #50
 		  a = 32'b0; b = 32'b1111_1111_1111_1111_1111_1111_1111_1101;
 		  #50
-		  
 		 $stop;
 end
 endmodule

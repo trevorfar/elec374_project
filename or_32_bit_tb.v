@@ -19,6 +19,7 @@ initial begin
 		  a = 32'b0001; b = 32'b0001;
 		  #50
 		  a = 32'b0101; b = 32'b1010;
+		  #50
 		 $stop;
 end
 endmodule

@@ -3,7 +3,6 @@
 
 module not_32_bit_tb;
 reg [31:0] a;
-reg [31:0] b;
 wire [31:0] z;
 
 not_32_bit uut(.a(a), .z(z));

@@ -9,11 +9,9 @@ module or_32_bit(
 genvar i;
 
 generate
-
 	for(i = 0; i<32; i = i+1) begin : and_loop 
 		assign z[i] = (a[i] | b[i]);
 	end
-	
 endgenerate
 
 endmodule
