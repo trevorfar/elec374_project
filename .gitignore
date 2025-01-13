@@ -9,7 +9,9 @@
 # Ignore Quartus generated files that are not needed
 output_files/
 db/
+incremental_db/
 simulation/
+*.txt
 *.sof
 *.pof
 *.jic
