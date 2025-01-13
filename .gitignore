@@ -5,6 +5,13 @@
 *.qws
 *.qpf.sv
 *.qsf
+*.done
+*.smsg
+*.summary
+*.jdi
+*.pin
+*.sld
+
 
 # Ignore Quartus generated files that are not needed
 output_files/
