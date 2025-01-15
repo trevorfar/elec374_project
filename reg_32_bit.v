@@ -1,19 +1,23 @@
-//module reg_32_bit(
-//	input clk,
-//	input clk_r,
-//	input enable,
-//	input [31:0] d,
-//	output [31:0] q
-//);
-//	inital q = 32'b0;
-//	
-//	always @(posedge clk)
-//	begin
-//		if (clkr) begin
-//			q[31:0] = 32'b0;
-//		end
-//		else if (enable) begin
-//			q[31:0] = d[31:0];
-//		end
-//	end
-//endmodule
+module reg_32_bit #(parameter DATA_WIDTH_IN = 32, DATA_WIDTH_OUT = 32, INIT = 32'h0)
+(
+	input clk,
+	input clear,
+	input enable,
+	input [DATA_WIDTH_IN-1:0]BusMuxOut,
+	output wire [DATA_WIDTH_OUT-1:0]BusMuxIn
+);
+
+reg [DATA_WIDTH_IN-1:0] q;
+initial q = INIT;
+
+always @(posedge clk)
+	begin
+		if (clear) begin
+			q <= {DATA_WIDTH_IN{1'b0}};
+		end
+		else if (enable) begin
+			q <= BusMuxOut;
+		end
+	end
+	assign BusMuxIn = q[DATA_WIDTH_OUT-1:0];
+endmodule
