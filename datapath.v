@@ -9,20 +9,18 @@ module datapath(
 	wire [31:0] BusMuxOut, BusMuxInRZ, BusMuxInRA, BusMuxInRB;
 	wire [31:0] Zregin;
 	wire cout;
-	wire cin;
-	assign cin = 0;
 	reg_32_bit RA(clear, clk, RAin, RegisterAImmediate, BusMuxInRA);
-	reg_32_bit RB(clear, clk, RBin, BusMuxOUt, BusMuxInRB);
+	reg_32_bit RB(clear, clk, RBin, BusMuxOut, BusMuxInRB);
 	
 	adder_32_bit adder1(
 	.a(A),
 	.b(BusMuxOut),
-	.cin(cin),
+	.cin(1'b0),
 	.sum(Zregin),
 	.cout(cout)
 	);
 	
-	reg_32_bit RZ(clear, clk, RZin, Zregin, BusMuxInRZ);
+	reg_32_bit RZ(.clk(clk), .clear(clear), .enable(RZin), .BusMuxOut(Zregin), .BusMuxIn(BusMuxInRZ));
 	bus Bus(BusMuxInRZ, BusMuxInRA, BusMuxInRB, RZout, RAout, RBout, BusMuxOut);
 	
 endmodule
