@@ -1,0 +1,38 @@
+# Ignore Quartus temporary and output files
+
+# Ignore Quartus project backup files
+*.qdb
+*.qws
+*.qpf.sv
+*.qsf
+*.done
+*.smsg
+*.summary
+*.jdi
+*.pin
+*.sld
+
+
+# Ignore Quartus generated files that are not needed
+output_files/
+db/
+incremental_db/
+simulation/
+*.txt
+*.sof
+*.pof
+*.jic
+
+# Ignore Quartus temporary files
+*.rpt
+*.cmp
+*.vpd
+
+# Ignore Quartus files specific to a particular session
+*.log
+*.bak
+*.bdf
+
+# Ignore any other files not essential for source tracking
+*.qpf.lock
+*.qsf.lock
