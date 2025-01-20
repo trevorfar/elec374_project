@@ -27,8 +27,8 @@ module bp_booth_mul_32(
              case (cc[j])   
                 3'b000, 3'b111: pp[j] = 32'b0;           // 0 * a
                 3'b001, 3'b010: pp[j] = a;      // +1 * a
-                3'b011: pp[j] = 2*a;               // +2 * a
-                3'b100: pp[j] = {~a+1'b1, 1'b0};           // -2 * a
+                3'b011: pp[j] = a<<1;               // +2 * a
+                3'b100: pp[j] = -a<<1;           // -2 * a
                 3'b101, 3'b110: pp[j] = -a;           // -1 * a
                 default: pp[j] = 32'b0;                  // Default case for safety
             endcase
