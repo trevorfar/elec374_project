@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 
-
 module or_32_bit_tb;
 reg [31:0] a;
 reg [31:0] b;

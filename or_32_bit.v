@@ -1,4 +1,3 @@
-`timescale 1ns / 10ps
 
 module or_32_bit(
 	input wire [31:0] a,

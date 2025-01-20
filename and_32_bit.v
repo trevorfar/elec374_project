@@ -1,4 +1,3 @@
-`timescale 1ns / 10ps
 
 module and_32_bit(
 	input wire [31:0] a,
@@ -9,11 +8,9 @@ module and_32_bit(
 genvar i;
 
 generate
-
 	for(i = 0; i<32; i = i+1) begin : and_loop 
 		assign z[i] = (a[i] & b[i]);
-	end
-	
+	end	
 endgenerate
 
 endmodule
