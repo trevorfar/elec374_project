@@ -1,6 +1,6 @@
 module mux_2_to_1(
 	input [31:0] BusMuxOut, Mdatain,
-	input wire select,
+	input  select,
 	output reg [31:0] mux_output
 );
 	always @(*) begin

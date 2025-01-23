@@ -8,7 +8,7 @@ module mux_2_to_1_tb;
 
     wire [31:0] mux_output;
 
-    mux_2_to_1 uut (
+    mux_2_to_1 uut(
         .BusMuxOut(BusMuxOut), 
         .Mdatain(Mdatain), 
         .select(select), 
@@ -16,7 +16,7 @@ module mux_2_to_1_tb;
     );
 
     initial begin
-		  #50
+	
         BusMuxOut = 32'd16; 
         Mdatain = 32'd32; 
         select = 0;
