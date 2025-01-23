@@ -3,7 +3,7 @@ module mux_32_to_1(
 	R8, R9, R10, R11, R12, R13, R14, R15,
 	HI, LO, Z_HI, Z_LO, PC, MDR, IN_PORT, C_sign_extended,
 	input wire [4:0] select,
-	output wire [31:0] BusMuxOut
+	output reg [31:0] BusMuxOut
 );
 
 	always @(*) begin
