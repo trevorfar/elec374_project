@@ -15,7 +15,10 @@ initial begin
 		  #50;	
 		  a = 32'sb0100; b = 32'sb0010; cin = 1'b0;
 		  #50
-		  
+		  a=-32'd8; b=-32'd4;
+		  #50
+		  a=-32'd16; b=32'd8; 
+		  #50
 		 $stop;
 end
 endmodule

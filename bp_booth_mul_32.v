@@ -10,12 +10,6 @@ module bp_booth_mul_32(
     reg signed [63:0] product;   // Final product
 
     integer j;
-
-	 
-    wire [33:0] neg_a;         // -a (sign-extended)
-    assign neg_a = {~a[31], ~a} + 1;
-
-
 	 
     always @(*) begin
         cc[0] = {b[1], b[0], 1'b0};  // First pair includes implicit 0

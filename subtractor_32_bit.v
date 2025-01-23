@@ -1,4 +1,3 @@
-//DOES NOT WORK, DO NOT UTILIZE
 module subtractor_32_bit(
 	input wire signed [31:0] a,
 	input wire signed [31:0] b,
@@ -17,6 +16,6 @@ module subtractor_32_bit(
 	.cin(1'b1),
 	.sum(sum),
 	.cout(cout)
-	);
+	);	
 	
 endmodule

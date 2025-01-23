@@ -3,7 +3,7 @@ module adder_32_bit(
 	input [31:0] b,
 	input cin,
 	output [31:0] sum,
-	output cout
+	output signed cout
 );
 
 wire cout1, cout2, cout3, cout4, cout5, cout6, cout7;
