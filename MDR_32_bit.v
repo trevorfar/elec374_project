@@ -15,11 +15,6 @@ module mdr_32_bit(
 			mdr_out <= D;
 		end
 
-	end
+	end 
 	
-// pretty sure I could do this reg_32_bit MDR(
-//		.clk(clk), .clear(clear), .enable(MDRin), .BusMuxOut(D), .BusMuxIn(mdr_out)
-//	);
-
-
 endmodule
