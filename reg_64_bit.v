@@ -1,4 +1,4 @@
-module reg_32_bit #(parameter DATA_WIDTH_IN = 32, DATA_WIDTH_OUT = 32, INIT = 32'h0)
+module reg_64_bit #(parameter DATA_WIDTH_IN = 64, DATA_WIDTH_OUT = 64, INIT = 64'h0)
 (
 	input clk,
 	input clear,

@@ -1,6 +1,8 @@
 module datapath(
 	input wire clk, clear,
 	input wire [31:0] A,
+	input wire [31:0] B,
+
 	input wire [31:0] RegisterAImmediate,
 	input wire RZout, RAout, RBout,
 	input wire RAin, RBin, RZin
@@ -12,6 +14,7 @@ module datapath(
 	reg_32_bit RA(clear, clk, RAin, RegisterAImmediate, BusMuxInRA);
 	reg_32_bit RB(clear, clk, RBin, BusMuxOut, BusMuxInRB);
 	
+	
 	adder_32_bit adder1(
 	.a(A),
 	.b(BusMuxOut),
@@ -20,7 +23,12 @@ module datapath(
 	.cout(cout)
 	);
 	
+	mux_32_bit bus();
+
 	reg_32_bit RZ(.clk(clk), .clear(clear), .enable(RZin), .BusMuxOut(Zregin), .BusMuxIn(BusMuxInRZ));
-	bus Bus(BusMuxInRZ, BusMuxInRA, BusMuxInRB, RZout, RAout, RBout, BusMuxOut);
+	
+
+
+
 	
 endmodule
