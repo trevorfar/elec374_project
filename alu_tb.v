@@ -30,6 +30,10 @@ initial begin
 		  opcode = 5'b01101;
 		  a = -32'd8; b=-32'd8;
 		  #50;
+		  
+		  opcode = 5'b01100;
+		  a = 32'd6;
+		  #50;
 		 $stop;
 end
 endmodule

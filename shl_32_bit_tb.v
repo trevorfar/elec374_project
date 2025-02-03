@@ -1,10 +1,10 @@
 `timescale 1ns/1ps
 
-module shra_32_bit_tb();
+module shl_32_bit_tb();
 reg [31:0] a, numShifts;
 wire [31:0] z;
 
-shra_32_bit uut(.a(a), .shifts(numShifts), .z(z));
+shl_32_bit uut(.a(a), .shifts(numShifts), .z(z));
 initial begin
 	a=32'd8; numShifts=32'd1;
 	#50
