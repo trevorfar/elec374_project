@@ -11,6 +11,8 @@ module booth_mul_32_tb;
     );
 
     initial begin
+		  a=8'b01110011; b=8'b11110010;
+		  #10
         // Test 1: Positive x Positive
         a = 32'd15; b = 32'd10;
         #10 
