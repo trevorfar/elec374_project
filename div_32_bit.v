@@ -2,7 +2,7 @@ module div_32_bit(
     
     input [31:0] Q,
     input [31:0] M,
-    input clk, resetn,
+    input clk, reset,
 	 
     output [31:0] quotient,
     output [31:0] remainder
@@ -13,7 +13,7 @@ module div_32_bit(
 
 	always @(posedge clk) begin
 		
-		if (~resetn) begin
+		if (~reset) begin
 		
 			AQ_reg = 64'b0;
 			count = 0;

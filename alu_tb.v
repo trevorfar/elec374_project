@@ -4,14 +4,18 @@ module alu_tb;
 
 reg [31:0] a;
 reg [31:0] b;
-reg cin;
-wire [63:0] sum;
+reg cin; 
+input wire clk;
+input wire reset;
+wire [63:0] RZ;
 wire cout;
 reg [4:0] opcode;
 
-alu uut(.RA(a), .RB(b), .opcode(opcode), .RZ(sum));
+alu uut(.RA(a), .RB(b), .opcode(opcode), .RZ(RZ));
 
-initial begin
+
+initial begin clk = 0; end
+always #10 clk = ~clk;
 		  opcode = 5'b00000;
 		  a = 32'd8; b = 32'd8; cin = 1'b0;
 		  #50;
@@ -31,9 +35,16 @@ initial begin
 		  a = -32'd8; b=-32'd8;
 		  #50;
 		  
-		  opcode = 5'b01100;
-		  a = 32'd6;
+		  opcode = 5'b00110;
+		  a = 32'd6; b=32'd1; 
 		  #50;
+		  
+		  opcode = 5'b00011;
+		  b = 32'd36; a = 32'd6;
+		  #50;
+		  
+//		  opcode = 5'b00110;
+//		  a = 32'h00000001; 
 		 $stop;
 end
 endmodule
