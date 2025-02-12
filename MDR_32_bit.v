@@ -1,4 +1,4 @@
-module mdr_32_bit(
+module MDR_32_bit(
 	input [31:0] Mdatain,
 	input [31:0] bus_mux_out,
 	input wire clk, clear, MDRin, select,
