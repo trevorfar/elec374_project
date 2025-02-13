@@ -1,21 +1,23 @@
 `timescale 1ns/1ps
 
 module datapath_tb();
-//
-//reg clk, clear, RZout, RAout, RBout, RAin, RBin, RZin;
-//reg [31:0] AddImmediate;
-//reg [31:0] RegisterAImmediate;
-//reg [3:0] present_state;
-//
-//datapath DP(
-//	clk, clear,
-//	AddImmediate, 
-//	RegisterAImmediate,
-//	RZout, RAout, RBout,
-//	RAin, RBin, RZin
-//);
 
-reg clk;
+module datapath(
+	input wire clk, clear,
+	input wire [4:0] opcode, 
+	output [31:0] bus_data
+
+);
+
+reg [4:0] opcode;
+reg [31:0] bus_data;
+
+reg cout, Z_enable, HI_enable, LO_enable, IR_enable, PC_enable, MAR_enable, muxy_select, RY_enable, mdr_in, mdr_select, clk, clear;
+
+
+datapath DP(.clk(clk), .clear(clear), .opcode(opcode), .bus_data(bus_data));
+
+
 initial begin clk = 0;
 forever #10 clk = ~clk;
 end
