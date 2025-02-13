@@ -55,6 +55,7 @@
 //   assign remainder = AQ_reg[63:32];	
 //
 //endmodule
+
 module div_32_bit(
 	input [31:0] dividend,
 	input [31:0] divisor,
