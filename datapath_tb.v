@@ -7,11 +7,11 @@ module datapath_tb();
     reg [15:0] enable;
     reg PCout, ZHighout, ZLowout, HIout, LOout, MAR_enable, PC_enable;
     reg MDRin, IR_enable, Yin, mdr_read, HIin, LOin, ZHigh_enable, ZLow_enable, Cout;
-    reg [31:0] InPort_data_in, RY_immediate, m_data_in;
-    wire [31:0] r3_debug, r7_debug, r4_debug, pc_debug, ZHigh_debug, ZLow_debug;
-	 wire r3in, r4in, r7in;
+    reg [31:0] InPort_data_in, RY_immediate, m_data_in, mdr_out;
+    reg [31:0] r3_debug, r7_debug, r4_debug, pc_debug, ZHigh_debug, ZLow_debug;
+	 reg r3in, r4in, r7in;
 
-    wire [31:0] bus_data, OutPort_data_out;
+    reg [31:0] bus_data, OutPort_data_out;
 
     parameter Default = 4'b0000, T0 = 4'b0001, T1 = 4'b0010, T2 = 4'b0011, T3 = 4'b0100, T4 = 4'b0101, T5 = 4'b0000;
     reg [3:0] present_state = Default;
@@ -54,33 +54,37 @@ module datapath_tb();
 
     initial begin
         clk = 0;
-        forever #50 clk = ~clk;
+        forever #10 clk = ~clk;
     end
 
     initial begin
         clear = 1;
-        #20 clear = 0;
+        #10 clear = 0;
     end
 
     always @(posedge clk) begin
         case (present_state)
-				Default: present_state <= Default;
-            T0: present_state <= T1;
-            T1: present_state <= T2;
-            T2: present_state <= T3;
-            T3: present_state <= T4;
-            T4: present_state <= T5;
+				Default : present_state <= init; 
+				init : present_state <= load_regA1; 
+				load_regA1 : present_state <= load_regA2;
+				load_regA2 : present_state <= load_regB1;
+				load_regB1 : present_state <= load_regB2;
+				load_regB2 : present_state <= T0; 
+            T0 : present_state <= T1;
+            T1 : present_state <= T2;
+            T2 : present_state <= T3;
+            T3 : present_state <= T4;
+            T4 : present_state <= T5;
         endcase
     end
 
     always @(present_state) begin
 
         case (present_state)
-            Default: begin
+            init: begin
                  enable = 16'b0;
-                 clear = 1;
-					  enable = 16'b0;
 					  PC_enable = 0;
+					  clear = 0;
 					  MAR_enable = 0;
 					  ZHigh_enable = 0;
 					  ZLow_enable = 0;
@@ -94,9 +98,29 @@ module datapath_tb();
 					  Yin = 0;
 					  InPort_data_in = 0;
 					  RY_immediate = 0;
-					  PCout = 0; HIout = 0; LOout = 0; ZHighout = 0; ZLowout = 0;
-					  present_state <= T0;
+					  PCout =
+					  0; HIout = 0; LOout = 0; ZHighout = 0; ZLowout = 0;
             end
+				
+				load_regA1: begin
+					Mdatain <= 32'h00000022;
+					mdr_read <= 0; mdr_in <= 0;
+					#10 mdr_read <= 1; mdr_read <= 1;
+					#20 mdr_read <= 0; mdr_read <= 0;
+				end
+				
+				load_regA2: begin
+					mdr
+				
+				end
+				
+				load_regB1: begin
+				
+				end
+				
+				load_regB2: begin
+				
+				end
 
             T0: begin
                 PC_enable = 1;   
