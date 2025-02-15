@@ -14,17 +14,33 @@ module datapath(
     input wire [31:0] InPort_data_in,
     input wire [31:0] RY_immediate,  // Immediate value for RY mux
     output wire [31:0] bus_data,
-    output wire [31:0] OutPort_data_out
+    output wire [31:0] OutPort_data_out,
+	 output wire [31:0] r3_debug, r4_debug, r7_debug, pc_debug, ZHigh_debug, ZLow_debug,
+	 output wire r3in, r4in, r7in
 );
 	 wire [31:0] m_data_in;
 	 wire [63:0] RZ_data_in;
     // Internal signals
+	 
+	 
+	 
     wire [31:0] mar_data_out, mdr_out, HI_out, LO_out, ZHigh_out, ZLow_out;
     wire [31:0] ir_data_out, pc_data_out, RY_out, muxy_out;
     wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r4_data_out, r5_data_out;
     wire [31:0] r6_data_out, r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out;
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
-    wire [31:0] C_sign_extended;  // Assume this is generated elsewhere
+    wire [31:0] C_sign_extended;  
+	 
+	 
+	 assign r3_debug = r3_data_out;
+    assign r7_debug = r7_data_out;
+    assign r4_debug = r4_data_out;
+    assign pc_debug = pc_data_out;
+    assign ZHigh_debug = ZHigh_out;
+    assign ZLow_debug = ZLow_out;
+	 assign r3in = enable[2];
+	 assign r4in = enable[3];
+	 assign r7in = enable[6];
 
     // Encoder input (32 control signals)
     wire [31:0] encoder_input;
@@ -32,8 +48,8 @@ module datapath(
         // Map control signals to encoder inputs (adjust order as needed)
         8'b0,  // Unused
         PCout, ZHighout, ZLowout, HIout, LOout, 
-        1'b0, 1'b0,  // Placeholder for other control signals
-        enable[15:0]  // R0out-R15out (if enable is repurposed)
+        1'b0, 1'b0, 
+        enable[15:0]  
     };
 
     // Encoder to select bus source
