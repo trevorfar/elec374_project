@@ -1,7 +1,7 @@
 module MDR_32_bit(
 	input [31:0] Mdatain,
 	input [31:0] bus_mux_out,
-	input wire clk, clear, MDRin, mdr_read,
+	input wire clk, clear, mdr_in, mdr_read,
 	output reg [31:0] mdr_out
 );
 	wire [31:0] D;
@@ -11,7 +11,7 @@ module MDR_32_bit(
 	always @(posedge clk) begin
 		if(clear) begin
 			mdr_out <= 32'b0;
-		end else if (MDRin) begin
+		end else if (mdr_in) begin
 			mdr_out <= D;
 		end
 
