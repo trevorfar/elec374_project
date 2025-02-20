@@ -11,7 +11,8 @@ module datapath(
     input wire R6_out, R7_out, R8_out, R9_out, R10_out, R11_out, R12_out, R13_out, R14_out, R15_out,
 	 input wire R0_enable, R1_enable, R2_enable, R3_enable, R4_enable, R5_enable,
     input wire R6_enable, R7_enable, R8_enable, R9_enable, R10_enable, R11_enable,
-    input wire R12_enable, R13_enable, R14_enable, R15_enable
+    input wire R12_enable, R13_enable, R14_enable, R15_enable,
+	 output [31:0] R3_data_out, R4_data_out, R7_data_out
 	 );
 
 	 
@@ -42,6 +43,9 @@ module datapath(
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
     wire [31:0] C_sign_extended; 
 	
+	assign R3_data_out = r3_data_out;
+	assign R4_data_out = r4_data_out;
+	assign R7_data_out = r7_data_out;
 	
 	 wire [63:0] rz_data_out;
 	 

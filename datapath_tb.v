@@ -14,6 +14,7 @@ module datapath_tb();
     reg R12_enable, R13_enable, R14_enable, R15_enable;
 	 reg [31:0] Mdatain;
 	 reg [31:0] mdr_data_out;
+	 wire [31:0] bus_data, r3_data_out, r4_data_out, r7_data_out;
 	 
     parameter Default = 4'b0000, load_regA1 = 4'b0001, load_regA2 = 4'b0010, load_regB1 = 4'b0011, 
 	 load_regB2 = 4'b0100, load_regC1 = 4'b0101, load_regC2 = 4'b0110, T0 = 4'b0111, T1 = 4'b1000, T2 = 4'b1001,
@@ -26,7 +27,7 @@ module datapath_tb();
     .clear(clear),
     .InPort_data_in(32'b0),  // Placeholder, modify if needed
     .OutPort_data_out(),  // Unconnected output
-    .bus_data(),  // Unconnected output
+    .bus_data(bus_data),  // Unconnected output
     
     // Control Signals
     .pc_out(pc_out),
@@ -79,7 +80,11 @@ module datapath_tb();
     .R12_enable(R12_enable),
     .R13_enable(R13_enable),
     .R14_enable(R14_enable),
-    .R15_enable(R15_enable)
+    .R15_enable(R15_enable),
+	 
+	 .R3_data_out(r3_data_out),
+	 .R4_data_out(r4_data_out),
+	 .R7_data_out(r7_data_out)
 );
     
 
