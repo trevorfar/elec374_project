@@ -15,8 +15,7 @@ module datapath(
     input wire [31:0] RY_immediate,  // Immediate value for RY mux
     output wire [31:0] bus_data,
     output wire [31:0] OutPort_data_out,
-	 output wire [31:0] r3_debug, r4_debug, r7_debug, pc_debug, ZHigh_debug, ZLow_debug,
-	 output wire r3in, r4in, r7in
+	 output wire [31:0] r3out, r4out, r7out
 );
 	 wire [31:0] m_data_in;
 	 wire [63:0] RZ_data_in;
