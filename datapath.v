@@ -3,10 +3,16 @@ module datapath(
     input wire [31:0] InPort_data_in,
     output wire [31:0] OutPort_data_out,
 	 output wire [31:0] bus_data,
+	 input wire pc_out, ZHighout, ZLowout, HI_out, LO_out, mar_in, mdr_out, pc_in, 
+	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
+	 input R0_out, R1_out, R2_out, R3_out, R4_out, R5_out;
+    input R6_out, R7_out, R8_out, R9_out, R10_out, R11_out;
+	 input R0_enable, R1_enable, R2_enable, R3_enable, R4_enable, R5_enable;
+    input R6_enable, R7_enable, R8_enable, R9_enable, R10_enable, R11_enable;
+    input R12_enable, R13_enable, R14_enable, R15_enable;
 	 );
 
-	 wire pc_out, ZHighout, ZLowout, HI_out, LO_out, mar_in, mdr_out, pc_in, 
-	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in,
+	 
 	 
 	 reg [15:0] reg_enable; // accept data
 	 reg [15:0] reg_out; // select data
@@ -39,22 +45,22 @@ module datapath(
         .encoder_output(bus_select)
     );
 
-    reg_32_bit r0(clear, clk, enable[0], bus_data, r0_data_out); 
-    reg_32_bit r1(clear, clk, enable[1], bus_data, r1_data_out);
-    reg_32_bit r2(clear, clk, enable[2], bus_data, r2_data_out);
-    reg_32_bit r3(clear, clk, enable[3], bus_data, r3_data_out);
-    reg_32_bit r4(clear, clk, enable[4], bus_data, r4_data_out);
-    reg_32_bit r5(clear, clk, enable[5], bus_data, r5_data_out);
-    reg_32_bit r6(clear, clk, enable[6], bus_data, r6_data_out);
-    reg_32_bit r7(clear, clk, enable[7], bus_data, r7_data_out);
-    reg_32_bit r8(clear, clk, enable[8], bus_data, r8_data_out);
-    reg_32_bit r9(clear, clk, enable[9], bus_data, r9_data_out);
-    reg_32_bit r10(clear, clk, enable[10], bus_data, r10_data_out);
-    reg_32_bit r11(clear, clk, enable[11], bus_data, r11_data_out);
-    reg_32_bit r12(clear, clk, enable[12], bus_data, r12_data_out);
-    reg_32_bit r13(clear, clk, enable[13], bus_data, r13_data_out);
-    reg_32_bit r14(clear, clk, enable[14], bus_data, r14_data_out);
-    reg_32_bit r15(clear, clk, enable[15], bus_data, r15_data_out);
+    reg_32_bit r0(clear, clk, reg_enable[0], bus_data, r0_data_out); 
+    reg_32_bit r1(clear, clk, reg_enable[1], bus_data, r1_data_out);
+    reg_32_bit r2(clear, clk, reg_enable[2], bus_data, r2_data_out);
+    reg_32_bit r3(clear, clk, reg_enable[3], bus_data, r3_data_out);
+    reg_32_bit r4(clear, clk, reg_enable[4], bus_data, r4_data_out);
+    reg_32_bit r5(clear, clk, reg_enable[5], bus_data, r5_data_out);
+    reg_32_bit r6(clear, clk, reg_enable[6], bus_data, r6_data_out);
+    reg_32_bit r7(clear, clk, reg_enable[7], bus_data, r7_data_out);
+    reg_32_bit r8(clear, clk, reg_enable[8], bus_data, r8_data_out);
+    reg_32_bit r9(clear, clk, reg_enable[9], bus_data, r9_data_out);
+    reg_32_bit r10(clear, clk, reg_enable[10], bus_data, r10_data_out);
+    reg_32_bit r11(clear, clk, reg_enable[11], bus_data, r11_data_out);
+    reg_32_bit r12(clear, clk, reg_enable[12], bus_data, r12_data_out);
+    reg_32_bit r13(clear, clk, reg_enable[13], bus_data, r13_data_out);
+    reg_32_bit r14(clear, clk, reg_enable[14], bus_data, r14_data_out);
+    reg_32_bit r15(clear, clk, reg_enable[15], bus_data, r15_data_out);
 
     reg_32_bit HI(clear, clk, HI_in, bus_data, HI_out);
     reg_32_bit LO(clear, clk, LO_in, bus_data, LO_out);
