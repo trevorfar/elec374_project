@@ -4,7 +4,7 @@ module datapath(
     output wire [31:0] OutPort_data_out,
 	 output wire [31:0] bus_data,
 	 input [4:0] opcode,
-	 output wire HI_out, LO_out,
+	 input wire HI_out, LO_out,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, 
 	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire R0_out, R1_out, R2_out, R3_out, R4_out, R5_out,
