@@ -3,13 +3,15 @@ module datapath(
     input wire [31:0] InPort_data_in,
     output wire [31:0] OutPort_data_out,
 	 output wire [31:0] bus_data,
-	 input wire pc_out, ZHighout, ZLowout, HI_out, LO_out, mar_in, mdr_out, pc_in, 
+	 input [4:0] opcode,
+	 output wire HI_out, LO_out,
+	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, 
 	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
-	 input R0_out, R1_out, R2_out, R3_out, R4_out, R5_out;
-    input R6_out, R7_out, R8_out, R9_out, R10_out, R11_out;
-	 input R0_enable, R1_enable, R2_enable, R3_enable, R4_enable, R5_enable;
-    input R6_enable, R7_enable, R8_enable, R9_enable, R10_enable, R11_enable;
-    input R12_enable, R13_enable, R14_enable, R15_enable;
+	 input wire R0_out, R1_out, R2_out, R3_out, R4_out, R5_out,
+    input wire R6_out, R7_out, R8_out, R9_out, R10_out, R11_out, R12_out, R13_out, R14_out, R15_out,
+	 input wire R0_enable, R1_enable, R2_enable, R3_enable, R4_enable, R5_enable,
+    input wire R6_enable, R7_enable, R8_enable, R9_enable, R10_enable, R11_enable,
+    input wire R12_enable, R13_enable, R14_enable, R15_enable
 	 );
 
 	 
@@ -17,15 +19,22 @@ module datapath(
 	 reg [15:0] reg_enable; // accept data
 	 reg [15:0] reg_out; // select data
 	 
+	 always @(*) begin
+    reg_enable = {R15_enable, R14_enable, R13_enable, R12_enable, R11_enable, R10_enable, R9_enable, R8_enable,
+                  R7_enable, R6_enable, R5_enable, R4_enable, R3_enable, R2_enable, R1_enable, R0_enable};
+    reg_out = {R15_out, R14_out, R13_out, R12_out, R11_out, R10_out, R9_out, R8_out,
+               R7_out, R6_out, R5_out, R4_out, R3_out, R2_out, R1_out, R0_out};
+	 end
+	 
 	 wire [31:0] Mdatain, mdr_data_out;
-    wire [31:0] mar_data_out;
+    wire [31:0] mar_data_out, RY_immediate;
 	 wire [31:0] HI_data_out;
 	 wire [31:0] LO_data_out;
 	 wire [31:0] ZHigh_data_out;
 	 wire [31:0] ZLow_data_out;
 	 wire [31:0] pc_data_out;
 	 wire [31:0] ir_data_out; 
-	 wire [31:0] ry_data_out;
+	 wire [31:0] RY_data_out;
 	 wire [31:0] muxy_data_out;
 	 wire [31:0] InPort_data_out;
 	 wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r4_data_out, r5_data_out;
@@ -62,10 +71,10 @@ module datapath(
     reg_32_bit r14(clear, clk, reg_enable[14], bus_data, r14_data_out);
     reg_32_bit r15(clear, clk, reg_enable[15], bus_data, r15_data_out);
 
-    reg_32_bit HI(clear, clk, HI_in, bus_data, HI_out);
-    reg_32_bit LO(clear, clk, LO_in, bus_data, LO_out);
+    reg_32_bit HI(clear, clk, HI_in, bus_data, HI_data_out);
+    reg_32_bit LO(clear, clk, LO_in, bus_data, LO_data_out);
 	 
-	 z_reg RZ(ZHigh_data_out, ZLow_data_out, rz_data_out, clk, clr, rz_in);
+	 z_reg RZ(ZHigh_data_out, ZLow_data_out, rz_data_out, clk, clear, rz_in);
 	 
     pc_32_bit PC(clear, clk, pc_in, bus_data, pc_data_out);
     reg_32_bit MAR(clear, clk, mar_in, bus_data, mar_data_out);
@@ -82,14 +91,14 @@ module datapath(
     );
 
     // ALU and bus mux
-     mux_2_to_1 muxy(RY_data_out, RY_immediate, muxy_select, muxy_out);
+     mux_2_to_1 muxy(RY_data_out, RY_immediate, muxy_select, muxy_data_out);
 
 
 
     mux_32_bit bus(
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
         .R6(r6_data_out), .R7(r7_data_out), .R8(r8_data_out), .R9(r9_data_out), .R10(r10_data_out), .R11(r11_data_out), 
-        .R12(r12_data_out), .R13(r13_data_out), .R14(r14_data_out), .R15(r15_data_out), .HI(HI_out), .LO(LO_out), 
+        .R12(r12_data_out), .R13(r13_data_out), .R14(r14_data_out), .R15(r15_data_out), .HI(HI_data_out), .LO(LO_data_out), 
         .Z_HI(ZHigh_out), .Z_LO(ZLow_out), .PC(pc_data_out), .MDR(mdr_data_out), .IN_PORT(InPort_data_in), 
         .C_sign_extended(C_sign_extended), .select(bus_select), .BusMuxOut(bus_data)
     );

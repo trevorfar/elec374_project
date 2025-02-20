@@ -114,7 +114,7 @@ module datapath_tb();
 
         case (present_state)
             Default: begin
-                 enable <= 16'b0;
+                 reg_enable <= 16'b0;
 					  pc_in <= 0;
 					  mar_in <= 0;
 					  z_lo_in <= 0;
@@ -161,7 +161,7 @@ module datapath_tb();
 				end
 				
 				load_regC2: begin
-					mdr_out <= 1; enable[3] <= 1;
+					mdr_out <= 1; reg_enable[3] <= 1;
 					#15 mdr_out <= 0; reg_enable[3] <= 0;
 				end
 
