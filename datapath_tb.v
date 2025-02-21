@@ -52,19 +52,20 @@ module datapath_tb();
 	 .R4_data_out(r4_data_out),
 	 .R7_data_out(r7_data_out),
 	 .bus_select(bus_select),
-	 .MDR_data_out(mdr_data_out)
+	 .MDR_data_out(mdr_data_out),
+	 .Mdatain(Mdatain)
 	);
 		 
-	
-    initial begin
-        clk = 0;
-        forever #10 clk = ~clk;
-    end
-	 
 	 initial begin
 		  clear = 1;
-        #10 clear = 0;
+        #1 clear = 0;
 	 end
+    initial begin
+        clk = 0;
+        forever #9 clk = ~clk;
+    end
+	 
+	
 
     always @(posedge clk) begin
         case (present_state)
@@ -107,91 +108,74 @@ module datapath_tb();
 					  reg_in <= 16'b0;					  $display("Default: Encoder Input: %b", DUT.encoder_input_debug);
 
             end
-				//read = 
 				load_regA1: begin
-				$display("Time: %t | Mdatain: %h | MDR In: %b | MDR Read: %b | MDR Data Out: %h", 
-				$time, Mdatain, mdr_in, mdr_read, mdr_data_out);
-				Mdatain <= 32'h00000022;
-				#10
-				mdr_read <= 1; #5 mdr_in <= 1;
-				#15 mdr_read <= 0; mdr_in <= 0;					  
-				$display("A1 Encoder Input: %b", DUT.encoder_input_debug);
-
+					Mdatain <= 32'h00000022;
+					#10 mdr_read <= 1; mdr_in <= 1;
+					#10 mdr_read <= 0; mdr_in <= 0;	
+    $display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain);
+					
 				end
 				
+				
 				load_regA2: begin	
-					mdr_out <= 1; reg_in[2] <= 1;
-					#15 mdr_out <= 0; reg_in[2] <= 0;
-									  $display("A2 Encoder Input: %b", DUT.encoder_input_debug);
-
+					#10 mdr_out <= 1; reg_in[2] <= 1;
+					#10 mdr_out <= 0; reg_in[2] <= 0;
 				end
 				
 				load_regB1: begin
-					mdr_read <= 1; mdr_in <= 1;
-					#10 Mdatain <= 32'h0000024;
-
-					#35 mdr_read <= 0; mdr_in <= 0;					  $display("B1 Encoder Input: %b", DUT.encoder_input_debug);
+					Mdatain <= 32'h00000024;
+					#10 mdr_read <= 1; mdr_in <= 1; 
+					#10 mdr_read <= 0; mdr_in <= 0;					  $display("B1 Encoder Input: %b", DUT.encoder_input_debug);
 
 				end
 				
 				load_regB2: begin
-					mdr_out <= 1; reg_in[6] <= 1;
-					#15 mdr_out <= 0; reg_in[6] <= 0;					  $display("B2 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_out <= 1; reg_in[6] <= 1;
+					#10 mdr_out <= 0; reg_in[6] <= 0;					  $display("B2 Encoder Input: %b", DUT.encoder_input_debug);
 
 				end
 				
 				load_regC1: begin
-					Mdatain <= 32'h0000028;
-					mdr_read <= 1; mdr_in <= 1;
-					#15 mdr_read <= 0; mdr_in <= 0;					  $display("C1 Encoder Input: %b", DUT.encoder_input_debug);
+					Mdatain <= 32'h00000028;
+					#10 mdr_read <= 1; mdr_in <= 1;
+					#10 mdr_read <= 0; mdr_in <= 0;					  $display("C1 Encoder Input: %b", DUT.encoder_input_debug);
 
 				end
 				
 				load_regC2: begin
-					mdr_out <= 1; reg_in[3] <= 1;
-					#15 mdr_out <= 0; reg_in[3] <= 0;					  $display("C2 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_out <= 1; reg_in[3] <= 1;
+					#10 mdr_out <= 0; reg_in[3] <= 0;					  $display("C2 Encoder Input: %b", DUT.encoder_input_debug);
 
 				end
 
             T0: begin
-                pc_out <= 1; mar_in <= 1;
-					 #15 pc_out <= 0; mar_in <= 0;					  $display("T0 Encoder Input: %b", DUT.encoder_input_debug);
-
-					 
+               #10 pc_out <= 1; mar_in <= 1;
+					#10 pc_out <= 0; mar_in <= 0;					  
             end
             T1: begin
-                mdr_in <= 1; mdr_read <= 1; Mdatain <= 32'h2A2B8000; pc_in <= 1;
-					// ZLowout <= 1; pc_in <= 1; mdr_read <= 1; mdr_in <= 1; 					
-					$display("T1 Encoder Input: %b", DUT.encoder_input_debug);
+                Mdatain <= 32'h2A2B8000;
+					 #10 mdr_in <= 1; mdr_read <= 1;  pc_in <= 1;
 
             end
-
             T2: begin
-					 mdr_out <= 1; ir_in <= 1;  
-					 #15 mdr_out <= 0; 
-					 					  $display("T2 Encoder Input: %b", DUT.encoder_input_debug);
+					 #10 mdr_out <= 1; ir_in <= 1;  
+					 #10 mdr_out <= 0; 
 
             end
 
             T3: begin
-				Yin = 1; reg_out[2] <= 1; 
-				#15 reg_out[2] <= 0; Yin <= 0;
-									  $display("T3 Encoder Input: %b", DUT.encoder_input_debug);
-
+					#10 Yin = 1; reg_out[2] <= 1; 
+					#10 reg_out[2] <= 0; Yin <= 0;
             end
 
             T4: begin
-               // z_lo_in <= 1; 
-					rz_in <= 1; reg_out[6] <= 1; opcode = 5'b00100;
-					 #15 reg_out[6] <= 0;
-					 $display("T4 Encoder Input: %b", DUT.encoder_input_debug);
-
+					opcode = 5'b00100;
+					#10 rz_in <= 1; reg_out[6] <= 1; 
+					#10 reg_out[6] <= 0;
             end
 				T5: begin
-					  rz_in <= 0; ZLowout <= 1; reg_in[3] <= 1;
-					  #15 ZLowout <= 0; reg_in[3] <= 0;
-					  $display("T5 Encoder Input: %b", DUT.encoder_input_debug);
-
+					#10 rz_in <= 0; ZLowout <= 1; reg_in[3] <= 1;
+					#10 ZLowout <= 0; reg_in[3] <= 0;
 				end
         endcase
     end

@@ -1,20 +1,21 @@
 module datapath(
     input wire clk, clear,
+	
     input wire [31:0] InPort_data_in,
     output wire [31:0] OutPort_data_out,
 	 output wire [31:0] bus_data,
 	 input [4:0] opcode,
 	 input wire HI_out, LO_out,
-	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, 
-	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
+	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
 	 output wire [31:0] R3_data_out, R4_data_out, R7_data_out, 
 	 output [4:0] bus_select,
-	 output wire [31:0] MDR_data_out
+	 output wire [31:0] MDR_data_out,
+	 input wire [31:0] Mdatain
 	 );
 
-	 wire [31:0] Mdatain, mdr_data_out;
+	 wire [31:0] mdr_data_out;
     wire [31:0] mar_data_out, RY_immediate;
 	 wire [31:0] HI_data_out;
 	 wire [31:0] LO_data_out;
@@ -31,11 +32,7 @@ module datapath(
     wire [31:0] C_sign_extended; 
 	
 	//JUST FOR TB
-	assign R3_data_out = r3_data_out;
-	assign R4_data_out = r4_data_out;
-	assign R7_data_out = r7_data_out;
-	assign MDR_data_out = mdr_data_out;	 
-	
+
 	 wire [63:0] rz_data_out;
 	 	
     encoder_32_to_5 bus_encoder(
@@ -94,6 +91,11 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
     );
 
     alu ALU(.RA(muxy_out), .RB(bus_data), .opcode(opcode), .RZ(RZ_data_out));  
+	assign R3_data_out = r3_data_out;
+	assign R4_data_out = r4_data_out;
+	assign R7_data_out = r7_data_out;
+	assign MDR_data_out = mdr_data_out;	 
+	
 	 
 
 
