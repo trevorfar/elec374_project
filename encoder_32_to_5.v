@@ -19,7 +19,7 @@ module encoder_32_to_5(
 				32'd8192 : encoder_output <= 5'd13; 
 				32'd16384 : encoder_output <= 5'd14; 
 				32'd32768 : encoder_output <= 5'd15;
-				32'd65538 : encoder_output <= 5'd16; 
+				32'd65536 : encoder_output <= 5'd16; 
 				32'd131072 : encoder_output <= 5'd17; 
 				32'd262144 : encoder_output <= 5'd18; 
 				32'd524288 : encoder_output <= 5'd19; 

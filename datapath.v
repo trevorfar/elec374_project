@@ -9,7 +9,8 @@ module datapath(
 	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
-	 output [31:0] R3_data_out, R4_data_out, R7_data_out
+	 output [31:0] R3_data_out, R4_data_out, R7_data_out, 
+	 output [4:0] bus_select
 	 );
 
 	 wire [31:0] Mdatain, mdr_data_out;
@@ -33,15 +34,12 @@ module datapath(
 	assign R7_data_out = r7_data_out;
 	
 	 wire [63:0] rz_data_out;
-	 
-	 wire [4:0] bus_select;
-	
+	 	
     encoder_32_to_5 bus_encoder(
-        .encoder_input({{8{1'b0}}, Cout,InPortout,mdr_out,pc_out,ZLowout,ZHighout,LO_out,HI_out, 
-		  reg_out[0], reg_out[1], reg_out[2], reg_out[3], reg_out[4], reg_out[5], reg_out[6], reg_out[7], 
-		  reg_out[8], reg_out[9], reg_out[10], reg_out[11], reg_out[12], reg_out[13], reg_out[14], reg_out[15]}),
+        .encoder_input({{8{1'b0}}, Cout,InPortout,mdr_out,pc_out,ZLowout,ZHighout,LO_out,HI_out, {reg_out}}),
         .encoder_output(bus_select)
     );
+wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, ZLowout, ZHighout, LO_out, HI_out, {reg_out}};
 
     reg_32_bit r0(clear, clk, reg_in[0], bus_data, r0_data_out); 
     reg_32_bit r1(clear, clk, reg_in[1], bus_data, r1_data_out);
