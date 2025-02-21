@@ -55,16 +55,16 @@ module datapath_tb();
 	 .MDR_data_out(mdr_data_out)
 	);
 		 
-
+	
     initial begin
         clk = 0;
         forever #10 clk = ~clk;
     end
-
-//    initial begin
-//        clear = 1;
-//        #10 clear = 0;
-//    end
+	 
+	 initial begin
+		  clear = 1;
+        #10 clear = 0;
+	 end
 
     always @(posedge clk) begin
         case (present_state)
@@ -109,10 +109,13 @@ module datapath_tb();
             end
 				//read = 
 				load_regA1: begin
-					mdr_read <= 1; mdr_in <= 1;
-					#10 Mdatain <= 32'h00000022;
-
-					#35 mdr_read <= 0; mdr_in <= 0;					  $display("A1 Encoder Input: %b", DUT.encoder_input_debug);
+				$display("Time: %t | Mdatain: %h | MDR In: %b | MDR Read: %b | MDR Data Out: %h", 
+				$time, Mdatain, mdr_in, mdr_read, mdr_data_out);
+				Mdatain <= 32'h00000022;
+				#10
+				mdr_read <= 1; #5 mdr_in <= 1;
+				#15 mdr_read <= 0; mdr_in <= 0;					  
+				$display("A1 Encoder Input: %b", DUT.encoder_input_debug);
 
 				end
 				
@@ -124,8 +127,9 @@ module datapath_tb();
 				end
 				
 				load_regB1: begin
-					Mdatain <= 32'h0000024;
 					mdr_read <= 1; mdr_in <= 1;
+					#10 Mdatain <= 32'h0000024;
+
 					#35 mdr_read <= 0; mdr_in <= 0;					  $display("B1 Encoder Input: %b", DUT.encoder_input_debug);
 
 				end

@@ -9,9 +9,9 @@ module datapath(
 	 mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
-	 output [31:0] R3_data_out, R4_data_out, R7_data_out, 
+	 output wire [31:0] R3_data_out, R4_data_out, R7_data_out, 
 	 output [4:0] bus_select,
-	 output [31:0] MDR_data_out
+	 output wire [31:0] MDR_data_out
 	 );
 
 	 wire [31:0] Mdatain, mdr_data_out;
@@ -30,7 +30,11 @@ module datapath(
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
     wire [31:0] C_sign_extended; 
 	
-	
+	//JUST FOR TB
+	assign R3_data_out = r3_data_out;
+	assign R4_data_out = r4_data_out;
+	assign R7_data_out = r7_data_out;
+	assign MDR_data_out = mdr_data_out;	 
 	
 	 wire [63:0] rz_data_out;
 	 	
@@ -91,10 +95,6 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
 
     alu ALU(.RA(muxy_out), .RB(bus_data), .opcode(opcode), .RZ(RZ_data_out));  
 	 
-//JUST FOR TB
-	assign R3_data_out = r3_data_out;
-	assign R4_data_out = r4_data_out;
-	assign R7_data_out = r7_data_out;
-	assign MDR_data_out = mdr_data_out;	 
+
 
 endmodule
