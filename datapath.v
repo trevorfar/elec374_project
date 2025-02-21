@@ -10,7 +10,8 @@ module datapath(
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
 	 output [31:0] R3_data_out, R4_data_out, R7_data_out, 
-	 output [4:0] bus_select
+	 output [4:0] bus_select,
+	 output [31:0] MDR_data_out
 	 );
 
 	 wire [31:0] Mdatain, mdr_data_out;
@@ -29,9 +30,7 @@ module datapath(
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
     wire [31:0] C_sign_extended; 
 	
-	assign R3_data_out = r3_data_out;
-	assign R4_data_out = r4_data_out;
-	assign R7_data_out = r7_data_out;
+	
 	
 	 wire [63:0] rz_data_out;
 	 	
@@ -74,7 +73,7 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
         .clear(clear),
         .mdr_in(mdr_in),
         .mdr_read(mdr_read),  // mdr_read = 1 for RAM, 0 for bus
-        .mdr_out(mdr_data_out)
+        .mdr_data_out(mdr_data_out)
     );
 
     // ALU and bus mux
@@ -86,10 +85,16 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
         .R6(r6_data_out), .R7(r7_data_out), .R8(r8_data_out), .R9(r9_data_out), .R10(r10_data_out), .R11(r11_data_out), 
         .R12(r12_data_out), .R13(r13_data_out), .R14(r14_data_out), .R15(r15_data_out), .HI(HI_data_out), .LO(LO_data_out), 
-        .Z_HI(ZHigh_out), .Z_LO(ZLow_out), .PC(pc_data_out), .MDR(mdr_data_out), .IN_PORT(InPort_data_in), 
+        .Z_HI(ZHigh_data_out), .Z_LO(ZLow_data_out), .PC(pc_data_out), .MDR(mdr_data_out), .IN_PORT(InPort_data_in), 
         .C_sign_extended(C_sign_extended), .select(bus_select), .BusMuxOut(bus_data)
     );
 
-    alu ALU(.RA(muxy_out), .RB(bus_data), .opcode(opcode), .RZ(RZ_data_out));        
+    alu ALU(.RA(muxy_out), .RB(bus_data), .opcode(opcode), .RZ(RZ_data_out));  
+	 
+//JUST FOR TB
+	assign R3_data_out = r3_data_out;
+	assign R4_data_out = r4_data_out;
+	assign R7_data_out = r7_data_out;
+	assign MDR_data_out = mdr_data_out;	 
 
 endmodule
