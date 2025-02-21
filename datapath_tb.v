@@ -65,53 +65,41 @@ module datapath_tb();
         forever #9 clk = ~clk;
     end
 	 
-	
+	 task reset_signals;
+        begin
+            pc_in <= 0;
+            mar_in <= 0;
+            z_lo_in <= 0;
+            HI_in <= 0;
+            LO_in <= 0;
+            ir_in <= 0;
+            mdr_in <= 0;
+            mdr_read <= 0;
+            mdr_out <= 0;
+            Mdatain <= 32'b0;
+            InPortout <= 0;
+            opcode <= 5'b0;
+            Cout <= 0;
+            rz_in <= 0;
+            Yin <= 0;
+            pc_out <= 0; HI_out <= 0; LO_out <= 0; ZHighout <= 0; ZLowout <= 0;
+            reg_out <= 16'b0;
+            reg_in <= 16'b0;
+        end
+    endtask
 
     always @(posedge clk) begin
-        case (present_state)
-				Default : present_state <= load_regA1;
-				load_regA1 : present_state <= load_regA2;
-				load_regA2 : present_state <= load_regB1;
-				load_regB1 : present_state <= load_regB2;
-				load_regB2 : present_state <= load_regC1;
-				load_regC1 : present_state <= load_regC2;
-				load_regC2 : present_state <= T0;
-            T0 : present_state <= T1;
-            T1 : present_state <= T2;
-            T2 : present_state <= T3;
-            T3 : present_state <= T4;
-            T4 : present_state <= T5;
-        endcase
-    end
-
-    always @(present_state) begin
 
         case (present_state)
             Default: begin
-					  pc_in <= 0;
-					  mar_in <= 0;
-					  z_lo_in <= 0;
-					  HI_in <= 0;
-					  LO_in <= 0;
-					  ir_in <= 0;
-					  mdr_in <= 0;
-					  mdr_read <= 0;
-					  mdr_out <= 0;
-					  Mdatain <= 32'b0;
-					  InPortout <= 0;
-					  opcode <= 5'b0;
-					  Cout <= 0;
-					  rz_in <= 0;
-					  Yin <= 0;
-					  pc_out <= 0; HI_out <= 0; LO_out <= 0; ZHighout <= 0; ZLowout <= 0;
-					  reg_out <= 16'b0;
-					  reg_in <= 16'b0;					  $display("Default: Encoder Input: %b", DUT.encoder_input_debug);
-
+					reset_signals();
+					present_state <= load_regA1;
             end
 				load_regA1: begin
 					Mdatain <= 32'h00000022;
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;	
+					present_state <= load_regA2;
     $display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain);
 					
 				end
@@ -120,62 +108,69 @@ module datapath_tb();
 				load_regA2: begin	
 					#10 mdr_out <= 1; reg_in[2] <= 1;
 					#10 mdr_out <= 0; reg_in[2] <= 0;
+					present_state <= load_regB1;
 				end
 				
 				load_regB1: begin
 					Mdatain <= 32'h00000024;
 					#10 mdr_read <= 1; mdr_in <= 1; 
 					#10 mdr_read <= 0; mdr_in <= 0;					  $display("B1 Encoder Input: %b", DUT.encoder_input_debug);
-
+					present_state <= load_regB2;
 				end
 				
 				load_regB2: begin
 					#10 mdr_out <= 1; reg_in[6] <= 1;
 					#10 mdr_out <= 0; reg_in[6] <= 0;					  $display("B2 Encoder Input: %b", DUT.encoder_input_debug);
-
+					present_state <= load_regC1;
 				end
 				
 				load_regC1: begin
 					Mdatain <= 32'h00000028;
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;					  $display("C1 Encoder Input: %b", DUT.encoder_input_debug);
-
+					present_state <= load_regC2;
 				end
 				
 				load_regC2: begin
 					#10 mdr_out <= 1; reg_in[3] <= 1;
 					#10 mdr_out <= 0; reg_in[3] <= 0;					  $display("C2 Encoder Input: %b", DUT.encoder_input_debug);
-
+					present_state <= T0;
 				end
 
             T0: begin
                #10 pc_out <= 1; mar_in <= 1;
-					#10 pc_out <= 0; mar_in <= 0;					  
+					#10 pc_out <= 0; mar_in <= 0;		
+					present_state <= T1;					
             end
             T1: begin
                 Mdatain <= 32'h2A2B8000;
 					 #10 mdr_in <= 1; mdr_read <= 1;  pc_in <= 1;
-
+					 present_state <= T2;
             end
             T2: begin
 					 #10 mdr_out <= 1; ir_in <= 1;  
 					 #10 mdr_out <= 0; 
+					 present_state <= T3;
 
             end
 
             T3: begin
 					#10 Yin = 1; reg_out[2] <= 1; 
 					#10 reg_out[2] <= 0; Yin <= 0;
+					present_state <= T4;
             end
 
             T4: begin
 					opcode = 5'b00100;
 					#10 rz_in <= 1; reg_out[6] <= 1; 
 					#10 reg_out[6] <= 0;
+					present_state <= T5;
             end
 				T5: begin
 					#10 rz_in <= 0; ZLowout <= 1; reg_in[3] <= 1;
 					#10 ZLowout <= 0; reg_in[3] <= 0;
+					present_state <= Default;
+					$stop;
 				end
         endcase
     end

@@ -32,6 +32,7 @@ module datapath(
     wire [31:0] C_sign_extended; 
 	
 	//JUST FOR TB
+	// I THINK REG IN IS MESSED UP ? SHOULD EB SELECTING 3rd but its on 2 I THINKY POO <3
 
 	 wire [63:0] rz_data_out;
 	 	

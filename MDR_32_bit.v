@@ -11,8 +11,8 @@ module MDR_32_bit(
 	///*
 	
 	//mux_2_to_1 MDRmux(.input0(bus_mux_out), .input1(Mdatain), .select(mdr_read), .mux_output(D));
-	//assign D = mdr_read ? Mdatain : bus_mux_out;
-	assign D = Mdatain;
+	assign D = mdr_read ? Mdatain : bus_mux_out;
+	//assign D = Mdatain;
 	//assign D = 32'h00000012;
 
 	always @(posedge clk or posedge clear) begin
