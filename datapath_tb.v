@@ -4,14 +4,9 @@ module datapath_tb();
 
     reg clk, clear;
     reg [4:0] opcode;
-    reg [15:0] reg_enable;
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout;
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, Cout, mdr_out;
-	 reg R0_out, R1_out, R2_out, R3_out, R4_out, R5_out;
-    reg R6_out, R7_out, R8_out, R9_out, R10_out, R11_out;
-	 reg R0_enable, R1_enable, R2_enable, R3_enable, R4_enable, R5_enable;
-    reg R6_enable, R7_enable, R8_enable, R9_enable, R10_enable, R11_enable;
-    reg R12_enable, R13_enable, R14_enable, R15_enable;
+	 reg [15:0] reg_in, reg_out;
 	 reg [31:0] Mdatain;
 	 reg [31:0] mdr_data_out;
 	 wire [31:0] bus_data, r3_data_out, r4_data_out, r7_data_out;
@@ -25,7 +20,7 @@ module datapath_tb();
 	 datapath DUT (
     .clk(clk),
     .clear(clear),
-    .InPort_data_in(32'b0),  // Placeholder, modify if needed
+    .InPort_data_in(32'b0),  
     .OutPort_data_out(),  // Unconnected output
     .bus_data(bus_data),  // Unconnected output
     
@@ -50,43 +45,13 @@ module datapath_tb();
     .InPortout(InPortout),
     .rz_in(rz_in),
     .muxy_select(muxy_select),
-
-    // Register Control Signals
-    .R0_out(R0_out),
-    .R1_out(R1_out),
-    .R2_out(R2_out),
-    .R3_out(R3_out),
-    .R4_out(R4_out),
-    .R5_out(R5_out),
-    .R6_out(R6_out),
-    .R7_out(R7_out),
-    .R8_out(R8_out),
-    .R9_out(R9_out),
-    .R10_out(R10_out),
-    .R11_out(R11_out),
-
-    .R0_enable(R0_enable),
-    .R1_enable(R1_enable),
-    .R2_enable(R2_enable),
-    .R3_enable(R3_enable),
-    .R4_enable(R4_enable),
-    .R5_enable(R5_enable),
-    .R6_enable(R6_enable),
-    .R7_enable(R7_enable),
-    .R8_enable(R8_enable),
-    .R9_enable(R9_enable),
-    .R10_enable(R10_enable),
-    .R11_enable(R11_enable),
-    .R12_enable(R12_enable),
-    .R13_enable(R13_enable),
-    .R14_enable(R14_enable),
-    .R15_enable(R15_enable),
-	 
+	 .reg_out(reg_out),
+	 .reg_in(reg_in),
 	 .R3_data_out(r3_data_out),
 	 .R4_data_out(r4_data_out),
 	 .R7_data_out(r7_data_out)
-);
-    
+	);
+		 
 
     initial begin
         clk = 0;
@@ -119,7 +84,6 @@ module datapath_tb();
 
         case (present_state)
             Default: begin
-                 reg_enable <= 16'b0;
 					  pc_in <= 0;
 					  mar_in <= 0;
 					  z_lo_in <= 0;
@@ -132,19 +96,19 @@ module datapath_tb();
 					  opcode <= 5'b0;
 					  Yin <= 0;
 					  pc_out <= 0; HI_out <= 0; LO_out <= 0; ZHighout <= 0; ZLowout <= 0;
-					  R3_out <= 0; R7_out <= 0;
+					  reg_out <= 16'b0;
+					  reg_in <= 16'b0;
             end
 				//read = 
 				load_regA1: begin
 					Mdatain <= 32'h00000022;
-					mdr_read <= 0; mdr_in <= 0;
 					mdr_read <= 1; mdr_in <= 1;
 					#15 mdr_read <= 0; mdr_in <= 0;
 				end
 				
 				load_regA2: begin	
-					mdr_out <= 1; reg_enable[2] <= 1;
-					#15 mdr_out <= 0; reg_enable[2] <= 0;
+					mdr_out <= 1; reg_in[2] <= 1;
+					#15 mdr_out <= 0; reg_in[2] <= 0;
 				
 				end
 				
@@ -155,8 +119,8 @@ module datapath_tb();
 				end
 				
 				load_regB2: begin
-					mdr_out <= 1; reg_enable[6] <= 1;
-					#15 mdr_out <= 0; reg_enable[6] <= 0;
+					mdr_out <= 1; reg_in[6] <= 1;
+					#15 mdr_out <= 0; reg_in[6] <= 0;
 				end
 				
 				load_regC1: begin
@@ -166,8 +130,8 @@ module datapath_tb();
 				end
 				
 				load_regC2: begin
-					mdr_out <= 1; reg_enable[3] <= 1;
-					#15 mdr_out <= 0; reg_enable[3] <= 0;
+					mdr_out <= 1; reg_in[3] <= 1;
+					#15 mdr_out <= 0; reg_in[3] <= 0;
 				end
 
             T0: begin
@@ -178,7 +142,7 @@ module datapath_tb();
             T1: begin
                 ZLowout <= 1; 
 					 pc_in <= 1;
-                mdr_read = 1; 
+                mdr_read <= 1; 
 					 mdr_in <= 1;
                 Mdatain <= 32'h2A2B8000; 
             end
@@ -188,17 +152,17 @@ module datapath_tb();
             end
 
             T3: begin
-                R3_out <= 1;   
+					 reg_out[2] <= 1;
                 Yin = 1;
             end
 
             T4: begin
                 z_lo_in <= 1;
-					 R7_out <= 1;
+					 reg_out[6] <= 1;
 					 opcode = 5'b00100;
             end
 				T5: begin
-					  ZLowout <= 1; reg_enable[3] <= 1;
+					  ZLowout <= 1; reg_in[3] <= 1;
 				end
         endcase
     end
