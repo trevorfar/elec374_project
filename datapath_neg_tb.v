@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 // AND TB
 
-module datapath_shra_tb();
+module datapath_neg_tb();
 
     reg clk, clear;
     reg [4:0] opcode;
@@ -10,7 +10,7 @@ module datapath_shra_tb();
 	 reg [15:0] reg_in, reg_out;
 	 reg [31:0] Mdatain;
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, r3_data_out, r4_data_out, r7_data_out;
+	 wire [31:0] bus_data, r5_data_out, r0_data_out, Z_low_data_out;
 	 wire [4:0] bus_select;
 	 
     parameter Default = 4'b0000, load_regA1 = 4'b0001, load_regA2 = 4'b0010, load_regB1 = 4'b0011, 
@@ -50,9 +50,9 @@ module datapath_shra_tb();
     .muxy_select(muxy_select),
 	 .reg_out(reg_out),
 	 .reg_in(reg_in),
-	 .R3_data_out(r3_data_out),
-	 .R4_data_out(r4_data_out),
-	 .R7_data_out(r7_data_out),
+	 .Z_low_data_out(Z_low_data_out),
+	 .R0_data_out(r0_data_out),
+	 .R5_data_out(r5_data_out),
 	 .bus_select(bus_select),
 	 .MDR_data_out(mdr_data_out),
 	 .Mdatain(Mdatain)
@@ -98,7 +98,7 @@ module datapath_shra_tb();
 					present_state <= load_regA1;
             end
 				load_regA1: begin
-					Mdatain <= 32'h80000008;
+					Mdatain <= 32'h0000002C;
 					muxy_select <= 0;
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;	
@@ -107,23 +107,22 @@ module datapath_shra_tb();
 				end
 				
 				load_regA2: begin	
-					#10 mdr_out <= 1; reg_in[3] <= 1;
-					#15 mdr_out <= 0; reg_in[3] <= 0;
+					#10 mdr_out <= 1; reg_in[0] <= 1;
+					#15 mdr_out <= 0; reg_in[0] <= 0;
 					present_state <= load_regB1;
 					
 				end
 				
 				load_regB1: begin
-
-					Mdatain <= 32'h00000001;
-					#10 mdr_read <= 1; mdr_in <= 1; 
-					#10 mdr_read <= 0; mdr_in <= 0;					
+//					Mdatain <= 32'h00000003;
+//					#10 mdr_read <= 1; mdr_in <= 1; 
+//					#10 mdr_read <= 0; mdr_in <= 0;					
 					present_state <= load_regB2;
 				end
 				
 				load_regB2: begin
-					#10 mdr_out <= 1; reg_in[7] <= 1;
-					#10 mdr_out <= 0; reg_in[7] <= 0;					
+//					#10 mdr_out <= 1; reg_in[7] <= 1;
+//					#10 mdr_out <= 0; reg_in[7] <= 0;					
 					present_state <= load_regC1;
 				end
 				
@@ -135,8 +134,8 @@ module datapath_shra_tb();
 				end
 				
 				load_regC2: begin
-					#10 mdr_out <= 1; reg_in[4] <= 1;
-					#10 mdr_out <= 0; reg_in[4] <= 0;					  
+					#10 mdr_out <= 1; reg_in[5] <= 1;
+					#10 mdr_out <= 0; reg_in[5] <= 0;					  
 					present_state <= T0;
 				end
 
@@ -158,20 +157,20 @@ module datapath_shra_tb();
             end
 
             T3: begin
-					#10 Yin = 1; reg_out[3] <= 1; 
-					#10 reg_out[3] <= 0; Yin <= 0;
+					#10 Yin = 1; reg_out[0] <= 1; 
+					#10 reg_out[0] <= 0; Yin <= 0;
 					present_state <= T4;
             end
 
             T4: begin
-					opcode = 5'b01000;
-					#10 rz_in <= 1; reg_out[7] <= 1;  //rz_in, reg_out, bus_select, 
-					#10 reg_out[7] <= 0; rz_in <= 0;
+					opcode = 5'b10001;
+					#10 rz_in <= 1; reg_out[0] <= 1;  //rz_in, reg_out, bus_select, 
+					#10 rz_in <= 0; reg_out[0] <= 0; 
 					present_state <= T5;
             end
 				T5: begin
-					#10 ZLowout <= 1; reg_in[4] <= 1;
-					#10 ZLowout <= 0; reg_in[4] <= 0;
+					#10 ZLowout <= 1; reg_in[5] <= 1;
+					#10 ZLowout <= 0; reg_in[5] <= 0;
 					#20 // a lil wiggle room so they can see it 
 					$stop; // delete if i want to show full cycles
 				end

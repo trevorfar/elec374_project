@@ -3,6 +3,6 @@ module shra_32_bit(
 	input [31:0] shifts,
 	output signed [31:0] z
 );
-	assign z = $signed(a) >>> shifts;
+	assign z = a >>> shifts;
 
 endmodule

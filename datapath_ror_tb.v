@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 // AND TB
 
-module datapath_shra_tb();
+module datapath_ror_tb();
 
     reg clk, clear;
     reg [4:0] opcode;
@@ -98,7 +98,7 @@ module datapath_shra_tb();
 					present_state <= load_regA1;
             end
 				load_regA1: begin
-					Mdatain <= 32'h80000008;
+					Mdatain <= 32'h0000000F;
 					muxy_select <= 0;
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;	
@@ -115,7 +115,7 @@ module datapath_shra_tb();
 				
 				load_regB1: begin
 
-					Mdatain <= 32'h00000001;
+					Mdatain <= 32'h00000003;
 					#10 mdr_read <= 1; mdr_in <= 1; 
 					#10 mdr_read <= 0; mdr_in <= 0;					
 					present_state <= load_regB2;
@@ -164,7 +164,7 @@ module datapath_shra_tb();
             end
 
             T4: begin
-					opcode = 5'b01000;
+					opcode = 5'b01010;
 					#10 rz_in <= 1; reg_out[7] <= 1;  //rz_in, reg_out, bus_select, 
 					#10 reg_out[7] <= 0; rz_in <= 0;
 					present_state <= T5;

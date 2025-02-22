@@ -10,7 +10,7 @@ module datapath(
 	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
-	 output wire [31:0] R3_data_out, R2_data_out, R4_data_out, R6_data_out, R7_data_out, Z_high_data_out, Z_low_data_out, hi_data_out, lo_data_out, RZ_data_out,
+	 output wire [31:0] R0_data_out, R3_data_out, R2_data_out, R4_data_out, R5_data_out, R6_data_out, R7_data_out, Z_high_data_out, Z_low_data_out, hi_data_out, lo_data_out, RZ_data_out,
 	 output [4:0] bus_select,
 	 output wire [31:0] MDR_data_out,
 	 input wire [31:0] Mdatain
@@ -94,7 +94,9 @@ module datapath(
 	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
 	 
 	 //tb purposes
+	assign R0_data_out = r0_data_out;
 	assign R2_data_out = r2_data_out;
+	assign R5_data_out = r5_data_out;
 	assign R6_data_out = r6_data_out;
 	assign R3_data_out = r3_data_out;
 	assign R4_data_out = r4_data_out;
