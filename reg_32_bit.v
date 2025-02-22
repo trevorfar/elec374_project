@@ -1,23 +1,19 @@
-module reg_32_bit #(parameter DATA_WIDTH_IN = 32, DATA_WIDTH_OUT = 32, INIT = 32'h0)
+module reg_32_bit 
 (
 	input clk,
 	input clear,
 	input enable,
-	input [DATA_WIDTH_IN-1:0]BusMuxOut,
-	output wire [DATA_WIDTH_OUT-1:0]BusMuxIn
+	input [31:0]BusMuxOut,
+	output reg [31:0]BusMuxIn
 );
 
-reg [DATA_WIDTH_IN-1:0] q;	
-initial q = INIT;
-
-always @(posedge clk)
+always @(posedge clk or posedge clear)
 	begin
 		if (clear) begin
-			q <= {DATA_WIDTH_IN{1'b0}};
+			BusMuxIn <= {32{1'b0}};
 		end
 		else if (enable) begin
-			q <= BusMuxOut;
+			BusMuxIn <= BusMuxOut;
 		end
 	end
-	assign BusMuxIn = q[DATA_WIDTH_OUT-1:0];
 endmodule

@@ -4,12 +4,12 @@ module datapath_tb();
 
     reg clk, clear;
     reg [4:0] opcode;
-    reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout;
+    reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select;
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, Cout, mdr_out, rz_in, InPortout;
 	 reg [15:0] reg_in, reg_out;
 	 reg [31:0] Mdatain;
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, r3_data_out, r4_data_out, r7_data_out;
+	 wire [31:0] bus_data, r3_data_out, r4_data_out, r7_data_out, z_high_data_out, z_low_data_out;
 	 wire [4:0] bus_select;
 	 
     parameter Default = 4'b0000, load_regA1 = 4'b0001, load_regA2 = 4'b0010, load_regB1 = 4'b0011, 
@@ -51,6 +51,8 @@ module datapath_tb();
 	 .R3_data_out(r3_data_out),
 	 .R4_data_out(r4_data_out),
 	 .R7_data_out(r7_data_out),
+	 .z_high_data_out(z_high_data_out),
+	 .z_low_data_out(z_low_data_out),
 	 .bus_select(bus_select),
 	 .MDR_data_out(mdr_data_out),
 	 .Mdatain(Mdatain)
@@ -89,6 +91,7 @@ module datapath_tb();
     endtask
 
     always @(posedge clk) begin
+$monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bus_data, r3_data_out);
 
         case (present_state)
             Default: begin
@@ -97,21 +100,25 @@ module datapath_tb();
             end
 				load_regA1: begin
 					Mdatain <= 32'h00000022;
+					muxy_select <= 0;
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;	
 					present_state <= load_regA2;
-    $display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain);
+					$display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h, bus_data: %h, reg_in: %b, clk: %h ", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain, DUT.bus_data, DUT.reg_in, DUT.clk);
 					
 				end
 				
-				
 				load_regA2: begin	
-					#10 mdr_out <= 1; reg_in[2] <= 1;
-					#10 mdr_out <= 0; reg_in[2] <= 0;
+					#10 mdr_out <= 1; reg_in[3] <= 1;
+					#15 mdr_out <= 0; reg_in[3] <= 0;
+					$display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h, bus_data: %h, reg_in: %b, clk: %h ", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain, DUT.bus_data, DUT.reg_in, DUT.clk);
 					present_state <= load_regB1;
+					
 				end
 				
 				load_regB1: begin
+					$display("r2_data_out: %h r3_data_out: %h r4_data_out: %h r5_data_out: %h  r6_data_out: %h r7_data_out: %h ", DUT.r2_data_out, DUT.r3_data_out, DUT.r4_data_out, DUT.r5_data_out, DUT.r6_data_out, DUT.r7_data_out);
+
 					Mdatain <= 32'h00000024;
 					#10 mdr_read <= 1; mdr_in <= 1; 
 					#10 mdr_read <= 0; mdr_in <= 0;					  $display("B1 Encoder Input: %b", DUT.encoder_input_debug);
@@ -119,8 +126,8 @@ module datapath_tb();
 				end
 				
 				load_regB2: begin
-					#10 mdr_out <= 1; reg_in[6] <= 1;
-					#10 mdr_out <= 0; reg_in[6] <= 0;					  $display("B2 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_out <= 1; reg_in[7] <= 1;
+					#10 mdr_out <= 0; reg_in[7] <= 0;					  $display("B2 Encoder Input: %b", DUT.encoder_input_debug);
 					present_state <= load_regC1;
 				end
 				
@@ -132,8 +139,8 @@ module datapath_tb();
 				end
 				
 				load_regC2: begin
-					#10 mdr_out <= 1; reg_in[3] <= 1;
-					#10 mdr_out <= 0; reg_in[3] <= 0;					  $display("C2 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_out <= 1; reg_in[4] <= 1;
+					#10 mdr_out <= 0; reg_in[4] <= 0;					  $display("C2 Encoder Input: %b", DUT.encoder_input_debug);
 					present_state <= T0;
 				end
 
@@ -155,22 +162,21 @@ module datapath_tb();
             end
 
             T3: begin
-					#10 Yin = 1; reg_out[2] <= 1; 
-					#10 reg_out[2] <= 0; Yin <= 0;
+					#10 Yin = 1; reg_out[3] <= 1; 
+					#10 reg_out[3] <= 0; Yin <= 0;
 					present_state <= T4;
             end
 
             T4: begin
 					opcode = 5'b00100;
-					#10 rz_in <= 1; reg_out[6] <= 1; 
-					#10 reg_out[6] <= 0;
+					#10 rz_in <= 1; reg_out[7] <= 1;  //rz_in, reg_out, bus_select, 
+					#10 reg_out[7] <= 0;
 					present_state <= T5;
             end
 				T5: begin
-					#10 rz_in <= 0; ZLowout <= 1; reg_in[3] <= 1;
-					#10 ZLowout <= 0; reg_in[3] <= 0;
+					#10 rz_in <= 0; ZLowout <= 1; reg_in[4] <= 1;
+					#10 ZLowout <= 0; reg_in[4] <= 0;
 					present_state <= Default;
-					$stop;
 				end
         endcase
     end
