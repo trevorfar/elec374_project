@@ -177,6 +177,8 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
 				T5: begin
 					#10 ZLowout <= 1; reg_in[4] <= 1;
 					#10 ZLowout <= 0; reg_in[4] <= 0;
+					#20 // a lil wiggle room so they can see it 
+					$stop; // delete if i want to show full cycles
 				end
         endcase
     end
