@@ -169,13 +169,13 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
             end
 
             T4: begin
-					opcode = 5'b00100;
+					opcode = 5'b00101;
 					#10 rz_in <= 1; reg_out[7] <= 1;  //rz_in, reg_out, bus_select, 
-					#10 reg_out[7] <= 0;
+					#10 reg_out[7] <= 0; rz_in <= 0;
 					present_state <= T5;
             end
 				T5: begin
-					#10 rz_in <= 0; ZLowout <= 1; reg_in[4] <= 1;
+					#10 ZLowout <= 1; reg_in[4] <= 1;
 					#10 ZLowout <= 0; reg_in[4] <= 0;
 				end
         endcase
