@@ -15,6 +15,8 @@ module datapath(
 	 output wire [31:0] MDR_data_out,
 	 input wire [31:0] Mdatain
 	 );
+	 
+	 // design decisions : reg_enable, reg_in, Divison - quotient top 32 remainder bot 32 
 
 	 wire [31:0] mdr_data_out;
     wire [31:0] mar_data_out, RY_immediate;
