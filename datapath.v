@@ -10,7 +10,7 @@ module datapath(
 	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
-	 output wire [31:0] R3_data_out, R4_data_out, R7_data_out, z_high_data_out, z_low_data_out, 
+	 output wire [31:0] R3_data_out, R2_data_out, R4_data_out, R6_data_out, R7_data_out, Z_high_data_out, Z_low_data_out, hi_data_out, lo_data_out, RZ_data_out,
 	 output [4:0] bus_select,
 	 output wire [31:0] MDR_data_out,
 	 input wire [31:0] Mdatain
@@ -61,7 +61,7 @@ module datapath(
 	 
 	
 	 pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out));
-	 reg_32_bit MAR(.clk(clk), .clear(clear), .enable(mar_in), .BusMuxOut(bus_data), .BusMuxIn(mar_data_otu));
+	 reg_32_bit MAR(.clk(clk), .clear(clear), .enable(mar_in), .BusMuxOut(bus_data), .BusMuxIn(mar_data_ouu));
 	 reg_32_bit RY(.clk(clk), .clear(clear), .enable(Yin), .BusMuxOut(bus_data), .BusMuxIn(RY_data_out));
 	 
     MDR_32_bit MDR(
@@ -90,12 +90,19 @@ module datapath(
 	 
 	  z_reg RZ(.z_high_data_out(ZHigh_data_out), .z_low_data_out(ZLow_data_out),
 	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
+	 
+	 //tb purposes
+	assign R2_data_out = r2_data_out;
+	assign R6_data_out = r6_data_out;
 	assign R3_data_out = r3_data_out;
 	assign R4_data_out = r4_data_out;
 	assign R7_data_out = r7_data_out;
-	assign z_high_data_out = ZHigh_data_out;
-	assign z_low_data_out = ZLow_data_out;
+	assign Z_high_data_out = ZHigh_data_out;
+	assign Z_low_data_out = ZLow_data_out;
 	assign MDR_data_out = mdr_data_out;	 
+	assign hi_data_out = HI_data_out;
+	assign lo_data_out = LO_data_out;
+	assign RZ_data_out = rz_data_out;
 	
 	 
 
