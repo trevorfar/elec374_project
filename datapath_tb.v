@@ -24,6 +24,7 @@ module datapath_tb();
     .InPort_data_in(32'b0),  
     .OutPort_data_out(),  // Unconnected output
     .bus_data(bus_data),  // Unconnected output
+	 .opcode(opcode),
     
     // Control Signals
     .pc_out(pc_out),
@@ -121,26 +122,26 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
 
 					Mdatain <= 32'h00000024;
 					#10 mdr_read <= 1; mdr_in <= 1; 
-					#10 mdr_read <= 0; mdr_in <= 0;					  $display("B1 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_read <= 0; mdr_in <= 0;					
 					present_state <= load_regB2;
 				end
 				
 				load_regB2: begin
 					#10 mdr_out <= 1; reg_in[7] <= 1;
-					#10 mdr_out <= 0; reg_in[7] <= 0;					  $display("B2 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_out <= 0; reg_in[7] <= 0;					
 					present_state <= load_regC1;
 				end
 				
 				load_regC1: begin
 					Mdatain <= 32'h00000028;
 					#10 mdr_read <= 1; mdr_in <= 1;
-					#10 mdr_read <= 0; mdr_in <= 0;					  $display("C1 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_read <= 0; mdr_in <= 0;				
 					present_state <= load_regC2;
 				end
 				
 				load_regC2: begin
 					#10 mdr_out <= 1; reg_in[4] <= 1;
-					#10 mdr_out <= 0; reg_in[4] <= 0;					  $display("C2 Encoder Input: %b", DUT.encoder_input_debug);
+					#10 mdr_out <= 0; reg_in[4] <= 0;					  
 					present_state <= T0;
 				end
 
@@ -176,7 +177,6 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
 				T5: begin
 					#10 rz_in <= 0; ZLowout <= 1; reg_in[4] <= 1;
 					#10 ZLowout <= 0; reg_in[4] <= 0;
-					present_state <= Default;
 				end
         endcase
     end

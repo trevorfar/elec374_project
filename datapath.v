@@ -38,7 +38,6 @@ module datapath(
         .encoder_input({{8{1'b0}}, Cout,InPortout,mdr_out,pc_out,ZLowout,ZHighout,LO_out,HI_out, {reg_out}}),
         .encoder_output(bus_select)
     );
-wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, ZLowout, ZHighout, LO_out, HI_out, {reg_out}};
 
 	reg_32_bit r0(.clk(clk), .clear(clear), .enable(reg_in[0]), .BusMuxOut(bus_data), .BusMuxIn(r0_data_out)); 
    reg_32_bit r1(.clk(clk), .clear(clear), .enable(reg_in[1]), .BusMuxOut(bus_data), .BusMuxIn(r1_data_out));
@@ -59,13 +58,12 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
    reg_32_bit HI(.clk(clk), .clear(clear), .enable(HI_in), .BusMuxOut(bus_data), .BusMuxIn(HI_data_out));
    reg_32_bit LO(.clk(clk), .clear(clear), .enable(LO_in), .BusMuxOut(bus_data), .BusMuxIn(LO_data_out));
 	 
-	 z_reg RZ(.z_high_data_out(ZHigh_data_out), .z_low_data_out(ZLow_data_out),
-	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
 	 
-    pc_32_bit PC(clear, clk, pc_in, bus_data, pc_data_out);
-    reg_32_bit MAR(clear, clk, mar_in, bus_data, mar_data_out);
-    reg_32_bit RY(clear, clk, Yin, bus_data, RY_data_out);
-
+	
+	 pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out));
+	 reg_32_bit MAR(.clk(clk), .clear(clear), .enable(mar_in), .BusMuxOut(bus_data), .BusMuxIn(mar_data_otu));
+	 reg_32_bit RY(.clk(clk), .clear(clear), .enable(Yin), .BusMuxOut(bus_data), .BusMuxIn(RY_data_out));
+	 
     MDR_32_bit MDR(
         .Mdatain(Mdatain),
         .bus_mux_out(bus_data),
@@ -78,7 +76,8 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
 
     // ALU and bus mux
      mux_2_to_1 muxy(.input0(RY_data_out), .input1(RY_immediate), .select(muxy_select), .mux_output(muxy_data_out));
-
+	 
+	 
     mux_32_bit bus(
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
         .R6(r6_data_out), .R7(r7_data_out), .R8(r8_data_out), .R9(r9_data_out), .R10(r10_data_out), .R11(r11_data_out), 
@@ -87,7 +86,10 @@ wire [31:0] encoder_input_debug = {{8{1'b0}}, Cout, InPortout, mdr_out, pc_out, 
         .C_sign_extended(C_sign_extended), .select(bus_select), .BusMuxOut(bus_data)
     );
 
-    alu ALU(.RA(muxy_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out));  
+    alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out)); 
+	 
+	  z_reg RZ(.z_high_data_out(ZHigh_data_out), .z_low_data_out(ZLow_data_out),
+	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
 	assign R3_data_out = r3_data_out;
 	assign R4_data_out = r4_data_out;
 	assign R7_data_out = r7_data_out;
