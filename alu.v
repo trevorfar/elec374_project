@@ -8,9 +8,11 @@ module alu(
 
 	wire cout;
 
-	parameter add_code = 5'b00011, sub_code = 5'b00100, mul_code = 5'b01111, div_code = 5'b10000, 
-	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b00111, shra_code = 5'b01000, shl_code = 5'b01001,
-	 ror_code = 5'b01010, rol_code = 5'b01011, neg_code = 5'b10001, not_code = 5'b10010;
+	 //shr, shra, shl, ror, rol, 
+	 parameter add_code = 5'b00011, sub_code = 5'b00100, mul_code = 5'b01111, div_code = 5'b10000, 
+	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b01001, shra_code = 5'b01010, shl_code = 5'b01011,
+	 ror_code = 5'b00111, rol_code = 5'b01000, neg_code = 5'b10001, not_code = 5'b10010;
+	 
 	 
 	wire add_cout, sub_cout, div_remainder;
 	wire [31:0] add_out, sub_out, mul_out, div_out_Q, div_out_R, and_out, or_out, shr_out, shra_out, shl_out, ror_out, rol_out, neg_out, not_out;

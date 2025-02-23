@@ -152,7 +152,7 @@ module datapath_div_tb();
 					present_state <= T1;					
             end
             T1: begin
-                Mdatain <= 32'h2A2B8000;
+                Mdatain <= 32'h79300000;
 					 #10 mdr_in <= 1; mdr_read <= 1;  pc_in <= 1;
 					 present_state <= T2;
             end
