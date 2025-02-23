@@ -16,7 +16,7 @@ module datapath(
 	 
 	 // design decisions : reg_enable, reg_in
 
-	 wire Baout;
+	 wire Baout, ram_read, ram_write;
 	 
 	 wire [31:0] mdr_data_out;
     wire [31:0] mar_data_out, RY_immediate;
@@ -41,7 +41,7 @@ module datapath(
         .encoder_output(bus_select)
     );
 
-	assign r0_data_out = {32{!Baout}} & r0_data_out_and
+	assign r0_data_out = {32{!Baout}} & r0_data_out_and;
 	
 	reg_32_bit r0(.clk(clk), .clear(clear), .enable(reg_in[0]), .BusMuxOut(bus_data), .BusMuxIn(r0_data_out_and)); 
    reg_32_bit r1(.clk(clk), .clear(clear), .enable(reg_in[1]), .BusMuxOut(bus_data), .BusMuxIn(r1_data_out));
@@ -61,7 +61,8 @@ module datapath(
    reg_32_bit r15(.clk(clk), .clear(clear), .enable(reg_in[15]), .BusMuxOut(bus_data), .BusMuxIn(r15_data_out));
    reg_32_bit HI(.clk(clk), .clear(clear), .enable(HI_in), .BusMuxOut(bus_data), .BusMuxIn(HI_data_out));
    reg_32_bit LO(.clk(clk), .clear(clear), .enable(LO_in), .BusMuxOut(bus_data), .BusMuxIn(LO_data_out));
-	 
+	reg_32_bit ir(.clk(clk), .clear(clear), .enable(ir_in), .BusMuxOut(bus_data), .BusMuxIn(ir_data_out));
+
 	 
 	
 	 pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out));
