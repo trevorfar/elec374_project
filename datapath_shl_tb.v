@@ -164,7 +164,7 @@ module datapath_shl_tb();
             end
 
             T4: begin
-					opcode = 5'01011;
+					opcode = 5'b01011;
 					#10 rz_in <= 1; reg_out[7] <= 1;  //rz_in, reg_out, bus_select, 
 					#10 reg_out[7] <= 0; rz_in <= 0;
 					present_state <= T5;

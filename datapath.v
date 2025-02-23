@@ -14,8 +14,10 @@ module datapath(
 	 input wire [31:0] Mdatain
 	 );
 	 
-	 // design decisions : reg_enable, reg_in, Divison - quotient top 32 remainder bot 32 
+	 // design decisions : reg_enable, reg_in
 
+	 wire Baout;
+	 
 	 wire [31:0] mdr_data_out;
     wire [31:0] mar_data_out, RY_immediate;
 	 wire [31:0] HI_data_out;
@@ -30,7 +32,7 @@ module datapath(
 	 wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r4_data_out, r5_data_out;
     wire [31:0] r6_data_out, r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out;
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
-    wire [31:0] C_sign_extended; 
+    wire [31:0] C_sign_extended, r0_data_out_and; 
 	
 	 wire [63:0] rz_data_out;
 	 	
@@ -39,7 +41,9 @@ module datapath(
         .encoder_output(bus_select)
     );
 
-	reg_32_bit r0(.clk(clk), .clear(clear), .enable(reg_in[0]), .BusMuxOut(bus_data), .BusMuxIn(r0_data_out)); 
+	assign r0_data_out = {32{!Baout}} & r0_data_out_and
+	
+	reg_32_bit r0(.clk(clk), .clear(clear), .enable(reg_in[0]), .BusMuxOut(bus_data), .BusMuxIn(r0_data_out_and)); 
    reg_32_bit r1(.clk(clk), .clear(clear), .enable(reg_in[1]), .BusMuxOut(bus_data), .BusMuxIn(r1_data_out));
    reg_32_bit r2(.clk(clk), .clear(clear), .enable(reg_in[2]), .BusMuxOut(bus_data), .BusMuxIn(r2_data_out));
    reg_32_bit r3(.clk(clk), .clear(clear), .enable(reg_in[3]), .BusMuxOut(bus_data), .BusMuxIn(r3_data_out));

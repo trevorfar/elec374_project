@@ -9,7 +9,7 @@ module alu(
 	wire cout;
 
 	parameter add_code = 5'b00011, sub_code = 5'b00100, mul_code = 5'b01111, div_code = 5'b10000, 
-	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b01001, shra_code = 5'01010, shl_code = 5'01011,
+	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b01001, shra_code = 5'b01010, shl_code = 5'b01011,
 	 ror_code = 5'b00111, rol_code = 5'b01000, neg_code = 5'b10001, not_code = 5'b10010;
 	 
 	 //ROR, ROL, SHR, SHRA, SHL
@@ -43,8 +43,8 @@ module alu(
 				RZ[63:0] <= $signed(mul_out);
 			end
 			div_code : begin
-				RZ[63:32] <= (div_out_Q); // FIGURE DIS OUT HERE
-				RZ[31:0] <= (div_out_R);
+				RZ[63:32] <= (div_out_R); // FIGURE DIS OUT HERE
+				RZ[31:0] <= (div_out_Q);
 			end
 			and_code : begin
 				RZ[63:32] <= 32'b0;
