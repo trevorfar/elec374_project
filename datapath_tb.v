@@ -9,8 +9,7 @@ module datapath_tb();
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, Cout, mdr_out, rz_in, InPortout;
 	 reg [15:0] reg_in, reg_out;
 	 reg [31:0] Mdatain;
-	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, r3_data_out, r4_data_out, r7_data_out, z_high_data_out, z_low_data_out;
+	 wire [31:0] bus_data;
 	 wire [4:0] bus_select;
 	 
     parameter Default = 4'b0000, load_regA1 = 4'b0001, load_regA2 = 4'b0010, load_regB1 = 4'b0011, 
@@ -50,13 +49,7 @@ module datapath_tb();
     .muxy_select(muxy_select),
 	 .reg_out(reg_out),
 	 .reg_in(reg_in),
-	 .R3_data_out(r3_data_out),
-	 .R4_data_out(r4_data_out),
-	 .R7_data_out(r7_data_out),
-	 .z_high_data_out(z_high_data_out),
-	 .z_low_data_out(z_low_data_out),
 	 .bus_select(bus_select),
-	 .MDR_data_out(mdr_data_out),
 	 .Mdatain(Mdatain)
 	);
 		 
@@ -93,7 +86,6 @@ module datapath_tb();
     endtask
 
     always @(posedge clk) begin
-$monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bus_data, r3_data_out);
 
         case (present_state)
             Default: begin
@@ -106,20 +98,17 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;	
 					present_state <= load_regA2;
-					$display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h, bus_data: %h, reg_in: %b, clk: %h ", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain, DUT.bus_data, DUT.reg_in, DUT.clk);
 					
 				end
 				
 				load_regA2: begin	
 					#10 mdr_out <= 1; reg_in[3] <= 1;
 					#15 mdr_out <= 0; reg_in[3] <= 0;
-					$display("Mdatain: %h, mdr_read: %b, mdr_in: %b, mdr_data_out: %h, dutMdatain: %h, bus_data: %h, reg_in: %b, clk: %h ", Mdatain, mdr_read, mdr_in, DUT.MDR_data_out, DUT.Mdatain, DUT.bus_data, DUT.reg_in, DUT.clk);
 					present_state <= load_regB1;
 					
 				end
 				
 				load_regB1: begin
-					$display("r2_data_out: %h r3_data_out: %h r4_data_out: %h r5_data_out: %h  r6_data_out: %h r7_data_out: %h ", DUT.r2_data_out, DUT.r3_data_out, DUT.r4_data_out, DUT.r5_data_out, DUT.r6_data_out, DUT.r7_data_out);
 
 					Mdatain <= 32'h00000024;
 					#10 mdr_read <= 1; mdr_in <= 1; 

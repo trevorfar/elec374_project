@@ -10,9 +10,7 @@ module datapath(
 	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, InPortout, rz_in, muxy_select,
 	 input wire [15:0] reg_out,
 	 input wire [15:0] reg_in,
-	 output wire [31:0] R0_data_out, R3_data_out, R2_data_out, R4_data_out, R5_data_out, R6_data_out, R7_data_out, Z_high_data_out, Z_low_data_out, hi_data_out, lo_data_out, RZ_data_out,
 	 output [4:0] bus_select,
-	 output wire [31:0] MDR_data_out,
 	 input wire [31:0] Mdatain
 	 );
 	 
@@ -79,7 +77,6 @@ module datapath(
     // ALU and bus mux
      mux_2_to_1 muxy(.input0(RY_data_out), .input1(RY_immediate), .select(muxy_select), .mux_output(muxy_data_out));
 	 
-	 
     mux_32_bit bus(
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
         .R6(r6_data_out), .R7(r7_data_out), .R8(r8_data_out), .R9(r9_data_out), .R10(r10_data_out), .R11(r11_data_out), 
@@ -93,22 +90,7 @@ module datapath(
 	  z_reg RZ(.z_high_data_out(ZHigh_data_out), .z_low_data_out(ZLow_data_out),
 	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
 	 
-	 //tb purposes
-	assign R0_data_out = r0_data_out;
-	assign R2_data_out = r2_data_out;
-	assign R5_data_out = r5_data_out;
-	assign R6_data_out = r6_data_out;
-	assign R3_data_out = r3_data_out;
-	assign R4_data_out = r4_data_out;
-	assign R7_data_out = r7_data_out;
-	assign Z_high_data_out = ZHigh_data_out;
-	assign Z_low_data_out = ZLow_data_out;
-	assign MDR_data_out = mdr_data_out;	 
-	assign hi_data_out = HI_data_out;
-	assign lo_data_out = LO_data_out;
-	assign RZ_data_out = rz_data_out;
 	
-	 
 
 
 endmodule
