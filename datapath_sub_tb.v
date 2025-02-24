@@ -53,8 +53,8 @@ module datapath_sub_tb();
 	 .R3_data_out(r3_data_out),
 	 .R4_data_out(r4_data_out),
 	 .R7_data_out(r7_data_out),
-	 .z_high_data_out(z_high_data_out),
-	 .z_low_data_out(z_low_data_out),
+	 .Z_high_data_out(z_high_data_out),
+	 .Z_low_data_out(z_low_data_out),
 	 .bus_select(bus_select),
 	 .MDR_data_out(mdr_data_out),
 	 .Mdatain(Mdatain)

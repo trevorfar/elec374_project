@@ -105,7 +105,7 @@ module datapath_mul_tb();
 					present_state <= load_regA1;
             end
 				load_regA1: begin
-					Mdatain <= 32'h00000022;
+					Mdatain <= -32'd4;
 					muxy_select <= 0;
 					#10 mdr_read <= 1; mdr_in <= 1;
 					#10 mdr_read <= 0; mdr_in <= 0;	
