@@ -14,8 +14,6 @@ module datapath(
 	 input wire [31:0] Mdatain
 	 );
 	 
-	 // design decisions : reg_enable, reg_in
-
 	 wire Baout, ram_read, ram_write;
 	 
 	 wire [31:0] mdr_data_out;
