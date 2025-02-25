@@ -3,45 +3,30 @@ module datapath(
 	
     input wire [31:0] inport_data_in,
     output wire [31:0] outport_data_out,
-	 output wire [31:0] bus_data, ram_data_out, ir_data_out,
+	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, 
 	 output [4:0] opcode,
 	 input wire HI_out, LO_out,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
-	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, wren, BAout, ram_read, ram_write,
+	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, wren, BAout,
 	 output [4:0] bus_select,
-	 input wire [31:0] Mdatain,
-	 output [8:0] mar_address_out
+	 output [8:0] mar_address_out,
+	 output [15:0] reg_out, reg_in
 	 );
-	 	 //NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
 
-	 wire [31:0] mdr_data_out;
 	 wire [31:0] HI_data_out, RY_immediate;
 	 wire [31:0] LO_data_out;
 	 wire [31:0] ZHigh_data_out;
 	 wire [31:0] ZLow_data_out;
 	 wire [31:0] pc_data_out;
-	 wire [31:0] RY_data_out;
+	 wire [31:0] ry_data_out;
 	 wire [31:0] muxy_data_out;
 	 wire [31:0] inport_data_out;
 	 wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r4_data_out, r5_data_out;
     wire [31:0] r6_data_out, r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out;
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
     wire [31:0] C_sign_extended, r0_data_out_and; 
-	 wire [15:0] reg_out;
-	 wire [15:0] reg_in;
+//	 wire [15:0] reg_out;
+//	 wire [15:0] reg_in;
 	
 	 wire [63:0] rz_data_out;
 	 	
@@ -76,7 +61,7 @@ module datapath(
 	 
 	
 	pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out));
-   reg_32_bit RY(.clk(clk), .clear(clear), .enable(Yin), .BusMuxOut(bus_data), .BusMuxIn(RY_data_out));
+   reg_32_bit RY(.clk(clk), .clear(clear), .enable(Yin), .BusMuxOut(bus_data), .BusMuxIn(ry_data_out));
 	mar_32_bit MAR(.clk(clk), .clear(clear), .enable(mar_in), .BusMuxOut(bus_data), .mar_address_out(mar_address_out));
 	 
    MDR_32_bit MDR(
@@ -90,7 +75,7 @@ module datapath(
     );
 
     // ALU and bus mux
-    mux_2_to_1 muxy(.input0(RY_data_out), .input1(RY_immediate), .select(muxy_select), .mux_output(muxy_data_out));
+    mux_2_to_1 muxy(.input0(ry_data_out), .input1(RY_immediate), .select(muxy_select), .mux_output(muxy_data_out));
 	 
     mux_32_bit bus(
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
@@ -105,7 +90,7 @@ module datapath(
 	 select_and_encode sel_and_enc(.Gra(Gra), .Grb(Grb), .Grc(Grc), .Rin(Rin), .Rout(Rout), .BAout(BAout), .instruction(ir_data_out),
 	 .reg_in(reg_in), .reg_out(reg_out), .C_sign_extended(C_sign_extended), .opcode(opcode));
 	 
-    alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out)); 
+    alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out), .RY(ry_data_out)); 
 	 
 	  z_reg RZ(.z_high_data_out(ZHigh_data_out), .z_low_data_out(ZLow_data_out),
 	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));

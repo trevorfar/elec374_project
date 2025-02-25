@@ -1,14 +1,10 @@
 module alu(
 	input wire [31:0] RA, 
 	input wire [31:0] RB,
-	//input wire clk, reset,
+	input wire [31:0] RY,
 	input wire [4:0] opcode,
 	output reg [63:0] RZ
 );
-
-//NOTTTTTTTTTTT DONEEEEEEEEEEEEEEEEEEEEEEEE ADDDDDDDDDDDDDDDDDDD TOOOOOOOOOOOOOOOOOOOOOOOOO SWITCHHHHHHHHHHHHHH CASEEEEEEEEEEEEEEEEE
-
-	wire cout;
 
 	parameter add_code = 5'b00011, sub_code = 5'b00100, mul_code = 5'b01111, div_code = 5'b10000, 
 	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b01001, shra_code = 5'b01010, shl_code = 5'b01011,
@@ -16,8 +12,7 @@ module alu(
 	 addi = 5'b01101, andi = 5'b01101, ori = 5'b01110, branch = 5'b10011, jal = 5'b10100, jr = 5'b10101, in = 5'b10110, out = 5'b10111, mflo = 5'b11000,
 	 mfhi = 5'b11001, nop =5'b11010, halt = 5'b11011; 
 	 
-	 //ROR, ROL, SHR, SHRA, SHL
-	wire add_cout, sub_cout, div_remainder;
+	wire add_cout, sub_cout, div_remainder, cout, branch_flag;
 	wire [31:0] add_out, sub_out, mul_out, div_out_Q, div_out_R, and_out, or_out, shr_out, shra_out, shl_out, ror_out, rol_out, neg_out, not_out;
 	
 	adder_32_bit add_mod(.a(RA), .b(RB), .cin({1'b0}), .sum(add_out), .cout(add_cout));
@@ -50,11 +45,11 @@ module alu(
 				RZ[63:32] <= (div_out_R); // FIGURE DIS OUT HERE
 				RZ[31:0] <= (div_out_Q);
 			end
-			and_code : begin
+			and_code, andi : begin
 				RZ[63:32] <= 32'b0;
 				RZ[31:0] <= and_out;
 			end
-			or_code : begin
+			or_code, ori : begin
 				RZ[63:0] <= $signed(or_out);
 			end
 			shr_code : begin
@@ -78,6 +73,21 @@ module alu(
 			not_code : begin
 				RZ[63:0] <= $signed(not_out);
 			end
+			ld, ldi, st, addi : begin
+				RZ[31:0] <= adder_sum(add_out);
+				RZ[63:32] <= 32'b0;
+			end
+			branch : begin
+				if(branch_flag == 1'b1) begin
+					RZ[31:0] <= adder_sum(add_out);
+					RZ[63:32] <= 32'b0;
+				end else begin
+					RZ[31:0] <= RY[31:0];
+					RZ[63:32] <= 32'b0;
+				end
+			end
+			
+			
 		endcase 
 	end
 endmodule
