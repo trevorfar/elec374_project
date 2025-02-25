@@ -10,7 +10,9 @@ module alu(
 
 	parameter add_code = 5'b00011, sub_code = 5'b00100, mul_code = 5'b01111, div_code = 5'b10000, 
 	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b01001, shra_code = 5'b01010, shl_code = 5'b01011,
-	 ror_code = 5'b00111, rol_code = 5'b01000, neg_code = 5'b10001, not_code = 5'b10010;
+	 ror_code = 5'b00111, rol_code = 5'b01000, neg_code = 5'b10001, not_code = 5'b10010, ld = 5'b00000, ldi = 5'b00001, st = 5'b00010,
+	 addi = 5'b01101, andi = 5'b01101, ori = 5'b01110, branch = 5'b10011, jal = 5'b10100, jr = 5'b10101, in = 5'b10110, out = 5'b10111, mflo = 5'b11000,
+	 mfhi = 5'b11001, nop =5'b11010, halt = 5'b11011; 
 	 
 	 //ROR, ROL, SHR, SHRA, SHL
 	wire add_cout, sub_cout, div_remainder;

@@ -3,10 +3,10 @@ input wire Gra, Grb, Grc, Rin, Rout, BAout,
 input [31:0] instruction, 
 output wire [15:0] reg_in, reg_out,
 output wire [31:0] C_sign_extended,
-output wire [3:0] decoder_input,
 output [4:0] opcode
 
 );
+wire [3:0] decoder_input;
 
 assign decoder_input = (instruction[26:23] & {4{Gra}}) | (instruction[22:19] & {4{Grb}}) | (instruction[18:15] & {4{Grc}});
 assign opcode = instruction [31:27];
