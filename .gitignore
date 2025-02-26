@@ -3,7 +3,6 @@
 # Ignore Quartus project backup files
 *.qdb
 *.qws
-*.qpf.sv
 *.qsf
 *.done
 *.smsg
