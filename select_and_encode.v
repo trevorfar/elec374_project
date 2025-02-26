@@ -7,6 +7,7 @@ output [4:0] opcode
 
 );
 wire [3:0] decoder_input;
+wire [15:0] decoder_output;
 
 assign decoder_input = (instruction[26:23] & {4{Gra}}) | (instruction[22:19] & {4{Grb}}) | (instruction[18:15] & {4{Grc}});
 assign opcode = instruction [31:27];

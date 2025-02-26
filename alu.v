@@ -13,8 +13,8 @@ module alu(
 	 mfhi = 5'b11001, nop =5'b11010, halt = 5'b11011; 
 	 
 	wire add_cout, sub_cout, div_remainder, cout, branch_flag;
-	wire [31:0] add_out, sub_out, mul_out, div_out_Q, div_out_R, and_out, or_out, shr_out, shra_out, shl_out, ror_out, rol_out, neg_out, not_out;
-	
+	wire [31:0] add_out, sub_out, div_out_Q, div_out_R, and_out, or_out, shr_out, shra_out, shl_out, ror_out, rol_out, neg_out, not_out;
+	wire [63:0] mul_out;
 	adder_32_bit add_mod(.a(RA), .b(RB), .cin({1'b0}), .sum(add_out), .cout(add_cout));
 	subtractor_32_bit sub_mod(.a(RA), .b(RB), .cin({1'b0}), .sum(sub_out), .cout(sub_cout));
 	bp_booth_mul_32 mul_mod(.a(RA), .b(RB), .z(mul_out));  
@@ -24,8 +24,8 @@ module alu(
 	shr_32_bit shr(.a(RA), .shifts(RB), .z(shr_out));
 	shra_32_bit shra_mod( .a(RA), .shifts(RB), .z(shra_out));
 	shl_32_bit shl_mod(.a(RA), .shifts(RB), .z(shl_out)); 
-	ror_32_bit ror_mod(.a(RA), .numRotates(RB), .z(ror_out));
-	rol_32_bit rol_mod(.a(RA), .numRotates(RB), .z(rol_out));
+	ror_32_bit ror_mod(.a(RA), .numRotates(RB[4:0]), .z(ror_out));
+	rol_32_bit rol_mod(.a(RA), .numRotates(RB[4:0]), .z(rol_out));
 	neg_32_bit neg_mod(.a(RA), .z(neg_out));
 	not_32_bit not_module(.a(RA), .z(not_out)); 
 
@@ -74,12 +74,12 @@ module alu(
 				RZ[63:0] <= $signed(not_out);
 			end
 			ld, ldi, st, addi : begin
-				RZ[31:0] <= adder_sum(add_out);
+				RZ[31:0] <= (add_out);
 				RZ[63:32] <= 32'b0;
 			end
 			branch : begin
 				if(branch_flag == 1'b1) begin
-					RZ[31:0] <= adder_sum(add_out);
+					RZ[31:0] <= (add_out);
 					RZ[63:32] <= 32'b0;
 				end else begin
 					RZ[31:0] <= RY[31:0];
