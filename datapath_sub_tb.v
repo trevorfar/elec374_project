@@ -6,7 +6,7 @@ module datapath_sub_tb();
     reg clk, clear;
     reg [4:0] opcode;
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select;
-    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, Cout, mdr_out, rz_in, InPortout;
+    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, z_hi_in, Cout, mdr_out, rz_in, InPortout;
 	 reg [15:0] reg_in, reg_out;
 	 reg [31:0] Mdatain;
 	 wire [31:0] mdr_data_out;

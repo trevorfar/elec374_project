@@ -3,7 +3,7 @@ module datapath(
 	
     input wire [31:0] inport_data_in,
     output wire [31:0] outport_data_out,
-	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, 
+	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, Mdatain, pc_data_out,
 	 output [4:0] opcode,
 	 input wire HI_out, LO_out, inc_pc,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
@@ -17,7 +17,6 @@ module datapath(
 	 wire [31:0] LO_data_out;
 	 wire [31:0] ZHigh_data_out;
 	 wire [31:0] ZLow_data_out;
-	 wire [31:0] pc_data_out;
 	 wire [31:0] ry_data_out;
 	 wire [31:0] muxy_data_out;
 	 wire [31:0] inport_data_out;
@@ -25,8 +24,7 @@ module datapath(
     wire [31:0] r6_data_out, r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out;
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out;
     wire [31:0] C_sign_extended, r0_data_out_and; 
-//	 wire [15:0] reg_out;
-//	 wire [15:0] reg_in;
+
 	
 	 wire [63:0] rz_data_out;
 	 	
