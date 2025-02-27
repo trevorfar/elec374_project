@@ -30,6 +30,7 @@ module alu(
 	not_32_bit not_module(.a(RA), .z(not_out)); 
 
 	
+
 	always @(*) begin
 		case(opcode)
 			add_code : begin

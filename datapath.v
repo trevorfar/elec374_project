@@ -4,10 +4,10 @@ module datapath(
     input wire [31:0] inport_data_in,
     output wire [31:0] outport_data_out,
 	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, Mdatain, pc_data_out,
-	 output [4:0] opcode,
+	 input [4:0] opcode,
 	 input wire HI_out, LO_out, inc_pc,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
-	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, wren, BAout, Rin,
+	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, wren, BAout, Rin, Rout,
 	 output [4:0] bus_select,
 	 output [8:0] mar_address_out,
 	 output [15:0] reg_out, reg_in
@@ -86,7 +86,7 @@ module datapath(
 	 memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(wren), .q(ram_data_out));
 	 
 	 select_and_encode sel_and_enc(.Gra(Gra), .Grb(Grb), .Grc(Grc), .Rin(Rin), .Rout(Rout), .BAout(BAout), .instruction(ir_data_out),
-	 .reg_in(reg_in), .reg_out(reg_out), .C_sign_extended(C_sign_extended), .opcode(opcode));
+	 .reg_in(reg_in), .reg_out(reg_out), .C_sign_extended(C_sign_extended));
 	 
     alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out), .RY(ry_data_out)); 
 	 
