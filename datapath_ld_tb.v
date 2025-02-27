@@ -9,8 +9,8 @@ module datapath_ld_tb();
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select, inc_pc, Rin;
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, z_hi_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout;
 	 wire [15:0] reg_in, reg_out; 
-	 wire [31:0] mdr_data_out, Mdatain;
-	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out;
+	 wire [31:0] mdr_data_out;
+	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r4_data_out, r6_data_out; 
 	 wire [4:0] bus_select;
 	 wire [8:0] mar_address_out;
 	 
@@ -64,9 +64,10 @@ module datapath_ld_tb();
 	 .mar_address_out(mar_address_out),
 	 .Rin(Rin),
 	 .pc_data_out(pc_data_out),
-	 .Mdatain(Mdatain),
 	 .Rout(Rout),
-	 .inport_data_in(inport_data_in)
+	 .inport_data_in(inport_data_in),
+	 .r4_data_out(r4_data_out),
+	 .r6_data_out(r6_data_out)
 	);
 	
 	 initial begin
@@ -129,8 +130,7 @@ module datapath_ld_tb();
 	
 	end
 	endtask
-	 
-	 
+	 	 
 	 task T0(); begin
 		pc_out <= 1; mar_in <= 1; inc_pc <= 1; pc_in <= 1;
 		@(posedge clk) 
@@ -182,8 +182,8 @@ module datapath_ld_tb();
 	 initial begin
 		reset_signals();
 		
+		//CASE 1
 		@(posedge clk)
-		load_reg(32'hB180000, 32'h22);
 		T0();
 		T1();
 		T2();		
@@ -192,6 +192,18 @@ module datapath_ld_tb();
 		T5();
 		T6();
 		T7();
+		
+		//CASE 2
+//		@(posedge clk)
+//		load_reg(32'hB180000, 32'h78);
+//		T0();
+//		T1();
+//		T2();		
+//		T3();
+//		T4();
+//		T5();
+//		T6();
+//		T7();
 	 end
 
 	 /*
