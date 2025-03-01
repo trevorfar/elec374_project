@@ -2,12 +2,13 @@ module datapath(
     input wire clk, clear,
 	
     input wire [31:0] inport_data_in,
+	 output wire [31:0] inport_data_out,
     output wire [31:0] outport_data_out,
-	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, pc_data_out, r4_data_out, r6_data_out,
-	 input [4:0] opcode,
+	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, pc_data_out, r4_data_out, r6_data_out, r2_data_out, z_low_data_out, z_high_data_out,
+	 input wire [4:0] opcode,
 	 input wire HI_out, LO_out, inc_pc,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
-	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, wren, BAout, Rin, Rout,
+	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout,
 	 output [4:0] bus_select,
 	 output [8:0] mar_address_out,
 	 output [15:0] reg_out, reg_in
@@ -15,14 +16,13 @@ module datapath(
 
 	 wire [31:0] HI_data_out, RY_immediate;
 	 wire [31:0] LO_data_out;
-	 wire [31:0] ZHigh_data_out;
-	 wire [31:0] ZLow_data_out;
+//	 wire [31:0] z_high_data_out;
+//	 wire [31:0] z_low_data_out;
 	 wire [31:0] ry_data_out;
 	 wire [31:0] muxy_data_out;
-	 wire [31:0] inport_data_out;
-	 wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r5_data_out;
+	 wire [31:0] r0_data_out, r1_data_out, r3_data_out, r5_data_out;
     wire [31:0] r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out;
-    wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out; //r4_data_out, r6_data_out;
+    wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out; //r4_data_out, r6_data_out, r2_data_out;
     wire [31:0] C_sign_extended, r0_data_out_and; 
 
 	
@@ -83,14 +83,14 @@ module datapath(
         .C_sign_extended(C_sign_extended), .select(bus_select), .BusMuxOut(bus_data)
     );
 	 
-	 memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(wren), .q(ram_data_out));
+	 memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(mdr_read), .q(ram_data_out));
 	 
 	 select_and_encode sel_and_enc(.Gra(Gra), .Grb(Grb), .Grc(Grc), .Rin(Rin), .Rout(Rout), .BAout(BAout), .instruction(ir_data_out),
 	 .reg_in(reg_in), .reg_out(reg_out), .C_sign_extended(C_sign_extended));
 	 
     alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out), .RY(ry_data_out)); 
 	 
-	  z_reg RZ(.z_high_data_out(ZHigh_data_out), .z_low_data_out(ZLow_data_out),
+	  z_reg RZ(.z_high_data_out(z_high_data_out), .z_low_data_out(z_low_data_out),
 	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
 
 endmodule
