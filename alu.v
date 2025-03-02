@@ -34,7 +34,8 @@ module alu(
 	always @(*) begin
 		case(opcode)
 			add_code : begin
-				RZ[63:0] <= $signed(add_out);
+				RZ[63:32] <= 32'b0;
+				RZ[31:0] <= add_out;
 			end
 			sub_code : begin
 				RZ[63:0] <= $signed(sub_out);

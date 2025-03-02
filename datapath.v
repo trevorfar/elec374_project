@@ -8,7 +8,7 @@ module datapath(
 	 input wire [4:0] opcode,
 	 input wire HI_out, LO_out, inc_pc, wren,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
-	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout,
+	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout,
 	 output [4:0] bus_select,
 	 output wire [8:0] mar_address_out,
 	 output [15:0] reg_out, reg_in,

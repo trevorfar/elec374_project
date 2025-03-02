@@ -7,7 +7,7 @@ module datapath_ld_tb();
     reg [4:0] opcode;
 	 reg [31:0] inport_data_in;
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select, inc_pc, Rin;
-    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, z_lo_in, z_hi_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout;
+    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
 	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r4_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
@@ -58,8 +58,6 @@ module datapath_ld_tb();
 	 .Grc(Grc),
     .HI_in(HI_in),
     .LO_in(LO_in),
-    .z_hi_in(z_hi_in),
-    .z_lo_in(z_lo_in),
     .Cout(Cout),
     .inport_out(inport_out),
     .rz_in(rz_in),
@@ -98,8 +96,7 @@ module datapath_ld_tb();
         begin
             pc_in <= 0;
             mar_in <= 0;
-            z_lo_in <= 0;
-				z_hi_in <= 0;
+         
             HI_in <= 0;
             LO_in <= 0;
             ir_in <= 0;
@@ -130,7 +127,7 @@ module datapath_ld_tb();
     endtask
 
 	task load_reg (input [31:0] instruction, input [31:0] value); begin
-		inport_data_in <= instruction; inport_in <= 1; opcode <= instruction [31:27];
+		inport_data_in <= instruction; inport_in <= 1; opcode <= 5'b00001;
 		
 		@(posedge clk)
 		inport_out <= 1; ir_in <= 1; 
@@ -146,67 +143,69 @@ module datapath_ld_tb();
 	
 	end
 	endtask
-	 	 
-	 task T0(); begin
-		pc_out <= 1; mar_in <= 1; inc_pc <= 1; pc_in <= 1;
-		@(posedge clk) 
-		pc_out <= 0; mar_in <= 0; inc_pc <= 0; pc_in <= 0;
-	 end
-	 endtask
-	 
-	 task T1(); begin
-		mdr_read <= 1; mdr_in <= 1; 
-		@(posedge clk)
-		mdr_read <= 0; mdr_in <= 0; 
-	 end
-	 endtask
-	 
-	 task T2(); begin
-		mdr_out <= 1; ir_in <= 1; 
-		@(posedge clk)
-		mdr_out <= 0; ir_in <= 0;
-	 end
-	 endtask
-	 
-	 task T3(); begin
-		
-	 
-	 end
-	 endtask
+//	 	 
+//	 task T0(); begin
+//		mar_in <= 1; pc_in <= 1; inc_pc <= 1; pc_out <= 1; 
+//		@(posedge clk) 
+//		mar_in <= 0; pc_in <= 0; inc_pc <= 0; pc_out <= 0; 
+//	 end
+//	 endtask
+//	 
+//	 task T1(); begin
+//		mdr_read <= 1; mdr_in <= 1; 
+//		@(posedge clk)
+//		mdr_read <= 0; mdr_in <= 0; 
+//	 end
+//	 endtask
+//	 
+//	 task T2(); begin
+//		mdr_out <= 1; ir_in <= 1; 
+//		@(posedge clk)
+//		mdr_out <= 0; ir_in <= 0;
+//	 end
+//	 endtask
+//	 
+//	 task T3(); begin
+//		
+//	 
+//	 end
+//	 endtask
+//
+//	 task T4(); begin
+//	 
+//	 end
+//	 endtask
+//	 
+//	 task T5(); begin
+//	 
+//	 end
+//	 endtask
+//	 
+//	 task T6(); begin
+//	 
+//	 end
+//	 endtask
+//	 
+//	 task T7(); begin
+//	 
+//	 end
+//	 endtask
+//	 
 
-	 task T4(); begin
-	 
-	 end
-	 endtask
-	 
-	 task T5(); begin
-	 
-	 end
-	 endtask
-	 
-	 task T6(); begin
-	 
-	 end
-	 endtask
-	 
-	 task T7(); begin
-	 
-	 end
-	 endtask
-	 
 	 
 	 
 	 task case_2T0(); begin
-		pc_out <= 1; mar_in <= 1; inc_pc <= 1; rz_in <= 1;
+		pc_out <= 1; mar_in <= 1; inc_pc <= 1; pc_in <= 1; rz_in <= 1; 
+
 		@(posedge clk) 
-		pc_out <= 0; mar_in <= 0; inc_pc <= 0; rz_in <= 0;
+		pc_out <= 0; mar_in <= 0; inc_pc <= 0; pc_in <= 0; rz_in <= 0;
 	 end
 	 endtask
 	 
 	 task case_2T1(); begin
-		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; pc_in <= 1;// wren <= 1;
+		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; //pc_in <= 1;// wren <= 1;
 		@(posedge clk)
-		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; pc_in <= 0;// wren <= 0;
+		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; //pc_in <= 0;// wren <= 0;
 	 end
 	 endtask
 	 
@@ -225,7 +224,7 @@ module datapath_ld_tb();
 	 endtask
 
 	 task case_2T4(); begin
-	 Cout <= 1; opcode <= 00011; rz_in <= 1; muxy_select <= 1; 
+	 Cout <= 1; opcode <= 5'b00011; rz_in <= 1; muxy_select <= 1; 
 	 @(posedge clk)
 	 Cout <= 0; rz_in <= 0; muxy_select <= 0;
 
@@ -284,27 +283,5 @@ module datapath_ld_tb();
 		case_2T7();
 	 end
 
-	 /*
-	 task T0(); begin
-		pc_out <= 1; mar_in <= 1; inc_pc <= 1; pc_in <= 1;
-		@(posedge clk) 
-		pc_out <= 0; mar_in <= 0; inc_pc <= 0; pc_in <= 0;
-	 end
-	 endtask
-	 
-	 task T1(); begin
-		mdr_read <= 1; mdr_in <= 1; 
-		@(posedge clk)
-		mdr_read <= 0; mdr_in <= 0; 
-	 end
-	 endtask
-	 
-	 task T2(); begin
-		mdr_out <= 1; ir_in <= 1; 
-		@(posedge clk)
-		mdr_out <= 0; ir_in <= 0;
-	 end
-	 endtask
-	 */
 	 
 endmodule
