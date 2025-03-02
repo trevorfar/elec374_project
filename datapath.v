@@ -6,12 +6,13 @@ module datapath(
     output wire [31:0] outport_data_out,
 	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, pc_data_out, r4_data_out, r6_data_out, r2_data_out, z_low_data_out, z_high_data_out,
 	 input wire [4:0] opcode,
-	 input wire HI_out, LO_out, inc_pc,
+	 input wire HI_out, LO_out, inc_pc, wren,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
 	 HI_in, LO_in, z_hi_in, z_lo_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout,
 	 output [4:0] bus_select,
-	 output [8:0] mar_address_out,
-	 output [15:0] reg_out, reg_in
+	 output wire [8:0] mar_address_out,
+	 output [15:0] reg_out, reg_in,
+	 output wire [63:0] rz_data_out
 	 );
 
 	 wire [31:0] HI_data_out, RY_immediate;
@@ -26,7 +27,6 @@ module datapath(
     wire [31:0] C_sign_extended, r0_data_out_and; 
 
 	
-	 wire [63:0] rz_data_out;
 	 	
     encoder_32_to_5 bus_encoder(
         .encoder_input({{8{1'b0}}, Cout,inport_out,mdr_out,pc_out,ZLowout,ZHighout,LO_out,HI_out, {reg_out}}),
@@ -60,8 +60,11 @@ module datapath(
 	
 	pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out), .inc_pc(inc_pc));
    reg_32_bit RY(.clk(clk), .clear(clear), .enable(Yin), .BusMuxOut(bus_data), .BusMuxIn(ry_data_out));
-	mar_32_bit MAR(.clk(clk), .clear(clear), .enable(mar_in), .BusMuxOut(bus_data), .mar_address_out(mar_address_out));
+	mar_32_bit MAR(.clk(clk), .clear(clear), .mar_in(mar_in), .bus_data(bus_data), .mar_address_out(mar_address_out));
 	 
+	 
+	 
+
    MDR_32_bit MDR(
        .Mdatain(ram_data_out),
        .bus_mux_out(bus_data),
@@ -79,11 +82,11 @@ module datapath(
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
         .R6(r6_data_out), .R7(r7_data_out), .R8(r8_data_out), .R9(r9_data_out), .R10(r10_data_out), .R11(r11_data_out), 
         .R12(r12_data_out), .R13(r13_data_out), .R14(r14_data_out), .R15(r15_data_out), .HI(HI_data_out), .LO(LO_data_out), 
-        .Z_HI(ZHigh_data_out), .Z_LO(ZLow_data_out), .PC(pc_data_out), .MDR(mdr_data_out), .IN_PORT(inport_data_out), 
+        .Z_HI(z_high_data_out), .Z_LO(z_low_data_out), .PC(pc_data_out), .MDR(mdr_data_out), .IN_PORT(inport_data_out), 
         .C_sign_extended(C_sign_extended), .select(bus_select), .BusMuxOut(bus_data)
     );
 	 
-	 memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(mdr_read), .q(ram_data_out));
+	 memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(wren), .q(ram_data_out));
 	 
 	 select_and_encode sel_and_enc(.Gra(Gra), .Grb(Grb), .Grc(Grc), .Rin(Rin), .Rout(Rout), .BAout(BAout), .instruction(ir_data_out),
 	 .reg_in(reg_in), .reg_out(reg_out), .C_sign_extended(C_sign_extended));

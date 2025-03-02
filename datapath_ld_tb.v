@@ -12,6 +12,7 @@ module datapath_ld_tb();
 	 wire [31:0] mdr_data_out;
 	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r4_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
+	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
 	 
 	 /*
@@ -78,7 +79,9 @@ module datapath_ld_tb();
 	 .inport_data_out(inport_data_out),
 	 .r2_data_out(r2_data_out),
 	 .z_high_data_out(z_high_data_out),
-	 .z_low_data_out(z_low_data_out)
+	 .z_low_data_out(z_low_data_out),
+	 .rz_data_out(rz_data_out),
+	 .wren(wren)
 	);
 	
 	 initial begin
@@ -193,17 +196,17 @@ module datapath_ld_tb();
 	 
 	 
 	 
-	  task case_2T0(); begin
-		pc_out <= 1; mar_in <= 1; inc_pc <= 1; pc_in <= 1; rz_in <= 1;
+	 task case_2T0(); begin
+		pc_out <= 1; mar_in <= 1; inc_pc <= 1; rz_in <= 1;
 		@(posedge clk) 
-		pc_out <= 0; mar_in <= 0; inc_pc <= 0; pc_in <= 0; rz_in <= 0;
+		pc_out <= 0; mar_in <= 0; inc_pc <= 0; rz_in <= 0;
 	 end
 	 endtask
 	 
 	 task case_2T1(); begin
-		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; pc_in <= 1;
+		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; pc_in <= 1;// wren <= 1;
 		@(posedge clk)
-		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; pc_in <= 0;
+		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; pc_in <= 0;// wren <= 0;
 	 end
 	 endtask
 	 
@@ -222,9 +225,9 @@ module datapath_ld_tb();
 	 endtask
 
 	 task case_2T4(); begin
-	 Cout <= 1; opcode <= 00011; rz_in <= 1;
+	 Cout <= 1; opcode <= 00011; rz_in <= 1; muxy_select <= 1; 
 	 @(posedge clk)
-	 Cout <= 0; rz_in <= 0;
+	 Cout <= 0; rz_in <= 0; muxy_select <= 0;
 
 	 end
 	 endtask
