@@ -269,7 +269,7 @@ module datapath_ld_tb();
 		
 		//CASE 2
 		@(posedge clk)
-		load_reg(32'h09000078, 32'h78);
+		load_reg(32'h090000, 32'h78);
 		
 		// R6, 0x63(R2) = 0x03100063
 		
