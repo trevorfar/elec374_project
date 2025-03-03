@@ -64,11 +64,18 @@ module div_32_bit(
 );
 	reg [63:0] remainder_reg;
 	reg [5:0] counter;
+	integer neg_flag;
 	
 	integer i;
 	
 	always @(*) begin
-		remainder_reg = {32'b0, dividend};
+		if (dividend[31]) begin
+			remainder_reg = {32'b0, ~dividend+1};
+			neg_flag = 1;
+		end else
+			remainder_reg = {32'b0, dividend};
+			neg_flag = 0;
+
 		quotient = {32{1'b0}};
 		
 		for(i = 0; i < 32; i = i + 1) begin
@@ -83,6 +90,7 @@ module div_32_bit(
 				remainder_reg[0] = 1'b1;
 			end
 			
+		if (neg_flag) remainder_reg = ~remainder_reg + 1;
 		quotient = remainder_reg[31:0];
 		remainder = remainder_reg[63:32];
 		end
