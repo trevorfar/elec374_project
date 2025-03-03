@@ -252,7 +252,9 @@ module datapath_ld_tb();
 	 end
 	 endtask
 	
-
+	//0x03100063
+	//00000 0110 0010 0000000000001100011 
+	
 	 initial begin
 		reset_signals();
 	
