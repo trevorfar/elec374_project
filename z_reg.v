@@ -15,7 +15,7 @@ module z_reg( output reg[31:0] z_high_data_out,
 		if (clear) begin
 			z_high_data_out = 32'b0;
 			z_low_data_out = 32'b0;
-		end else begin
+		end else if (rz_in) begin
 			z_high_data_out = Zdatain[63:32];
 			z_low_data_out = Zdatain[31:0];
 		end

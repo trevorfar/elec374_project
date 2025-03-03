@@ -5,7 +5,7 @@ input clk,
 input con_in,
 output con_out
 );
-	wire [3:0] decoder; // 0000 = zero 0010 = not zero 0100 = gt 1000 = lt
+	wire [3:0] decoder; // 0000 = zero, 0010 = not zero, 0100 = gt, 1000 = lt
 	wire D, nor_out;
 	wire Q, Q_not;
  

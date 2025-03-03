@@ -108,7 +108,7 @@ module datapath_ld_tb();
 				inport_in <= 0;
 				outport_in <= 0;
 				Rout <= 0;
-				
+				//muxy_select <= 1; 
 				inc_pc <= 0;
 				muxy_select <= 0;
 
@@ -127,9 +127,10 @@ module datapath_ld_tb();
     endtask
 
 	task load_reg (input [31:0] instruction, input [31:0] value); begin
-		inport_data_in <= instruction; inport_in <= 1; opcode <= 5'b00001;
+		inport_data_in <= instruction; inport_in <= 1; opcode <= instruction[32:27];
 		
 		@(posedge clk)
+		
 		inport_out <= 1; ir_in <= 1; 
 		#5 inport_data_in <= value; 
 
@@ -195,17 +196,16 @@ module datapath_ld_tb();
 	 
 	 
 	 task case_2T0(); begin
-		pc_out <= 1; mar_in <= 1; inc_pc <= 1; pc_in <= 1; rz_in <= 1; 
-
+		pc_out <= 1; mar_in <= 1; inc_pc <= 1; rz_in <= 1; 
 		@(posedge clk) 
-		pc_out <= 0; mar_in <= 0; inc_pc <= 0; pc_in <= 0; rz_in <= 0;
+		pc_out <= 0; mar_in <= 0;  rz_in <= 0;
 	 end
 	 endtask
 	 
 	 task case_2T1(); begin
-		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; //pc_in <= 1;// wren <= 1;
+		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; pc_in <= 1;// wren <= 1;
 		@(posedge clk)
-		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; //pc_in <= 0;// wren <= 0;
+		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; pc_in <= 0; inc_pc <= 0;// wren <= 0;
 	 end
 	 endtask
 	 
@@ -217,16 +217,16 @@ module datapath_ld_tb();
 	 endtask
 	 
 	 task case_2T3(); begin
-	 Grb <= 1; BAout <= 1; Yin <= 1;
+	 Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
 	 @(posedge clk)
-	 Grb <= 0; BAout <= 0; Yin <= 0;
+	 Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
 	 end
 	 endtask
 
 	 task case_2T4(); begin
-	 Cout <= 1; opcode <= 5'b00011; rz_in <= 1; muxy_select <= 1; 
+	 Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
 	 @(posedge clk)
-	 Cout <= 0; rz_in <= 0; muxy_select <= 0;
+	 Cout <= 0; rz_in <= 0; 
 
 	 end
 	 endtask
@@ -255,7 +255,7 @@ module datapath_ld_tb();
 
 	 initial begin
 		reset_signals();
-		
+	
 		//CASE 1
 //		@(posedge clk)
 //		T0();
@@ -269,7 +269,8 @@ module datapath_ld_tb();
 		
 		//CASE 2
 		@(posedge clk)
-		load_reg(32'h090000, 32'h78);
+		
+		load_reg(32'hB1000000, 32'h78);
 		
 		// R6, 0x63(R2) = 0x03100063
 		
@@ -281,6 +282,7 @@ module datapath_ld_tb();
 		case_2T5();
 		case_2T6();
 		case_2T7();
+		
 	 end
 
 	 
