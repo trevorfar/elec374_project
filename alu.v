@@ -88,7 +88,11 @@ module alu(
 					RZ[63:32] <= 32'b0;
 				end
 			end
-			
+			in: begin
+			// NEED TO FIX THIS!!!!! JACQUIE DID SOMETHING FUNKY!!!!
+			// DO WE HAVE A FUNCTION FOR THE INPORT?
+				RZ[63:0] <= 64'b0;
+			end
 			
 		endcase 
 	end

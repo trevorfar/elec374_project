@@ -4,7 +4,7 @@ module pc_32_bit #(parameter DATA_WIDTH_IN = 32, DATA_WIDTH_OUT = 32, INIT = 32'
 	input clear,
 	input enable, inc_pc,
 	input [DATA_WIDTH_IN-1:0]immediate,
-	output reg [DATA_WIDTH_OUT-1:0]pc
+	output reg [DATA_WIDTH_OUT-1:0] pc
 );
 
 reg [DATA_WIDTH_IN-1:0] q;	
@@ -19,6 +19,6 @@ always @(posedge clk)
 		end else if (enable ==1'b1) begin
 			q <= immediate;
 		end
+		pc <= q[DATA_WIDTH_OUT-1:0];
 	end
-	assign pc = q[DATA_WIDTH_OUT-1:0];
 endmodule

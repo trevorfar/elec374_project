@@ -61,7 +61,7 @@ module memram (
 
 	altsyncram	altsyncram_component (
 				.address_a (address),
-				.clock0 (clock),
+				.clock0 (~clock),
 				.data_a (data),
 				.wren_a (wren),
 				.q_a (sub_wire0),
@@ -93,15 +93,15 @@ module memram (
 `endif
 ,
 		altsyncram_component.intended_device_family = "Cyclone V",
-		altsyncram_component.lpm_hint = "ENABLE_RUNTIME_MOD=NO",
+		altsyncram_component.lpm_hint = "READ_LATENCY=0",
 		altsyncram_component.lpm_type = "altsyncram",
 		altsyncram_component.numwords_a = 512,
 		altsyncram_component.operation_mode = "SINGLE_PORT",
 		altsyncram_component.outdata_aclr_a = "NONE",
-		altsyncram_component.outdata_reg_a = "CLOCK0",
+		altsyncram_component.outdata_reg_a = "UNREGISTERED",
 		altsyncram_component.power_up_uninitialized = "FALSE",
 		altsyncram_component.ram_block_type = "M10K",
-		altsyncram_component.read_during_write_mode_port_a = "NEW_DATA_NO_NBE_READ",
+		altsyncram_component.read_during_write_mode_port_a = "OLD_DATA",
 		altsyncram_component.widthad_a = 9,
 		altsyncram_component.width_a = 32,
 		altsyncram_component.width_byteena_a = 1;
