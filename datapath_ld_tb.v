@@ -127,7 +127,7 @@ module datapath_ld_tb();
     endtask
 
 	task load_reg (input [31:0] instruction, input [31:0] value); begin
-		inport_data_in <= instruction; inport_in <= 1; opcode <= instruction[32:27];
+		inport_data_in <= instruction; inport_in <= 1; opcode <= instruction[31:27];
 		
 		@(posedge clk)
 		

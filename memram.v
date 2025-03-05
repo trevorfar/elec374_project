@@ -101,7 +101,7 @@ module memram (
 		altsyncram_component.outdata_reg_a = "UNREGISTERED",
 		altsyncram_component.power_up_uninitialized = "FALSE",
 		altsyncram_component.ram_block_type = "M10K",
-		altsyncram_component.read_during_write_mode_port_a = "OLD_DATA",
+		altsyncram_component.read_during_write_mode_port_a = "NEW_DATA_NO_NBE_READ",
 		altsyncram_component.widthad_a = 9,
 		altsyncram_component.width_a = 32,
 		altsyncram_component.width_byteena_a = 1;
