@@ -16,12 +16,12 @@ module datapath_ld_tb();
 	 wire [8:0] mar_address_out;
 	 reg [2:0] test_id;
 	 reg [2:0] case_num;
-	 reg [3:0] pc_offset;
+	 reg [7:0] pc_offset;
 	 reg set_pc_flag;
 	 
-	 localparam LD = 3'b000; // 4 cases mem locs: 0, 1, 2, 4
-	 localparam ST = 3'b001; // 2 cases mem locs: 8, 9
-	 localparam ALU = 3'b010;
+	 localparam LD = 3'b000; // 4 cases mem locs: 0x0, 0x1, 0x2, 0x4
+	 localparam ST = 3'b001; // 2 cases mem locs: 0x8, 0x9
+	 localparam ALU = 3'b010; // 3 cases mem locs: 0x10, 0x11, 0x12
 	 localparam BRANCH = 3'b011;
 	 localparam JUMP = 3'b100;
 	 localparam SPECIAL = 3'b101;
@@ -32,9 +32,6 @@ module datapath_ld_tb();
 	 localparam CASE3= 3'b010;
 	 localparam CASE4= 3'b100;
 
-	 //0001 0010 0000 0 = 0x12000034
-	 // 0001 0010 0010 0000 0 = 0x12200034
-	 
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
 	 end
@@ -172,7 +169,7 @@ module datapath_ld_tb();
 				@(posedge clk)
 				load_reg(32'hB1800000, 32'hB6);
 				init_task();
-				
+			
 				////// T3  /////
 				Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
 				@(posedge clk)
@@ -186,13 +183,10 @@ module datapath_ld_tb();
 				@(posedge clk)
 				ZLowout <= 0; mar_in <= 0;
 				////// T6  /////
-				mdr_in <= 1; mdr_read <= 1;
+				mdr_out <= 1; wren <= 1;
 				@(posedge clk)
-				mdr_in <= 0; mdr_read <= 0;
-				////// T7  /////
-				Gra <= 1; Rin <= 1; mdr_out <=1;
-				@(posedge clk)
-				Gra <= 0; Rin <= 0; mdr_out <=0;
+				mdr_out <= 0; wren <= 0;
+				
 					
 			end
 			
@@ -271,6 +265,7 @@ module datapath_ld_tb();
 		mdr_out <= 1; ir_in <= 1; 
 		@(posedge clk)
 		mdr_out <= 0; ir_in <= 0;
+		
 		@(posedge clk);
 	 end endtask
 	 
