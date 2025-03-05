@@ -2,7 +2,6 @@
 // AND TB
 
 module datapath_ld_tb();
-
     reg clk, clear;
     reg [4:0] opcode;
 	 reg [31:0] inport_data_in;
@@ -14,22 +13,159 @@ module datapath_ld_tb();
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
+	 reg [2:0] test_id;
+	 reg [2:0] case_num;
 	 
-	 /*
+	 localparam LD = 3'b000;
+	 localparam ST = 3'b001;
+	 localparam ALU = 3'b010;
+	 localparam BRANCH = 3'b011;
+	 localparam JUMP = 3'b100;
+	 localparam SPECIAL = 3'b101;
+	 localparam OUT = 3'b110;
 	 
-	 0000 1001 0000 0000 0000 0000 0111 1000
-	 00001 0010 0000 0000 0000 0000
-	 0000 1001 
-	 =0x09000078
+	 localparam CASE1 = 3'b000;
+	 localparam CASE2= 3'b010;
+	 localparam CASE3= 3'b100;
+	 localparam CASE4= 3'b101;
+	 
+	 //MASTER CONTROL
+	 
+	 initial begin
+      clk = 0; forever #10 clk = ~clk;
+	 end
+	 initial begin
+		clear <= 1; 
+		#1 clear <= 0;
+	 end
+	
+	 initial begin
+		  test_id = LD;
+		  case_num = CASE2;
+		  
+		  reset_signals();
+		  
+		  case(test_id)
+			LD: begin
+				ld_task(case_num);
+			end
+			ST: begin
+				st_task();
+			end
+			ALU: begin
+			end
+			BRANCH: begin
+			end
+			JUMP: begin
+			end
+			SPECIAL: begin
+			end
+			OUT: begin
+			end
+		 endcase
+		  
+    end
 	 
 	 
-	 ldi r2, 0x78 = 0000 1001 0000 0000 0000 0000 0000001111000
-	 ld R4, 0x54 ; (0x54) = 0x97 - 0000 0010 0000 0000 0000 0000 0101 0100 = 0x02000054
-	 ld R6, 0x63(R2) ; R2 = 0x78, and (0xDB) = 0x46 - 0000 0011 0001 0000 0000 0000 0100 0110 = 0x03100046
-	 ldi R4, 0x54
-	 ldi R6, 0x63(R2) ; R2 = 0x78
-	 */
 
+	  task ld_task(input [2:0] ld_case_num); begin
+	 
+		case(ld_case_num) 
+		CASE1: begin
+			
+		end
+		
+		CASE2: begin
+		
+			
+			@(posedge clk)
+			load_reg(32'hB1000000, 32'h78);
+			
+			init_task();
+			////// T3  /////
+			Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
+			@(posedge clk)
+			Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
+			////// T4  /////
+			Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
+			@(posedge clk)
+			Cout <= 0; rz_in <= 0; 
+			////// T5  /////
+			ZLowout <= 1; mar_in <= 1;
+			@(posedge clk)
+			ZLowout <= 0; mar_in <= 0;
+			////// T6  /////
+			mdr_in <= 1; mdr_read <= 1;
+			@(posedge clk)
+			mdr_in <= 0; mdr_read <= 0;
+			////// T7  /////
+			Gra <= 1; Rin <= 1; mdr_out <=1;
+			@(posedge clk)
+			Gra <= 0; Rin <= 0; mdr_out <=0;
+		end
+		
+		CASE3: begin
+		
+		end
+		
+		CASE4: begin
+		
+		end
+		endcase
+		end endtask
+		
+		
+		task st_task; begin 
+		init_task();
+		
+		end endtask
+		
+		task alu_task; begin
+		init_task();
+
+		end endtask
+		
+		task branch_task; begin 
+		init_task();
+		
+		end endtask
+		
+		task jump_task; begin
+		init_task();
+
+		end endtask
+		
+		task special_task; begin 
+		init_task();
+		
+		end endtask
+		
+		task out_task; begin
+		init_task();
+
+		end endtask
+		
+		
+	
+	 
+	 // DEFAULT STUFF I DONT WANNA LOOK AT
+	 
+	 task init_task; begin
+ 	   ////// T0  /////
+   	pc_out <= 1; mar_in <= 1; inc_pc <= 1; rz_in <= 1; 
+		@(posedge clk) 
+		pc_out <= 0; mar_in <= 0;  rz_in <= 0;
+		////// T1  /////
+		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; pc_in <= 1;
+		@(posedge clk)
+		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; pc_in <= 0; inc_pc <= 0;
+      ////// T2  /////
+		mdr_out <= 1; ir_in <= 1; 
+		@(posedge clk)
+		mdr_out <= 0; ir_in <= 0;
+		@(posedge clk);
+	 end endtask
+	 
 	 datapath DUT 	(
     .clk(clk),
     .clear(clear),
@@ -82,21 +218,10 @@ module datapath_ld_tb();
 	 .wren(wren)
 	);
 	
-	 initial begin
-		  clear = 1;
-        #1 clear = 0;
-	 end
-    initial begin
-        clk = 0;
-        forever #10 clk = ~clk;
-    end
-
-	 
-	 task reset_signals();
+	task reset_signals();
         begin
             pc_in <= 0;
             mar_in <= 0;
-         
             HI_in <= 0;
             LO_in <= 0;
             ir_in <= 0;
@@ -108,10 +233,8 @@ module datapath_ld_tb();
 				inport_in <= 0;
 				outport_in <= 0;
 				Rout <= 0;
-				//muxy_select <= 1; 
 				inc_pc <= 0;
 				muxy_select <= 0;
-
 				mdr_out <= 0;
 				inport_out <= 0;
             Cout <= 0; 
@@ -120,9 +243,7 @@ module datapath_ld_tb();
 				LO_out <= 0; 
 				ZHighout <= 0; 
 				ZLowout <= 0;
-				
 				Gra <= 0; Grb <= 0; Grc <= 0; wren <= 0; BAout <= 0;
-		
         end
     endtask
 
@@ -130,162 +251,17 @@ module datapath_ld_tb();
 		inport_data_in <= instruction; inport_in <= 1; opcode <= instruction[31:27];
 		
 		@(posedge clk)
-		
 		inport_out <= 1; ir_in <= 1; 
-		#5 inport_data_in <= value; 
+		#5 inport_data_in <= value;  //potential improvement? look after dis done
 
-		
 		@(posedge clk)
 		inport_data_in <= 32'b0; inport_in <= 0;
 		inport_out <= 1; Gra <= 1; Rin <= 1;
 		
 		@(posedge clk)
 		inport_out <= 0; Gra <= 0; Rin <= 0;
+		
+	end endtask
 	
-	end
-	endtask
-//	 	 
-//	 task T0(); begin
-//		mar_in <= 1; pc_in <= 1; inc_pc <= 1; pc_out <= 1; 
-//		@(posedge clk) 
-//		mar_in <= 0; pc_in <= 0; inc_pc <= 0; pc_out <= 0; 
-//	 end
-//	 endtask
-//	 
-//	 task T1(); begin
-//		mdr_read <= 1; mdr_in <= 1; 
-//		@(posedge clk)
-//		mdr_read <= 0; mdr_in <= 0; 
-//	 end
-//	 endtask
-//	 
-//	 task T2(); begin
-//		mdr_out <= 1; ir_in <= 1; 
-//		@(posedge clk)
-//		mdr_out <= 0; ir_in <= 0;
-//	 end
-//	 endtask
-//	 
-//	 task T3(); begin
-//		
-//	 
-//	 end
-//	 endtask
-//
-//	 task T4(); begin
-//	 
-//	 end
-//	 endtask
-//	 
-//	 task T5(); begin
-//	 
-//	 end
-//	 endtask
-//	 
-//	 task T6(); begin
-//	 
-//	 end
-//	 endtask
-//	 
-//	 task T7(); begin
-//	 
-//	 end
-//	 endtask
-//	 
 
-	 
-	 
-	 task case_2T0(); begin
-		pc_out <= 1; mar_in <= 1; inc_pc <= 1; rz_in <= 1; 
-		@(posedge clk) 
-		pc_out <= 0; mar_in <= 0;  rz_in <= 0;
-	 end
-	 endtask
-	 
-	 task case_2T1(); begin
-		mdr_read <= 1; mdr_in <= 1; ZLowout <= 1; pc_in <= 1;// wren <= 1;
-		@(posedge clk)
-		mdr_read <= 0; mdr_in <= 0; ZLowout <= 0; pc_in <= 0; inc_pc <= 0;// wren <= 0;
-	 end
-	 endtask
-	 
-	 task case_2T2(); begin
-		mdr_out <= 1; ir_in <= 1; 
-		@(posedge clk)
-		mdr_out <= 0; ir_in <= 0;
-	 end
-	 endtask
-	 
-	 task case_2T3(); begin
-	 Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
-	 @(posedge clk)
-	 Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
-	 end
-	 endtask
-
-	 task case_2T4(); begin
-	 Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
-	 @(posedge clk)
-	 Cout <= 0; rz_in <= 0; 
-
-	 end
-	 endtask
-	 
-	 task case_2T5(); begin
-	 ZLowout <= 1; mar_in <= 1;
-	 @(posedge clk)
-	 ZLowout <= 0; mar_in <= 0;
-	 end
-	 endtask
-	 
-	 task case_2T6(); begin
-	 mdr_in <= 1; mdr_read <= 1;
-	 @(posedge clk)
-	 mdr_in <= 0; mdr_read <= 0;
-	 end
-	 endtask
-	 
-	 task case_2T7(); begin
-	 Gra <= 1; Rin <= 1; mdr_out <=1;
-	 @(posedge clk)
-	 Gra <= 0; Rin <= 0; mdr_out <=0;
-	 end
-	 endtask
-	
-	//0x03100063
-	//00000 0110 0010 0000000000001100011 
-	
-	 initial begin
-		reset_signals();
-	
-		//CASE 1
-//		@(posedge clk)
-//		T0();
-//		T1();
-//		T2();		
-//		T3();
-//		T4();
-//		T5();
-//		T6();
-//		T7();
-		
-		//CASE 2
-		@(posedge clk)
-		
-		load_reg(32'hB1000000, 32'h78);
-		
-		// R6, 0x63(R2) = 0x03100063
-		
-		case_2T0();
-		case_2T1();
-		case_2T2();		
-		case_2T3();
-		case_2T4();
-		case_2T5();
-		case_2T6();
-		case_2T7();
-		
-	 end
-
-	 
 endmodule
