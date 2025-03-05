@@ -10,13 +10,13 @@ module datapath_ld_tb();
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r4_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
+	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r4_data_out, r5_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
 	 reg [2:0] test_id;
 	 reg [2:0] case_num;
-	 reg [3:0] pc_offset;
+	 reg [7:0] pc_offset;
 	 reg set_pc_flag;
 	 
 	 localparam LD = 3'b000; // 4 cases mem locs: 0, 1, 2, 4
@@ -35,6 +35,8 @@ module datapath_ld_tb();
 	 //0001 0010 0000 0 = 0x12000034
 	 // 0001 0010 0010 0000 0 = 0x12200034
 	 
+	 // 0001 1010 1011 0 = 0x1AB00008
+	 
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
 	 end
@@ -44,11 +46,11 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = ST;
+		  test_id = ALU;
 		  case_num = CASE1;
 		   
 		  reset_signals();
-		  move_pc({test_id, case_num});
+		  move_pc(8'b10000);
 		  
 		  case(test_id)
 			LD: begin
@@ -58,6 +60,7 @@ module datapath_ld_tb();
 				st_task(case_num);
 			end
 			ALU: begin
+				alu_task();
 			end
 			BRANCH: begin
 			end
@@ -146,6 +149,7 @@ module datapath_ld_tb();
 		CASE4: begin
 			@(posedge clk)
 			load_reg(32'hB1000000, 32'h78);
+			// 10110 0010 
 			
 			init_task();
 			////// T3  /////
@@ -229,7 +233,21 @@ module datapath_ld_tb();
 		end endtask
 		
 		task alu_task; begin
-		init_task();
+			load_reg(32'hB3000000, 32'd10); // NOT SURE WHAT VALUE SHOULD BE IN R6
+			//10110 0110 
+			init_task();
+			///////// T3 //////////
+			Grb <= 1; Rout <= 1; Yin <= 1; 
+			@(posedge clk)
+			Grb <= 0; Rout <= 0; Yin <= 0; 
+			///////// T4 //////////
+			Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+			@(posedge clk)
+			Cout <= 0; rz_in <= 0;
+			///////// T5 //////////
+			ZLowout <= 1; Gra <= 1; Rin <= 1;
+			@(posedge clk)
+			ZLowout <= 0; Gra <= 0; Rin <= 0;
 
 		end endtask
 		
@@ -274,14 +292,14 @@ module datapath_ld_tb();
 		@(posedge clk);
 	 end endtask
 	 
-	 task move_pc(input [3:0] pc_off);
+	 task move_pc(input [7:0] pc_off);
 	 begin
 		@(posedge clk)
-		set_pc_flag <= 1;
 		pc_offset <= pc_off;
+		set_pc_flag <= 1;
 		@(posedge clk)
 		set_pc_flag <= 0;
-		pc_offset <= 4'd0;
+		pc_offset <= 8'b0;
 	 end endtask
 	 
 	 datapath DUT 	(
@@ -327,6 +345,7 @@ module datapath_ld_tb();
 	 .Rout(Rout),
 	 .inport_data_in(inport_data_in),
 	 .r4_data_out(r4_data_out),
+	 .r5_data_out(r5_data_out),
 	 .r6_data_out(r6_data_out),
 	 .inport_data_out(inport_data_out),
 	 .r2_data_out(r2_data_out),
