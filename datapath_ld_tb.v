@@ -10,7 +10,7 @@ module datapath_ld_tb();
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r4_data_out, r5_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
+	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
@@ -46,8 +46,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = ALU;
-		  case_num = CASE3;
+		  test_id = ST;
+		  case_num = CASE1;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -169,14 +169,16 @@ module datapath_ld_tb();
 		end endtask
 		
 		
+// STORE ----------------------------------------------------------------------------------- STORE
+
 		task st_task(input [2:0] st_case_num); begin
 		
 			case(st_case_num)
 			CASE1: begin
 				@(posedge clk)
-				load_reg(32'hB1800000, 32'hB6);
+				load_reg(32'hB1800000, 32'hB6); 
 				init_task();
-			
+		
 				////// T3  /////
 				Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
 				@(posedge clk)
@@ -190,9 +192,13 @@ module datapath_ld_tb();
 				@(posedge clk)
 				ZLowout <= 0; mar_in <= 0;
 				////// T6  /////
-				mdr_out <= 1; wren <= 1;
+				inport_out <= 1; mdr_in <= 1;
 				@(posedge clk)
-				mdr_out <= 0; wren <= 0;
+				inport_out <= 0; mdr_in <= 0;
+				////// T7  /////
+				wren <= 1;
+				@(posedge clk)
+				wren <= 0;
 				
 					
 			end
@@ -228,6 +234,9 @@ module datapath_ld_tb();
 		
 		
 		end endtask
+		
+		
+// ALU ------------------------------------------------------------------------------------------ ALU
 		
 		task alu_task(input [2:0] case_num); begin
 			case(case_num)
@@ -380,6 +389,7 @@ module datapath_ld_tb();
 	 .pc_data_out(pc_data_out),
 	 .Rout(Rout),
 	 .inport_data_in(inport_data_in),
+	 .r3_data_out(r3_data_out),
 	 .r4_data_out(r4_data_out),
 	 .r5_data_out(r5_data_out),
 	 .r6_data_out(r6_data_out),
