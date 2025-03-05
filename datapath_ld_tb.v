@@ -1,5 +1,6 @@
 `timescale 1ns/1ps
-// AND TB
+// this aint a ld tb, this a master brain epic swagger tb
+
 
 module datapath_ld_tb();
     reg clk, clear;
@@ -41,7 +42,7 @@ module datapath_ld_tb();
 	
 	 initial begin
 		  test_id = LD;
-		  case_num = CASE2;
+		  case_num = CASE1;
 		  
 		  reset_signals();
 		  
@@ -72,6 +73,8 @@ module datapath_ld_tb();
 	 
 		case(ld_case_num) 
 		CASE1: begin
+			@(posedge clk)
+			
 			
 		end
 		
