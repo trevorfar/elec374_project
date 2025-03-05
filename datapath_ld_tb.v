@@ -22,7 +22,7 @@ module datapath_ld_tb();
 	 localparam LD = 3'b000; // 4 cases mem locs: 0x0, 0x1, 0x2, 0x4
 	 localparam ST = 3'b001; // 2 cases mem locs: 0x8, 0x9
 	 localparam ALU = 3'b010; // 3 cases mem locs: 0x10, 0x11, 0x12
-	 localparam BRANCH = 3'b011;
+	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x20, 0x21
 	 localparam JUMP = 3'b100;
 	 localparam SPECIAL = 3'b101;
 	 localparam OUT = 3'b110;
@@ -32,14 +32,11 @@ module datapath_ld_tb();
 	 localparam CASE3= 3'b010;
 	 localparam CASE4= 3'b100;
 
-<<<<<<< HEAD
-	 //0001 0010 0000 0 = 0x12000034
-	 // 0001 0010 0010 0000 0 = 0x12200034
-	 
-	 // 0001 1010 1011 0111  = 0x1AB00008
-	 
-=======
->>>>>>> c1064f7fa126d96393b860486622bbf56c96bad8
+	 // brzr r1, 27 -> ?
+	 // brnz r1, 27
+	 // brpl r1, 27
+	 // brmi r1, 27
+
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
 	 end
@@ -50,10 +47,10 @@ module datapath_ld_tb();
 	 
 	 initial begin
 		  test_id = ALU;
-		  case_num = CASE1;
+		  case_num = CASE3;
 		   
 		  reset_signals();
-		  move_pc(8'b10000);
+		  move_pc({test_id, case_num});
 		  
 		  case(test_id)
 			LD: begin
@@ -63,7 +60,7 @@ module datapath_ld_tb();
 				st_task(case_num);
 			end
 			ALU: begin
-				alu_task();
+				alu_task(case_num);
 			end
 			BRANCH: begin
 			end
@@ -232,23 +229,61 @@ module datapath_ld_tb();
 		
 		end endtask
 		
-		task alu_task; begin
-			load_reg(32'hB3000000, 32'd10); // NOT SURE WHAT VALUE SHOULD BE IN R6
-			//10110 0110 
-			init_task();
-			///////// T3 //////////
-			Grb <= 1; Rout <= 1; Yin <= 1; 
-			@(posedge clk)
-			Grb <= 0; Rout <= 0; Yin <= 0; 
-			///////// T4 //////////
-			Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
-			@(posedge clk)
-			Cout <= 0; rz_in <= 0;
-			///////// T5 //////////
-			ZLowout <= 1; Gra <= 1; Rin <= 1;
-			@(posedge clk)
-			ZLowout <= 0; Gra <= 0; Rin <= 0;
-
+		task alu_task(input [2:0] case_num); begin
+			case(case_num)
+				CASE1: begin
+					load_reg(32'hB3000000, 32'd10); // NOT SURE WHAT VALUE SHOULD BE IN R6
+					//10110 0110 
+					init_task();
+					///////// T3 //////////
+					Grb <= 1; Rout <= 1; Yin <= 1; 
+					@(posedge clk)
+					Grb <= 0; Rout <= 0; Yin <= 0; 
+					///////// T4 //////////
+					Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+					@(posedge clk)
+					Cout <= 0; rz_in <= 0;
+					///////// T5 //////////
+					ZLowout <= 1; Gra <= 1; Rin <= 1;
+					@(posedge clk)
+					ZLowout <= 0; Gra <= 0; Rin <= 0;
+				end
+				CASE2: begin
+					load_reg(32'hB3000000, 32'hFFFFFFFF); // NOT SURE WHAT VALUE SHOULD BE IN R6
+					init_task();
+					///////// T3 //////////
+					Grb <= 1; Rout <= 1; Yin <= 1; 
+					@(posedge clk)
+					Grb <= 0; Rout <= 0; Yin <= 0;
+					///////// T4 //////////
+					Cout <= 1; opcode <= 5'b00101; rz_in <= 1;
+					// INSTRUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 0010 1010 1011 -> 2AB00095
+					@(posedge clk)
+					Cout <= 0; rz_in <= 0;
+					///////// T5 //////////
+					ZLowout <= 1; Gra <= 1; Rin <= 1;
+					@(posedge clk)
+					ZLowout <= 0; Gra <= 0; Rin <= 0;
+				end
+				CASE3: begin
+					load_reg(32'hB3000000, 32'hFFFF0000); // NOT SURE WHAT VALUE SHOULD BE IN R6
+					//10110 0110 
+					init_task();
+					///////// T3 //////////
+					Grb <= 1; Rout <= 1; Yin <= 1; 
+					@(posedge clk)
+					Grb <= 0; Rout <= 0; Yin <= 0; 
+					///////// T4 //////////
+					Cout <= 1; opcode <= 5'b00110; rz_in <= 1;
+					// INSTRUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 0011 0010 1011 -> 32B00095
+					@(posedge clk)
+					Cout <= 0; rz_in <= 0;
+					///////// T5 //////////
+					ZLowout <= 1; Gra <= 1; Rin <= 1;
+					@(posedge clk)
+					ZLowout <= 0; Gra <= 0; Rin <= 0;
+				end
+			endcase
 		end endtask
 		
 		task branch_task; begin 
