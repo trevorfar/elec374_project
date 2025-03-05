@@ -20,7 +20,7 @@ module datapath_ld_tb();
 	 reg set_pc_flag;
 	 
 	 localparam LD = 3'b000; // 4 cases mem locs: 0, 1, 2, 4
-	 localparam ST = 3'b001;
+	 localparam ST = 3'b001; // 2 cases mem locs: 8, 9
 	 localparam ALU = 3'b010;
 	 localparam BRANCH = 3'b011;
 	 localparam JUMP = 3'b100;
@@ -32,6 +32,9 @@ module datapath_ld_tb();
 	 localparam CASE3= 3'b010;
 	 localparam CASE4= 3'b100;
 
+	 //0001 0010 0000 0 = 0x12000034
+	 // 0001 0010 0010 0000 0 = 0x12200034
+	 
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
 	 end
@@ -41,9 +44,9 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = LD;
-		  case_num = CASE2;
-		  
+		  test_id = ST;
+		  case_num = CASE1;
+		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
 		  
@@ -52,7 +55,7 @@ module datapath_ld_tb();
 				ld_task(case_num);
 			end
 			ST: begin
-				st_task();
+				st_task(case_num);
 			end
 			ALU: begin
 			end
@@ -162,8 +165,66 @@ module datapath_ld_tb();
 		end endtask
 		
 		
-		task st_task; begin 
-		init_task();
+		task st_task(input [2:0] st_case_num); begin
+		
+			case(st_case_num)
+			CASE1: begin
+				@(posedge clk)
+				load_reg(32'hB1800000, 32'hB6);
+				init_task();
+				
+				////// T3  /////
+				Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
+				@(posedge clk)
+				Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
+				////// T4  /////
+				Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
+				@(posedge clk)
+				Cout <= 0; rz_in <= 0; 
+				////// T5  /////
+				ZLowout <= 1; mar_in <= 1;
+				@(posedge clk)
+				ZLowout <= 0; mar_in <= 0;
+				////// T6  /////
+				mdr_in <= 1; mdr_read <= 1;
+				@(posedge clk)
+				mdr_in <= 0; mdr_read <= 0;
+				////// T7  /////
+				Gra <= 1; Rin <= 1; mdr_out <=1;
+				@(posedge clk)
+				Gra <= 0; Rin <= 0; mdr_out <=0;
+					
+			end
+			
+			CASE2: begin 
+				@(posedge clk)
+				load_reg(32'hB1800000, 32'hB6);
+				init_task();
+				
+				////// T3  /////
+				Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
+				@(posedge clk)
+				Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
+				////// T4  /////
+				Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
+				@(posedge clk)
+				Cout <= 0; rz_in <= 0; 
+				////// T5  /////
+				ZLowout <= 1; mar_in <= 1;
+				@(posedge clk)
+				ZLowout <= 0; mar_in <= 0;
+				////// T6  /////
+				mdr_in <= 1; mdr_read <= 1;
+				@(posedge clk)
+				mdr_in <= 0; mdr_read <= 0;
+				////// T7  /////
+				Gra <= 1; Rin <= 1; mdr_out <=1;
+				@(posedge clk)
+				Gra <= 0; Rin <= 0; mdr_out <=0;
+			
+			end
+			endcase
+		
 		
 		end endtask
 		
