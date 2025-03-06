@@ -421,24 +421,20 @@ module datapath_ld_tb();
 					// T3 //
 					Gra <= 1; Rout <= 1; pc_in <= 1;
 					@(posedge clk)
-					Gra <= 0; Rout <= 1; pc_in <= 0;
+					Gra <= 0; Rout <= 0; pc_in <= 0;
 					
 				
 				end
 				CASE2: begin // this is jal r5 (1010 0010 1000 = A2800000)
-					load_reg(32'hB2800000, 32'hD1); // put 0xE2 (arbitrary address) into R5
-					load_reg(32'hB4000000, 32'hE1); // put 0xE1 (arbitrary address) into R8
+				
+					load_reg(32'hB2800000, 32'hD1); // put 0xD1 (arbitrary address) into R5
 					init_task();
-					
 					// T3 //
-					pc_out <= 1; R8 <= 1;
-					@(posedge clk)
-					pc_out <= 0; R8 <= 1;
-					
-					// T4 //
 					Gra <= 1; Rout <= 1; pc_in <= 1;
 					@(posedge clk)
-					Gra <= 0; Rout <= 1; pc_in <= 0;
+					Gra <= 0; Rout <= 0; pc_in <= 0;
+					
+					load_reg(32'hB4000000, {8'b0, pc_data_out});
 				
 				end
 			endcase
@@ -589,7 +585,7 @@ module datapath_ld_tb();
 		inport_out <= 1; Gra <= 1; Rin <= 1;
 		
 		@(posedge clk)
-		inport_out <= 0; Gra <= 0; Rin <= 0;
+		inport_out <= 0; Gra <= 0; Rin <= 0; ir_in <= 0;
 		
 	end endtask
 	
