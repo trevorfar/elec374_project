@@ -23,20 +23,17 @@ module datapath_ld_tb();
 	 localparam LD = 3'b000; // 4 cases mem locs: 0x0, 0x1, 0x2, 0x4
 	 localparam ST = 3'b001; // 2 cases mem locs: 0x8, 0x9
 	 localparam ALU = 3'b010; // 3 cases mem locs: 0x10, 0x11, 0x12
-	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x20, 0x21
+	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x1A, 0x1C
 	 localparam JUMP = 3'b100;
 	 localparam SPECIAL = 3'b101;
 	 localparam OUT = 3'b110;
+	 
+	 
 	 
 	 localparam CASE1 = 3'b000;
 	 localparam CASE2= 3'b001;
 	 localparam CASE3= 3'b010;
 	 localparam CASE4= 3'b100;
-
-	 // brzr r1, 27 -> ?
-	 // brnz r1, 27
-	 // brpl r1, 27
-	 // brmi r1, 27
 
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
@@ -47,8 +44,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = LD; 
-		  case_num = CASE1;
+		  test_id = BRANCH; 
+		  case_num = CASE4;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -150,9 +147,7 @@ module datapath_ld_tb();
 		
 		CASE4: begin
 			@(posedge clk)
-			load_reg(32'hB1000000, 32'h78);
-			// 10110 0010 
-			
+			load_reg(32'hB1000000, 32'h78);			
 			init_task();
 			////// T3  /////
 			Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
@@ -215,7 +210,6 @@ module datapath_ld_tb();
 					
 			end
 			
-			// instrcutnn: 11980034	   0001 0001 1001 1000        
 			
 			CASE2: begin 
 				@(posedge clk)
@@ -260,8 +254,7 @@ module datapath_ld_tb();
 		task alu_task(input [2:0] case_num); begin
 			case(case_num)
 				CASE1: begin
-					load_reg(32'hB3000000, 32'd10); // NOT SURE WHAT VALUE SHOULD BE IN R6
-					//10110 0110 
+					load_reg(32'hB3000000, 32'd10); 
 					init_task();
 					///////// T3 //////////
 					Grb <= 1; Rout <= 1; Yin <= 1; 
@@ -277,7 +270,7 @@ module datapath_ld_tb();
 					ZLowout <= 0; Gra <= 0; Rin <= 0;
 				end
 				CASE2: begin
-					load_reg(32'hB3000000, 32'hFFFFFFFF); // NOT SURE WHAT VALUE SHOULD BE IN R6
+					load_reg(32'hB3000000, 32'hFFFFFFFF); 
 					init_task();
 					///////// T3 //////////
 					Grb <= 1; Rout <= 1; Yin <= 1; 
@@ -285,7 +278,6 @@ module datapath_ld_tb();
 					Grb <= 0; Rout <= 0; Yin <= 0;
 					///////// T4 //////////
 					Cout <= 1; opcode <= 5'b00101; rz_in <= 1;
-					// INSTRUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 0010 1010 1011 -> 2AB00095
 					@(posedge clk)
 					Cout <= 0; rz_in <= 0;
 					///////// T5 //////////
@@ -294,8 +286,7 @@ module datapath_ld_tb();
 					ZLowout <= 0; Gra <= 0; Rin <= 0;
 				end
 				CASE3: begin
-					load_reg(32'hB3000000, 32'hFFFF0000); // NOT SURE WHAT VALUE SHOULD BE IN R6
-					//10110 0110 
+					load_reg(32'hB3000000, 32'hFFFF0000); 
 					init_task();
 					///////// T3 //////////
 					Grb <= 1; Rout <= 1; Yin <= 1; 
@@ -303,7 +294,6 @@ module datapath_ld_tb();
 					Grb <= 0; Rout <= 0; Yin <= 0; 
 					///////// T4 //////////
 					Cout <= 1; opcode <= 5'b00110; rz_in <= 1;
-					// INSTRUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 0011 0010 1011 -> 32B00095
 					@(posedge clk)
 					Cout <= 0; rz_in <= 0;
 					///////// T5 //////////
@@ -319,8 +309,8 @@ module datapath_ld_tb();
 		
 		task branch_task(input [2:0] case_num); begin 
 			case(case_num)
-				CASE1: begin // instrcuton: 1001 1000 1000 0000000000000000 27  -> 98800027
-					load_reg(32'hB0800000, 32'h0); // 1011 0000 1000 (value 0 in R1) // 1011 0000 1000
+				CASE1: begin 
+					load_reg(32'hB0800000, 32'h0); 
 					init_task();
 					// T3 //
 					Gra <= 1; Rout <= 1; con_in <= 1; 
@@ -336,20 +326,91 @@ module datapath_ld_tb();
 					Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
 					@(posedge clk)
 					Cout <= 0; rz_in <= 0;
-					//0x60
-					// pc 15 + 0x60  
+			
 					// T6 //
 					ZLowout <= 1; pc_in <= con_out;
 					@(posedge clk)
 					ZLowout <= 0; pc_in <= 0;
-					
 				end
+			CASE2: begin      
+				load_reg(32'hB0800000, 32'h1);
+				init_task();
+				// T3 //
+				Gra <= 1; Rout <= 1; con_in <= 1; 
+				@(posedge clk)
+				Gra <= 0; Rout <= 0; con_in <= 0;
+				
+				// T4 //
+				pc_out <= 1; Yin <= 1;
+				@(posedge clk) 
+				pc_out <= 0; Yin <= 0;
+				
+				// T5 // 
+				Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+				@(posedge clk)
+				Cout <= 0; rz_in <= 0;
+		
+				// T6 //
+				ZLowout <= 1; pc_in <= con_out;
+				@(posedge clk)
+				ZLowout <= 0; pc_in <= 0;
+			
+			end
+			
+			CASE3: begin
+				load_reg(32'hB0800000, -32'h5); 
+				init_task();
+				// T3 //
+				Gra <= 1; Rout <= 1; con_in <= 1; 
+				@(posedge clk)
+				Gra <= 0; Rout <= 0; con_in <= 0;
+				
+				// T4 //
+				pc_out <= 1; Yin <= 1;
+				@(posedge clk) 
+				pc_out <= 0; Yin <= 0;
+				
+				// T5 // 
+				Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+				@(posedge clk)
+				Cout <= 0; rz_in <= 0;
+		
+				// T6 //
+				ZLowout <= 1; pc_in <= con_out;
+				@(posedge clk)
+				ZLowout <= 0; pc_in <= 0;
+			end
+			
+			CASE4: begin // 1001 1000 1001 1000 0 
+				load_reg(32'hB0800000, 32'h6); 
+				init_task();
+				// T3 //
+				Gra <= 1; Rout <= 1; con_in <= 1; 
+				@(posedge clk)
+				Gra <= 0; Rout <= 0; con_in <= 0;
+				
+				// T4 //
+				pc_out <= 1; Yin <= 1;
+				@(posedge clk) 
+				pc_out <= 0; Yin <= 0;
+				
+				// T5 // 
+				Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+				@(posedge clk)
+				Cout <= 0; rz_in <= 0;
+		
+				// T6 //
+				ZLowout <= 1; pc_in <= con_out;
+				@(posedge clk)
+				ZLowout <= 0; pc_in <= 0;
+			end
+
 			endcase				
 		
 		end endtask
 		
 		
-// ------------------------------------------------------------------------------------------------------------------
+// -------------------------------------------j--------------------------u-----------mp--------------------------------------------
 		
 		task jump_task; begin
 		init_task();
