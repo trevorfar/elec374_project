@@ -10,7 +10,8 @@ module datapath(
 	 input wire set_pc_flag,
 	 input wire HI_out, LO_out, inc_pc, wren,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
-	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout,
+	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout, con_in,
+	 output wire con_out,
 	 output [4:0] bus_select,
 	 output wire [8:0] mar_address_out,
 	 output [15:0] reg_out, reg_in,
@@ -97,5 +98,7 @@ module datapath(
 	 
 	  z_reg RZ(.z_high_data_out(z_high_data_out), .z_low_data_out(z_low_data_out),
 	 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(rz_in));
+	 
+	 CON_FF conff(.bus_data(bus_data), .ir_input(ir_data_out[20:19]), .clk(clk), .con_in(con_in), .con_out(con_out));
 
 endmodule

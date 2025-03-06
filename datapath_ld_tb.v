@@ -7,13 +7,14 @@ module datapath_ld_tb();
     reg [4:0] opcode;
 	 reg [31:0] inport_data_in;
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select, inc_pc, Rin;
-    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout;
+    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
 	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
+	 wire con_out;
 	 reg [2:0] test_id;
 	 reg [2:0] case_num;
 	 reg [7:0] pc_offset;
@@ -46,7 +47,7 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = ST;
+		  test_id = LD; 
 		  case_num = CASE1;
 		   
 		  reset_signals();
@@ -63,6 +64,7 @@ module datapath_ld_tb();
 				alu_task(case_num);
 			end
 			BRANCH: begin
+				branch_task(case_num);
 			end
 			JUMP: begin
 			end
@@ -183,18 +185,28 @@ module datapath_ld_tb();
 				Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
 				@(posedge clk)
 				Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
+				
+				
+				Gra <= 1; BAout <= 1;
+				@(posedge clk)
+				Gra <= 0; BAout <= 0;
+				
+				
 				////// T4  /////
 				Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
 				@(posedge clk)
 				Cout <= 0; rz_in <= 0; 
+				
 				////// T5  /////
 				ZLowout <= 1; mar_in <= 1;
 				@(posedge clk)
 				ZLowout <= 0; mar_in <= 0;
+				
 				////// T6  /////
-				inport_out <= 1; mdr_in <= 1;
+				Gra <= 1; BAout <= 1; mdr_in <= 1;
 				@(posedge clk)
-				inport_out <= 0; mdr_in <= 0;
+				Gra <= 0; BAout <= 0; mdr_in <= 0;
+
 				////// T7  /////
 				wren <= 1;
 				@(posedge clk)
@@ -202,6 +214,8 @@ module datapath_ld_tb();
 				
 					
 			end
+			
+			// instrcutnn: 11980034	   0001 0001 1001 1000        
 			
 			CASE2: begin 
 				@(posedge clk)
@@ -212,22 +226,27 @@ module datapath_ld_tb();
 				Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
 				@(posedge clk)
 				Grb <= 0; BAout <= 0; Yin <= 0; muxy_select <= 0;
+				
+				
 				////// T4  /////
 				Cout <= 1; opcode <= 5'b00011; rz_in <= 1; 
 				@(posedge clk)
-				Cout <= 0; rz_in <= 0; 
+				Cout <= 0; rz_in <= 0;
+				
 				////// T5  /////
 				ZLowout <= 1; mar_in <= 1;
 				@(posedge clk)
 				ZLowout <= 0; mar_in <= 0;
+				
 				////// T6  /////
-				mdr_in <= 1; mdr_read <= 1;
+				Gra <= 1; BAout <= 1; mdr_in <= 1;
 				@(posedge clk)
-				mdr_in <= 0; mdr_read <= 0;
+				Gra <= 0; BAout <= 0; mdr_in <= 0;
+
 				////// T7  /////
-				Gra <= 1; Rin <= 1; mdr_out <=1;
+				wren <= 1;
 				@(posedge clk)
-				Gra <= 0; Rin <= 0; mdr_out <=0;
+				wren <= 0;
 			
 			end
 			endcase
@@ -295,10 +314,42 @@ module datapath_ld_tb();
 			endcase
 		end endtask
 		
-		task branch_task; begin 
-		init_task();
+		
+// BRANCH -------------------------------------------------------------------------------------------------- BRANCH
+		
+		task branch_task(input [2:0] case_num); begin 
+			case(case_num)
+				CASE1: begin // instrcuton: 1001 1000 1000 0000000000000000 27  -> 98800027
+					load_reg(32'hB0800000, 32'h0); // 1011 0000 1000 (value 0 in R1) // 1011 0000 1000
+					init_task();
+					// T3 //
+					Gra <= 1; Rout <= 1; con_in <= 1; 
+					@(posedge clk)
+					Gra <= 0; Rout <= 0; con_in <= 0;
+					
+					// T4 //
+					pc_out <= 1; Yin <= 1;
+					@(posedge clk) 
+					pc_out <= 0; Yin <= 0;
+					
+					// T5 // 
+					Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+					@(posedge clk)
+					Cout <= 0; rz_in <= 0;
+					//0x60
+					// pc 15 + 0x60  
+					// T6 //
+					ZLowout <= 1; pc_in <= con_out;
+					@(posedge clk)
+					ZLowout <= 0; pc_in <= 0;
+					
+				end
+			endcase				
 		
 		end endtask
+		
+		
+// ------------------------------------------------------------------------------------------------------------------
 		
 		task jump_task; begin
 		init_task();
@@ -388,6 +439,8 @@ module datapath_ld_tb();
 	 .Rin(Rin),
 	 .pc_data_out(pc_data_out),
 	 .Rout(Rout),
+	 .con_in(con_in),
+	 .con_out(con_out),
 	 .inport_data_in(inport_data_in),
 	 .r3_data_out(r3_data_out),
 	 .r4_data_out(r4_data_out),
@@ -429,6 +482,7 @@ module datapath_ld_tb();
 				ZHighout <= 0; 
 				ZLowout <= 0;
 				Gra <= 0; Grb <= 0; Grc <= 0; wren <= 0; BAout <= 0;
+				con_in <= 0; 
         end
     endtask
 

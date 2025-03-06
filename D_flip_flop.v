@@ -1,23 +1,19 @@
-module D_flip_flop(D,clk, sync_reset, Q, Q_not);
+module D_flip_flop(D,clk, con_in, Q, Q_not);
 
 input D; 
 input clk;
-input sync_reset;
+input con_in;
 output reg Q; 
 output reg Q_not;
 
-initial begin 
+initial begin
 	Q <= 0;
-	Q <= 1;
+	Q_not <= 1;
 end
 
 always @(posedge clk) 
 	begin
-	if(sync_reset==1'b1) begin
-		Q <= 1'b0;
-		Q_not <= 1'b1;
-	end
-	else begin 
+	if (con_in == 1'b1) begin 
 		Q <= D; 
 		Q_not <= ~D;
 	end 
