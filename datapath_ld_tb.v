@@ -25,9 +25,9 @@ module datapath_ld_tb();
 	 localparam ALU = 3'b010; // 3 cases mem locs: 0x10, 0x11, 0x12
 	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x1A, 0x1C
 	 localparam JUMP = 3'b100; // 2 cases mem locs: 0x20, 0x21
-	 localparam SPECIAL = 3'b101;
-	 localparam OUT = 3'b110;
-	 
+	 localparam SPECIAL = 3'b101; // 2 cases mem locs: 0x28, 0x29
+	 localparam OUT = 3'b110; // 1 case mem loc: 0x30
+	
 	 localparam CASE1 = 3'b000;
 	 localparam CASE2= 3'b001;
 	 localparam CASE3= 3'b010;
@@ -42,8 +42,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = JUMP; 
-		  case_num = CASE2;
+		  test_id = SPECIAL; 
+		  case_num = CASE1;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -65,8 +65,10 @@ module datapath_ld_tb();
 				jump_task(case_num);
 			end
 			SPECIAL: begin
+				special_task(case_num);
 			end
 			OUT: begin
+				out_task();
 			end
 		 endcase
 		  
@@ -440,17 +442,50 @@ module datapath_ld_tb();
 			endcase
 		end endtask
 		
-		task special_task(input [2:0] case_num); begin 
-		init_task();
 		
+// SPECIAL ------------------------------------------------------------------------------------ SPECIAL
+		
+		task special_task(input [2:0] case_num); begin
+			case(case_num)
+				CASE1: begin  // this is mfhi r3 (11001 0011 -> C9800000)
+					load_reg(32'hB1800000, 32'h11111111);   // 1011 0001 1000 -> B1800000  (loading in r3)
+					
+					init_task();
+					
+					
+					Gra <= 1; Rout <= 1; rz_in <= 1;
+					@(posedge clk)
+					Gra <= 0; Rout <= 0; rz_in <= 0;
+					
+					ZLowout <= 1;
+					@(posedge clk)
+					ZLowout <= 0;
+					
+					// T3 //
+					LO_out <= 1; Gra <= 1; Rin <= 1;
+					@(posedge clk)
+					LO_out <= 0; Gra <= 0; Rin <= 0;
+					
+				
+				end
+				CASE2: begin  // this is mflo r2
+				
+					init_task();
+					
+				end				
+			endcase		
 		end endtask
+		
+		
+// OUT ------------------------------------------------------------------------------------------- OUT
 		
 		task out_task; begin
 		init_task();
 
 		end endtask
 		
-		
+
+// INITS, ETC ----------------------------------------------------------------------------- INITS, ETC
 	
 	 
 	 // DEFAULT STUFF I DONT WANNA LOOK AT
