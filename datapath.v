@@ -4,13 +4,13 @@ module datapath(
     input wire [31:0] inport_data_in,
 	 output wire [31:0] inport_data_out,
     output wire [31:0] outport_data_out,
-	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r2_data_out, z_low_data_out, z_high_data_out,
+	 output wire [31:0] bus_data, ram_data_out, ir_data_out, mdr_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, z_low_data_out, z_high_data_out,
 	 input wire [4:0] opcode,
 	 input wire [7:0] pc_offset,
 	 input wire set_pc_flag,
 	 input wire HI_out, LO_out, inc_pc, wren,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
-	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout, con_in,
+	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout, con_in, R8,
 	 output wire con_out,
 	 output [4:0] bus_select,
 	 output wire [8:0] mar_address_out,
@@ -25,7 +25,7 @@ module datapath(
 	 wire [31:0] ry_data_out;
 	 wire [31:0] muxy_data_out;
 	 wire [31:0] r0_data_out, r1_data_out;
-    wire [31:0] r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out;
+    wire [31:0] r7_data_out, r9_data_out, r10_data_out, r11_data_out;
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out; //r4_data_out, r6_data_out, r2_data_out;
     wire [31:0] C_sign_extended, r0_data_out_and; 
 

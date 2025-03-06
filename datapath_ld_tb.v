@@ -7,10 +7,10 @@ module datapath_ld_tb();
     reg [4:0] opcode;
 	 reg [31:0] inport_data_in;
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select, inc_pc, Rin;
-    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in;
+    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in, R8;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
+	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
@@ -24,11 +24,9 @@ module datapath_ld_tb();
 	 localparam ST = 3'b001; // 2 cases mem locs: 0x8, 0x9
 	 localparam ALU = 3'b010; // 3 cases mem locs: 0x10, 0x11, 0x12
 	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x1A, 0x1C
-	 localparam JUMP = 3'b100;
+	 localparam JUMP = 3'b100; // 2 cases mem locs: 0x20, 0x21
 	 localparam SPECIAL = 3'b101;
 	 localparam OUT = 3'b110;
-	 
-	 
 	 
 	 localparam CASE1 = 3'b000;
 	 localparam CASE2= 3'b001;
@@ -44,8 +42,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = BRANCH; 
-		  case_num = CASE4;
+		  test_id = JUMP; 
+		  case_num = CASE2;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -64,6 +62,7 @@ module datapath_ld_tb();
 				branch_task(case_num);
 			end
 			JUMP: begin
+				jump_task(case_num);
 			end
 			SPECIAL: begin
 			end
@@ -412,12 +411,40 @@ module datapath_ld_tb();
 		
 // -------------------------------------------j--------------------------u-----------mp--------------------------------------------
 		
-		task jump_task; begin
-		init_task();
-
+		task jump_task(input [2:0] case_num); begin
+			case(case_num)
+				CASE1: begin // this is jr r8 (1010 1100 = 0xAC000000)
+				
+					load_reg(32'hB4000000, 32'hE1);
+					init_task();
+				
+					// T3 //
+					Gra <= 1; Rout <= 1; pc_in <= 1;
+					@(posedge clk)
+					Gra <= 0; Rout <= 1; pc_in <= 0;
+					
+				
+				end
+				CASE2: begin // this is jal r5 (1010 0010 1000 = A2800000)
+					load_reg(32'hB2800000, 32'hD1); // put 0xE2 (arbitrary address) into R5
+					load_reg(32'hB4000000, 32'hE1); // put 0xE1 (arbitrary address) into R8
+					init_task();
+					
+					// T3 //
+					pc_out <= 1; R8 <= 1;
+					@(posedge clk)
+					pc_out <= 0; R8 <= 1;
+					
+					// T4 //
+					Gra <= 1; Rout <= 1; pc_in <= 1;
+					@(posedge clk)
+					Gra <= 0; Rout <= 1; pc_in <= 0;
+				
+				end
+			endcase
 		end endtask
 		
-		task special_task; begin 
+		task special_task(input [2:0] case_num); begin 
 		init_task();
 		
 		end endtask
@@ -502,11 +529,13 @@ module datapath_ld_tb();
 	 .Rout(Rout),
 	 .con_in(con_in),
 	 .con_out(con_out),
+	 .R8(R8),
 	 .inport_data_in(inport_data_in),
 	 .r3_data_out(r3_data_out),
 	 .r4_data_out(r4_data_out),
 	 .r5_data_out(r5_data_out),
 	 .r6_data_out(r6_data_out),
+	 .r8_data_out(r8_data_out),
 	 .inport_data_out(inport_data_out),
 	 .r2_data_out(r2_data_out),
 	 .z_high_data_out(z_high_data_out),
@@ -544,6 +573,7 @@ module datapath_ld_tb();
 				ZLowout <= 0;
 				Gra <= 0; Grb <= 0; Grc <= 0; wren <= 0; BAout <= 0;
 				con_in <= 0; 
+				R8 <= 0;
         end
     endtask
 
