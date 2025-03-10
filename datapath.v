@@ -5,7 +5,6 @@ module datapath(
 	 output wire [31:0] inport_data_out,
     output wire [31:0] outport_data_out,
 	 output wire [31:0] bus_data, ram_data_out, HI_data_out, LO_data_out, ir_data_out, mdr_data_out, pc_data_out, r1_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, z_low_data_out, z_high_data_out,
-	 input wire [4:0] opcode,
 	 input wire HI_out, LO_out, inc_pc, wren,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
 	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout, con_in,
@@ -14,8 +13,24 @@ module datapath(
 	 output wire [8:0] mar_address_out,
 	 output [15:0] reg_out, reg_in,
 	 output wire [63:0] rz_data_out
+	 input wire [31:0] control_signals;
 	 );
+	 
+	 
 
+	 input wire [31:0] control_signals;
+	 reg [4:0] opcode;
+	 
+	 always @(*) begin
+		 if (control_signals[`ALU_ADD]) begin
+			  opcode = `ADD;  
+		 end else begin
+				opcode = ir_data_out[31:27];
+		 end
+	end
+	
+	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals));
+ 
 	 //wire [31:0] HI_data_out, 
 	 //wire [31:0] LO_data_out;
 //	 wire [31:0] z_high_data_out;
@@ -26,8 +41,6 @@ module datapath(
     wire [31:0] r7_data_out, r9_data_out, r10_data_out, r11_data_out;
     wire [31:0] r12_data_out, r13_data_out, r14_data_out, r15_data_out; //r4_data_out, r6_data_out, r2_data_out;
     wire [31:0] C_sign_extended, r0_data_out_and; 
-
-	
 	 	
     encoder_32_to_5 bus_encoder(
         .encoder_input({{8{1'b0}}, Cout,inport_out,mdr_out,pc_out,ZLowout,ZHighout,LO_out,HI_out, {reg_out}}),

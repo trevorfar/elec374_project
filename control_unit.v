@@ -1,60 +1,69 @@
 `timescale 1ns/10ps
 
 module control_unit(
+input wire clk, clear,
 input  [31:0] ir_data_out,
-output [4:0] opcode,
-output reg HI_in, LO_in, con_in, pc_in, ir_in, Yin, rz_in, mar_in, mdr_in, outport_in, Cout, BAout, 
-				pc_out, mdr_out, ZHighout, ZLowout, HI_out, LO_out, Rin, Rout, Gra, Grb, Grc, inport_out, mdr_read, wren, muxy_select,  
-				opcode, inc_pc, Run, Stop, clk, stop, clear, con_ff,
-);
-
-	 localparam LD = 3'b000; // 4 cases mem locs: 0x0, 0x1, 0x2, 0x4
-	 localparam ST = 3'b001; // 2 cases mem locs: 0x8, 0x9
-	 localparam ALU = 3'b010; // 3 cases mem locs: 0x10, 0x11, 0x12
-	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x1A, 0x1C
-	 localparam JUMP = 3'b100; // 2 cases mem locs: 0x20, 0x21
-	 localparam SPECIAL = 3'b101; // 2 cases mem locs: 0x28, 0x29
-	 localparam OUT = 3'b110; // 1 case mem loc: 0x30 
+output reg [31:0] control_signals
+);	 
+	`define HI_OUT        32'b00000000000000000000000000000001
+	`define LO_OUT        32'b00000000000000000000000000000010
+	`define INC_PC        32'b00000000000000000000000000000100
+	`define WREN          32'b00000000000000000000000000001000
+	`define PC_OUT        32'b00000000000000000000000000010000
+	`define ZHIGH_OUT     32'b00000000000000000000000000100000
+	`define ZLOW_OUT      32'b00000000000000000000000001000000
+	`define MAR_IN        32'b00000000000000000000000010000000
+	`define MDR_OUT       32'b00000000000000000000000100000000
+	`define PC_IN         32'b00000000000000000000001000000000
+	`define INPORT_IN     32'b00000000000000000000010000000000
+	`define OUTPORT_IN    32'b00000000000000000000100000000000
+	`define MDR_IN        32'b00000000000000000001000000000000
+	`define IR_IN         32'b00000000000000000010000000000000
+	`define Y_IN          32'b00000000000000000100000000000000
+	`define MDR_READ      32'b00000000000000001000000000000000
+	`define GRA           32'b00000000000000010000000000000000
+	`define GRB           32'b00000000000000100000000000000000
+	`define GRC           32'b00000000000001000000000000000000
+	`define HI_IN         32'b00000000000010000000000000000000
+	`define LO_IN         32'b00000000000100000000000000000000
+	`define COUT          32'b00000000001000000000000000000000
+	`define INPORT_OUT    32'b00000000010000000000000000000000
+	`define RZ_IN         32'b00000000100000000000000000000000
+	`define MUXY_SELECT   32'b00000001000000000000000000000000
+	`define BAOUT         32'b00000010000000000000000000000000
+	`define RIN           32'b00000100000000000000000000000000
+	`define ROUT          32'b00001000000000000000000000000000
+	`define CON_IN        32'b00010000000000000000000000000000
+	`define ALU_ADD		 32'b00100000000000000000000000000000
 	
-	 localparam CASE1 = 3'b000;
-	 localparam CASE2= 3'b001;
-	 localparam CASE3= 3'b010;
-	 localparam CASE4= 3'b100;
-	 
-	 
-	  
-	 initial begin
-		  test_id = ST; 
-		  case_num = CASE1; 
-		  
-		  reset_signals();		  
-		  case(test_id)
-			LD: begin
-				ld_task(case_num);
-			end
-			ST: begin
-				st_task(case_num);
-			end
-			ALU: begin
-				alu_task(case_num);
-			end
-			BRANCH: begin
-				branch_task(case_num);
-			end
-			JUMP: begin
-				jump_task(case_num);
-			end
-			SPECIAL: begin
-				special_task(case_num);
-			end
-			OUT: begin
-				out_task();
-			end
-		 endcase
-		  
-    end
-	 
+	reg [2:0] step;
+	step_counter steps(.clk(clk), .clear(clear), .step(step));
+	
+	
+	
+	 reg [31:0] code_rom [0:127]; // 16 steparooni's
 
+	 initial begin
+			//this represents a load instruction
+			 code_rom[{`LD, 3'b011}] = `GRB | `BAOUT | `YIN | `MUXY_SELECT;
+			 code_rom[{`LD, 3'b100}] = `COUT | `RZ_IN | `ALU_ADD; // NEED TO SET 1 BIT TO SPECIFY AN ADD OPCODE 
+			 code_rom[{`LD, 3'b101}] = `ZLOWOUT | `MAR_IN;
+			 code_rom[{`LD, 3'b110}] = `MDR_IN | `MDR_READ;
+			 code_rom[{`LD, 3'b111}] = `GRA | `RIN | `MDR_OUT;
+	 end
+	 
+	 always @(*) begin
+	 control_signals = 32'b0;
+		 case(step) 
+			3'b000: control_signals = `PC_OUT | `MAR_IN | `INC_PC | `RZ_IN; 
+			3'b001: control_signals = `MDR_READ | `MDR_IN | `ZLOWOUT | `PC_IN;													
+			3'b010: control_signals = `MDR_OUT | `IR_IN;
+			default: control_signals = code_rom[{opcode, step}];
+		 endcase
+	 end
+	endmodule
+	
+	/*
 	  task ld_task(input [2:0] ld_case_num); begin
 	 
 		case(ld_case_num) 
