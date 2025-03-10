@@ -6,8 +6,6 @@ module datapath(
     output wire [31:0] outport_data_out,
 	 output wire [31:0] bus_data, ram_data_out, HI_data_out, LO_data_out, ir_data_out, mdr_data_out, pc_data_out, r1_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, z_low_data_out, z_high_data_out,
 	 input wire [4:0] opcode,
-	 input wire [7:0] pc_offset,
-	 input wire set_pc_flag,
 	 input wire HI_out, LO_out, inc_pc, wren,
 	 input wire pc_out, ZHighout, ZLowout, mar_in, mdr_out, pc_in, inport_in, outport_in, mdr_in, ir_in, Yin, mdr_read, Gra, Grb, Grc,
 	 HI_in, LO_in, Cout, inport_out, rz_in, muxy_select, BAout, Rin, Rout, con_in,
@@ -62,7 +60,7 @@ module datapath(
 	reg_32_bit outport(.clk(clk), .clear(clear), .enable(outport_in), .BusMuxOut(bus_data), .BusMuxIn(outport_data_out));
 	 
 	
-	pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out), .inc_pc(inc_pc), .pc_offset(pc_offset), .set_pc_flag(set_pc_flag));
+	pc_32_bit PC(.clk(clk), .clear(clear), .enable(pc_in), .immediate(bus_data), .pc(pc_data_out), .inc_pc(inc_pc));
    reg_32_bit RY(.clk(clk), .clear(clear), .enable(Yin), .BusMuxOut(bus_data), .BusMuxIn(ry_data_out));
 	mar_32_bit MAR(.clk(clk), .clear(clear), .mar_in(mar_in), .bus_data(bus_data), .mar_address_out(mar_address_out));
 	 
