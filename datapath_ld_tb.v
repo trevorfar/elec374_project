@@ -7,10 +7,10 @@ module datapath_ld_tb();
     reg [4:0] opcode;
 	 reg [31:0] inport_data_in;
     reg pc_out, ZLowout, HI_out, LO_out, mar_in, pc_in, ZHighout, muxy_select, inc_pc, Rin;
-    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in, R8;
+    reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, HI_data_out, LO_data_out, outport_data_out, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
+	 wire [31:0] bus_data, HI_data_out, LO_data_out, outport_data_out, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r1_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
@@ -32,7 +32,7 @@ module datapath_ld_tb();
 	 localparam CASE2= 3'b001;
 	 localparam CASE3= 3'b010;
 	 localparam CASE4= 3'b100;
-	 
+	  
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
 	 end
@@ -142,7 +142,7 @@ module datapath_ld_tb();
 			////// T5  /////
 			ZLowout <= 1; Gra <= 1; Rin <= 1;
 			@(posedge clk)
-			ZLowout <= 0; Gra <= 1; Rin <= 1;
+			ZLowout <= 0; Gra <= 0; Rin <= 0;
 		end
 		
 		
@@ -161,7 +161,7 @@ module datapath_ld_tb();
 			////// T5  /////
 			ZLowout <= 1; Gra <= 1; Rin <= 1;
 			@(posedge clk)
-			ZLowout <= 0; Gra <= 1; Rin <= 1;
+			ZLowout <= 0; Gra <= 0; Rin <= 0;
 		end
 		endcase
 		end endtask
@@ -566,7 +566,6 @@ module datapath_ld_tb();
 	 .Rout(Rout),
 	 .con_in(con_in),
 	 .con_out(con_out),
-	 .R8(R8),
 	 .inport_data_in(inport_data_in),
 	 .r3_data_out(r3_data_out),
 	 .r4_data_out(r4_data_out),
@@ -582,7 +581,8 @@ module datapath_ld_tb();
 	 .pc_offset(pc_offset),
 	 .set_pc_flag(set_pc_flag),
 	 .HI_data_out(HI_data_out),
-	 .LO_data_out(LO_data_out)
+	 .LO_data_out(LO_data_out),
+	 .r1_data_out(r1_data_out)
 	);
 	
 	task reset_signals();
@@ -612,7 +612,6 @@ module datapath_ld_tb();
 				ZLowout <= 0;
 				Gra <= 0; Grb <= 0; Grc <= 0; wren <= 0; BAout <= 0;
 				con_in <= 0; 
-				R8 <= 0;
         end
     endtask
 
