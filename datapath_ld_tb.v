@@ -10,7 +10,7 @@ module datapath_ld_tb();
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in, R8;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, outport_data_out, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
+	 wire [31:0] bus_data, HI_data_out, LO_data_out, outport_data_out, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
@@ -42,8 +42,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = OUT; 
-		  case_num = 3'b000;
+		  test_id = SPECIAL; 
+		  case_num = CASE2; //3'b000;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -449,31 +449,33 @@ module datapath_ld_tb();
 			case(case_num)
 				CASE1: begin  // this is mfhi r3 (11001 0011 -> C9800000)
 					load_reg(32'hB1800000, 32'h11111111);   // 1011 0001 1000 -> B1800000  (loading in r3)
-					
 					init_task();
-					
-					Gra <= 1; Rout <= 1; rz_in <= 1;
+				
+					Gra <= 1; Rout <= 1; HI_in <= 1;
 					@(posedge clk)
-					Gra <= 0; Rout <= 0; rz_in <= 0;
+					Gra <= 0; Rout <= 0; HI_in <= 0;
 					
-					ZLowout <= 1;
+					Gra <= 1; Rin <= 1; HI_out <= 1; 
 					@(posedge clk)
-					ZLowout <= 0;
-					
-					// T3 //
-					LO_out <= 1; Gra <= 1; Rin <= 1;
-					@(posedge clk)
-					LO_out <= 0; Gra <= 0; Rin <= 0;
+					Gra <= 0; Rin <= 0; HI_out <= 0; 
 					
 				
 				end
-				CASE2: begin  // this is mflo r2
-				
+				CASE2: begin 
+					load_reg(32'hB1000000, 32'h11111111);  // 1011 0001 000000 = B1
 					init_task();
+					
+					Gra <= 1; Rout <= 1; LO_in <= 1;
+					@(posedge clk)
+					Gra <= 0; Rout <= 0; LO_in <= 0;
+					
+					Gra <= 1; Rin <= 1; LO_out <= 1; 
+					@(posedge clk)
+					Gra <= 0; Rin <= 0; LO_out <= 0; 
 					
 				end				
 			endcase		
-		end endtask
+		end endtask 
 		
 		
 // OUT ------------------------------------------------------------------------------------------- OUT
@@ -577,7 +579,9 @@ module datapath_ld_tb();
 	 .rz_data_out(rz_data_out),
 	 .wren(wren),
 	 .pc_offset(pc_offset),
-	 .set_pc_flag(set_pc_flag)
+	 .set_pc_flag(set_pc_flag),
+	 .HI_data_out(HI_data_out),
+	 .LO_data_out(LO_data_out)
 	);
 	
 	task reset_signals();
