@@ -43,7 +43,7 @@ module datapath_ld_tb();
 	 
 	 initial begin
 		  test_id = SPECIAL; 
-		  case_num = CASE2; //3'b000;
+		  case_num = CASE1; //3'b000;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -447,27 +447,28 @@ module datapath_ld_tb();
 		
 		task special_task(input [2:0] case_num); begin
 			case(case_num)
-				CASE1: begin  // this is mfhi r3 (11001 0011 -> C9800000)
-					load_reg(32'hB1800000, 32'h11111111);   // 1011 0001 1000 -> B1800000  (loading in r3)
+				CASE1: begin  // this is mfhi r3 (11001 0011 1000-> C9C00000) was c9800000
+					load_reg(32'hBC000000, 32'h11111111);   // load it into r8 (grb)
 					init_task();
 				
-					Gra <= 1; Rout <= 1; HI_in <= 1;
+					Grb <= 1; Rout <= 1; HI_in <= 1;
 					@(posedge clk)
-					Gra <= 0; Rout <= 0; HI_in <= 0;
+					Grb <= 0; Rout <= 0; HI_in <= 0;
 					
 					Gra <= 1; Rin <= 1; HI_out <= 1; 
 					@(posedge clk)
 					Gra <= 0; Rin <= 0; HI_out <= 0; 
 					
+					
 				
 				end
-				CASE2: begin 
-					load_reg(32'hB1000000, 32'h11111111);  // 1011 0001 000000 = B1
-					init_task();
+				CASE2: begin     // was c1000000 but now its C1400000 to have r8 as grb
+					load_reg(32'hBC000000, 32'h11111111); //load it into r8 (grb)
+					init_task(); 
 					
-					Gra <= 1; Rout <= 1; LO_in <= 1;
+					Grb <= 1; Rout <= 1; LO_in <= 1;
 					@(posedge clk)
-					Gra <= 0; Rout <= 0; LO_in <= 0;
+					Grb <= 0; Rout <= 0; LO_in <= 0;
 					
 					Gra <= 1; Rin <= 1; LO_out <= 1; 
 					@(posedge clk)
