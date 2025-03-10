@@ -57,6 +57,7 @@ module datapath(
    reg_32_bit HI(.clk(clk), .clear(clear), .enable(HI_in), .BusMuxOut(bus_data), .BusMuxIn(HI_data_out));
    reg_32_bit LO(.clk(clk), .clear(clear), .enable(LO_in), .BusMuxOut(bus_data), .BusMuxIn(LO_data_out));
 	reg_32_bit ir(.clk(clk), .clear(clear), .enable(ir_in), .BusMuxOut(bus_data), .BusMuxIn(ir_data_out));
+	
 	reg_32_bit inport(.clk(clk), .clear(clear), .enable(inport_in), .BusMuxOut(inport_data_in), .BusMuxIn(inport_data_out));
 	reg_32_bit outport(.clk(clk), .clear(clear), .enable(outport_in), .BusMuxOut(bus_data), .BusMuxIn(outport_data_out));
 	 

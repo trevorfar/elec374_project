@@ -10,7 +10,7 @@ module datapath_ld_tb();
     reg mdr_in, ir_in, Yin, mdr_read, HI_in, LO_in, Cout, mdr_out, rz_in, inport_out, inport_in, outport_in, Gra, Grb, Grc, wren, BAout, Rout, con_in, R8;
 	 wire [15:0] reg_in, reg_out; 
 	 wire [31:0] mdr_data_out;
-	 wire [31:0] bus_data, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
+	 wire [31:0] bus_data, outport_data_out, ram_data_out, ir_data_out, pc_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, r8_data_out, r2_data_out, inport_data_out, z_low_data_out, z_high_data_out;
 	 wire [4:0] bus_select;
 	 wire [63:0] rz_data_out;
 	 wire [8:0] mar_address_out;
@@ -26,13 +26,13 @@ module datapath_ld_tb();
 	 localparam BRANCH = 3'b011; // 4 cases mem locs: 0x18, 0x19, 0x1A, 0x1C
 	 localparam JUMP = 3'b100; // 2 cases mem locs: 0x20, 0x21
 	 localparam SPECIAL = 3'b101; // 2 cases mem locs: 0x28, 0x29
-	 localparam OUT = 3'b110; // 1 case mem loc: 0x30
+	 localparam OUT = 3'b110; // 1 case mem loc: 0x30 
 	
 	 localparam CASE1 = 3'b000;
 	 localparam CASE2= 3'b001;
 	 localparam CASE3= 3'b010;
 	 localparam CASE4= 3'b100;
-
+	 
 	 initial begin
       clk = 0; forever #10 clk = ~clk;
 	 end
@@ -42,8 +42,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = SPECIAL; 
-		  case_num = CASE1;
+		  test_id = OUT; 
+		  case_num = 3'b000;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -452,7 +452,6 @@ module datapath_ld_tb();
 					
 					init_task();
 					
-					
 					Gra <= 1; Rout <= 1; rz_in <= 1;
 					@(posedge clk)
 					Gra <= 0; Rout <= 0; rz_in <= 0;
@@ -480,8 +479,12 @@ module datapath_ld_tb();
 // OUT ------------------------------------------------------------------------------------------- OUT
 		
 		task out_task; begin
+		load_reg(32'hB3000000, 32'd12);
 		init_task();
-
+		
+		Gra <= 1; Rout <= 1; outport_in <= 1;
+		@(posedge clk)
+		Gra <= 0; Rout <= 0; outport_in <= 0;
 		end endtask
 		
 
@@ -520,7 +523,7 @@ module datapath_ld_tb();
 	 datapath DUT 	(
     .clk(clk),
     .clear(clear),
-    .outport_data_out(),  
+    .outport_data_out(outport_data_out),  
     .bus_data(bus_data), 
 	 .ram_data_out(ram_data_out),
 	 .ir_data_out(ir_data_out),
