@@ -42,8 +42,8 @@ module datapath_ld_tb();
 	 end
 	 
 	 initial begin
-		  test_id = SPECIAL; 
-		  case_num = CASE1; //3'b000;
+		  test_id = LD; 
+		  case_num = CASE3; //3'b000;
 		   
 		  reset_signals();
 		  move_pc({test_id, case_num});
@@ -630,6 +630,4 @@ module datapath_ld_tb();
 		inport_out <= 0; Gra <= 0; Rin <= 0; ir_in <= 0;
 		
 	end endtask
-	
-
 endmodule
