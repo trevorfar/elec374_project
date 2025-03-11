@@ -6,7 +6,7 @@ module step_counter (
 	
 
 
-    always @(posedge clk or posedge reset) begin
+    always @(posedge clk or posedge clear) begin
         if (clear)
             step <= 3'b000;
         else if (step < 3'b111)

@@ -1,3 +1,5 @@
+`include "defines.v"
+
 module alu(
 	input wire [31:0] RA, 
 	input wire [31:0] RB,
@@ -5,34 +7,7 @@ module alu(
 	input wire [4:0] opcode,
 	output reg [63:0] RZ
 );
-	`define LD 5'b00000
-	`define LDI 5'b00001
-	`define ST 5'b00010
-	`define ADD 5'b00011
-	`define SUB 5'b00100
-	`define AND 5'b00101
-	`define OR 5'b00110
-	`define ROR 5'b00111
-	`define ROL 5'b01000
-	`define SHR 5'b01001
-	`define SHRA 5'b01010
-	`define SHL 5'b01011
-	`define ADDI 5'b01100
-	`define ANDI 5'b01101
-	`define ORI 5'b01110
-	`define MUL 5'b01111
-	`define DIV 5'b10000
-	`define NEG 5'b10001
-	`define NOT 5'b10010
-	`define BRANCH 5'b10011
-	`define JAL 5'b10100
-	`define JR 5'b10101
-	`define IN 5'b10110
-	`define OUT 5'b10111
-	`define MFLO 5'b11000
-	`define MFHI 5'b11001
-	`define NOP 5'b11010
-	`define HALT 5'b11011
+
 		
 
 	wire add_cout, sub_cout, div_remainder, cout, branch_flag;
@@ -55,50 +30,49 @@ module alu(
 
 	always @(*) begin
 		case(opcode)
-			case(opcode)
-			`ADD : begin
+			`ADD: begin
 				RZ[63:32] <= 32'b0;
 				RZ[31:0] <= add_out;
 			end
-			`SUB : begin
+			`SUB: begin
 				RZ[63:0] <= $signed(sub_out);
 			end
-			`MUL : begin
+			`MUL: begin
 				RZ[63:0] <= $signed(mul_out);
 			end
-			`DIV : begin
+			`DIV: begin
 				RZ[63:32] <= (div_out_R);
 				RZ[31:0] <= (div_out_Q);
 			end
-			`AND, `ANDI : begin
+			`AND, `ANDI: begin
 				RZ[63:32] <= 32'b0;
 				RZ[31:0] <= and_out;
 			end
-			`OR, `ORI : begin
+			`OR, `ORI: begin
 				RZ[63:0] <= $signed(or_out);
 			end
-			`SHR : begin
+			`SHR: begin
 				RZ[63:0] <= $signed(shr_out);
 			end
-			`SHRA : begin
+			`SHRA: begin
 				RZ[63:0] <= $signed(shra_out);
 			end
-			`SHL : begin
+			`SHL: begin
 				RZ[63:0] <= $signed(shl_out);
 			end
-			`ROR : begin
+			`ROR: begin
 				RZ[63:0] <= $signed(ror_out);
 			end
-			`ROL : begin
+			`ROL: begin
 				RZ[63:0] <= $signed(rol_out);
 			end
-			`NEG : begin
+			`NEG: begin
 				RZ[63:0] <= $signed(neg_out);
 			end
-			`NOT : begin
+			`NOT: begin
 				RZ[63:0] <= $signed(not_out);
 			end
-			`LD, `LDI, `ST, `ADDI : begin
+			`LD, `LDI, `ST, `ADDI: begin
 				RZ[31:0] <= (add_out);
 				RZ[63:32] <= 32'b0;
 			end

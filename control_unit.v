@@ -1,43 +1,16 @@
 `timescale 1ns/10ps
+`include "defines.v"
 
 module control_unit(
 input wire clk, clear,
 input  [31:0] ir_data_out,
 output reg [31:0] control_signals
 );	 
-	`define HI_OUT        32'b00000000000000000000000000000001
-	`define LO_OUT        32'b00000000000000000000000000000010
-	`define INC_PC        32'b00000000000000000000000000000100
-	`define WREN          32'b00000000000000000000000000001000
-	`define PC_OUT        32'b00000000000000000000000000010000
-	`define ZHIGH_OUT     32'b00000000000000000000000000100000
-	`define ZLOW_OUT      32'b00000000000000000000000001000000
-	`define MAR_IN        32'b00000000000000000000000010000000
-	`define MDR_OUT       32'b00000000000000000000000100000000
-	`define PC_IN         32'b00000000000000000000001000000000
-	`define INPORT_IN     32'b00000000000000000000010000000000
-	`define OUTPORT_IN    32'b00000000000000000000100000000000
-	`define MDR_IN        32'b00000000000000000001000000000000
-	`define IR_IN         32'b00000000000000000010000000000000
-	`define YIN          32'b00000000000000000100000000000000
-	`define MDR_READ      32'b00000000000000001000000000000000
-	`define GRA           32'b00000000000000010000000000000000
-	`define GRB           32'b00000000000000100000000000000000
-	`define GRC           32'b00000000000001000000000000000000
-	`define HI_IN         32'b00000000000010000000000000000000
-	`define LO_IN         32'b00000000000100000000000000000000
-	`define COUT          32'b00000000001000000000000000000000
-	`define INPORT_OUT    32'b00000000010000000000000000000000
-	`define RZ_IN         32'b00000000100000000000000000000000
-	`define MUXY_SELECT   32'b00000001000000000000000000000000
-	`define BAOUT         32'b00000010000000000000000000000000
-	`define RIN           32'b00000100000000000000000000000000
-	`define ROUT          32'b00001000000000000000000000000000
-	`define CON_IN        32'b00010000000000000000000000000000
-	`define ALU_ADD		 32'b00100000000000000000000000000000
+	
 	
 	reg [2:0] step;
 	step_counter steps(.clk(clk), .clear(clear), .step(step));
+	
 	
 	
 	
@@ -58,7 +31,7 @@ output reg [31:0] control_signals
 			3'b000: control_signals = `PC_OUT | `MAR_IN | `INC_PC | `RZ_IN; 
 			3'b001: control_signals = `MDR_READ | `MDR_IN | `ZLOWOUT | `PC_IN;													
 			3'b010: control_signals = `MDR_OUT | `IR_IN;
-			default: control_signals = code_rom[{opcode, step}];
+			default: control_signals = code_rom[{ir_data_out[31:27], step}];
 		 endcase
 	 end
 	endmodule
@@ -542,6 +515,5 @@ output reg [31:0] control_signals
 	end endtask
 endmodule
 
+*/
 
-
-endmodule
