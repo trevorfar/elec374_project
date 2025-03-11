@@ -4,15 +4,19 @@
 module control_unit(
 input wire clk, clear,
 input  [31:0] ir_data_out,
+output [4:0] opcode,
 output reg [31:0] control_signals
 );	 
 	
-	
 	reg [2:0] step;
-	step_counter steps(.clk(clk), .clear(clear), .step(step));
 	
-	
-	
+	always @(posedge clk or posedge clear) begin
+			  if (clear)
+					step <= 3'b000;
+			  else if (step < 3'b111)
+					step <= step + 1;
+		 end	
+		
 	
 	 reg [31:0] code_rom [0:127]; // 16 steparooni's
 
@@ -31,7 +35,7 @@ output reg [31:0] control_signals
 			3'b000: control_signals = `PC_OUT | `MAR_IN | `INC_PC | `RZ_IN; 
 			3'b001: control_signals = `MDR_READ | `MDR_IN | `ZLOWOUT | `PC_IN;													
 			3'b010: control_signals = `MDR_OUT | `IR_IN;
-			default: control_signals = code_rom[{ir_data_out[31:27], step}];
+			default: control_signals = code_rom[{opcode, step}];
 		 endcase
 	 end
 	endmodule
@@ -515,5 +519,7 @@ output reg [31:0] control_signals
 	end endtask
 endmodule
 
-*/
 
+
+endmodule
+*/
