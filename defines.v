@@ -33,8 +33,7 @@
 	`define CON_IN       29
 	`define ALU_ADD		30	
 	`define PLACEHOLDER1 31 
-
-	
+		
 	`define LD 5'b00000
 	`define LDI 5'b00001
 	`define ST 5'b00010

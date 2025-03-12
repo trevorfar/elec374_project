@@ -24,25 +24,24 @@ output reg [2:0] step
 
 	 initial begin
 			//this represents a load instruction
-			 code_rom[{`LD, 3'b011}] = `GRB | `BAOUT | `YIN | `MUXY_SELECT;
-			 code_rom[{`LD, 3'b100}] = `COUT | `RZ_IN | `ALU_ADD; // NEED TO SET 1 BIT TO SPECIFY AN ADD OPCODE 
-			 code_rom[{`LD, 3'b101}] = `ZLOWOUT | `MAR_IN;
-			 code_rom[{`LD, 3'b110}] = `MDR_IN | `MDR_READ;
-			 code_rom[{`LD, 3'b111}] = `GRA | `RIN | `MDR_OUT;
+			 code_rom[{`LD, 3'b011}] = (1 << `GRB) | (1 << `BAOUT) | (1 << `YIN) | (1 << `MUXY_SELECT);
+			 code_rom[{`LD, 3'b100}] = (1 << `COUT) | (1 << `RZ_IN) | (1 << `ALU_ADD);
+			 code_rom[{`LD, 3'b101}] = (1 << `ZLOWOUT) | (1 << `MAR_IN);
+			 code_rom[{`LD, 3'b110}] = (1 << `MDR_IN) | (1 << `MDR_READ);
+			 code_rom[{`LD, 3'b111}] = (1 << `GRA) | (1 << `RIN) | (1 << `MDR_OUT);
 			 
-			 code_rom[{`LDI, 3'b011}] = `GRB | `BAOUT | `YIN | `MUXY_SELECT;
-			 code_rom[{`LDI, 3'b100}] = `COUT | `RZ_IN;
-			 code_rom[{`LDI, 3'b101}] = `ZLOWOUT | `GRA | `RIN;
+			 code_rom[{`LDI, 3'b011}] = (1 << `GRB) | (1 << `BAOUT) | (1 << `YIN) | (1 << `MUXY_SELECT);
+			 code_rom[{`LDI, 3'b100}] = (1 << `COUT) | (1 << `RZ_IN);
+			 code_rom[{`LDI, 3'b101}] = (1 << `ZLOWOUT) | (1 << `GRA) | (1 << `RIN);
 			
 
 	 end
-	 
 	 always @(step) begin
 	 control_signals = 32'b0;
-		 case(step) 
-			3'b000: control_signals = `PC_OUT | `MAR_IN | `INC_PC | `RZ_IN; 
-			3'b001: control_signals = `MDR_READ | `MDR_IN | `ZLOWOUT | `PC_IN;													
-			3'b010: control_signals = `MDR_OUT | `IR_IN;
+		 case(step)
+			3'b000: control_signals = (1 << `PC_OUT) | (1 << `MAR_IN) | (1 << `INC_PC) | (1 << `RZ_IN);
+			3'b001: control_signals = (1 << `MDR_READ) | (1 << `MDR_IN) | (1 << `ZLOWOUT) | (1 << `PC_IN);													
+			3'b010: control_signals = (1 << `MDR_OUT) | (1 << `IR_IN);
 			default: begin
 				if(step <= 3'b110)
 					control_signals = code_rom[{opcode, step}];
