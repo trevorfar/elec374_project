@@ -1,6 +1,7 @@
-`ifndef DEFINES_V  // Avoid multiple inclusion
+`ifndef DEFINES_V 
 `define DEFINES_V
-
+	
+	`define PLACEHOLDER	0
 	`define HI_OUT       1 
 	`define LO_OUT       2
 	`define INC_PC       3
@@ -31,6 +32,8 @@
 	`define ROUT         28
 	`define CON_IN       29
 	`define ALU_ADD		30	
+	`define PLACEHOLDER1 31 
+
 	
 	`define LD 5'b00000
 	`define LDI 5'b00001

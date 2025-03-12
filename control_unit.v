@@ -5,17 +5,18 @@ module control_unit(
 input wire clk, clear,
 input  [31:0] ir_data_out,
 input [4:0] opcode,
-output reg [31:0] control_signals
+output reg [31:0] control_signals,
+output reg [2:0] step
 );	 
-	
-	reg [2:0] step;
-	
+		
 	always @(posedge clk or posedge clear) begin
 			  if (clear) begin
 					step <= 3'b000;
 				end
 			  else if (step < 3'b111)
 					step <= step + 1;
+			  //else if ( step = 3'b111)
+				//	step <= 0;
 	end	
 		
 	
@@ -36,7 +37,7 @@ output reg [31:0] control_signals
 
 	 end
 	 
-	 always @(*) begin
+	 always @(step) begin
 	 control_signals = 32'b0;
 		 case(step) 
 			3'b000: control_signals = `PC_OUT | `MAR_IN | `INC_PC | `RZ_IN; 
@@ -44,7 +45,7 @@ output reg [31:0] control_signals
 			3'b010: control_signals = `MDR_OUT | `IR_IN;
 			default: begin
 				if(step <= 3'b110)
-					control_signals = code_rom[{`LDI, step}];
+					control_signals = code_rom[{opcode, step}];
 			end
 		 endcase
 	 end
