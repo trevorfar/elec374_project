@@ -4,21 +4,22 @@
 module control_unit(
 input wire clk, clear,
 input  [31:0] ir_data_out,
-output [4:0] opcode,
+input [4:0] opcode,
 output reg [31:0] control_signals
 );	 
 	
 	reg [2:0] step;
 	
 	always @(posedge clk or posedge clear) begin
-			  if (clear)
+			  if (clear) begin
 					step <= 3'b000;
+				end
 			  else if (step < 3'b111)
 					step <= step + 1;
-		 end	
+	end	
 		
 	
-	 reg [31:0] code_rom [0:127]; // 16 steparooni's
+	 reg [31:0] code_rom [0:256]; // 16 steparooni's
 
 	 initial begin
 			//this represents a load instruction
@@ -27,6 +28,12 @@ output reg [31:0] control_signals
 			 code_rom[{`LD, 3'b101}] = `ZLOWOUT | `MAR_IN;
 			 code_rom[{`LD, 3'b110}] = `MDR_IN | `MDR_READ;
 			 code_rom[{`LD, 3'b111}] = `GRA | `RIN | `MDR_OUT;
+			 
+			 code_rom[{`LDI, 3'b011}] = `GRB | `BAOUT | `YIN | `MUXY_SELECT;
+			 code_rom[{`LDI, 3'b100}] = `COUT | `RZ_IN;
+			 code_rom[{`LDI, 3'b101}] = `ZLOWOUT | `GRA | `RIN;
+			
+
 	 end
 	 
 	 always @(*) begin
@@ -35,7 +42,10 @@ output reg [31:0] control_signals
 			3'b000: control_signals = `PC_OUT | `MAR_IN | `INC_PC | `RZ_IN; 
 			3'b001: control_signals = `MDR_READ | `MDR_IN | `ZLOWOUT | `PC_IN;													
 			3'b010: control_signals = `MDR_OUT | `IR_IN;
-			default: control_signals = code_rom[{opcode, step}];
+			default: begin
+				if(step <= 3'b110)
+					control_signals = code_rom[{`LDI, step}];
+			end
 		 endcase
 	 end
 	endmodule
