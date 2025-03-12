@@ -10,7 +10,7 @@ module pc_32_bit #(parameter DATA_WIDTH_IN = 32, DATA_WIDTH_OUT = 32, INIT = 32'
 reg [DATA_WIDTH_IN-1:0] q;	
 initial q = INIT;
 
-always @(posedge clk)
+always @(posedge clk or posedge clear)
 	begin
 		if(clear) begin
 			q <= {DATA_WIDTH_IN{1'b0}};
