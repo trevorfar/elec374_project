@@ -6,42 +6,62 @@ input wire clk, clear,
 input  [31:0] ir_data_out,
 input [4:0] opcode,
 output reg [31:0] control_signals,
-output reg [2:0] step
+output reg [2:0] step,
+input wire run, stop, halt
 );	 
-		
+
+
+
+// BONUS MARK DESIGN DECISIONS: 
+/*
+* Converted the control unit to a LUT (look up table) approach. instructions are indexed in essentially a "rom", and are grabbed based off of bitshifting the indexed values of the specific
+control signals, (this creates one hot encoding) and then or'ing them. It is then producing a string (control signals) that is passed to the datapath. Each control signal is set to 0 every step.  
+*/		
+
+	reg [31:0] code_rom [0:256]; // LUT for instructions
+   reg [2:0] step_limit [0:31]; // LUT to hold how many steps (cycles) each instruction holds (better approach somewhere maybe?)
+
 	always @(posedge clk or posedge clear) begin
-			  if (clear) begin
-					step <= 3'b000;
-				end
-			  else if (step < 3'b111)
-					step <= step + 1;
-			  //else if ( step = 3'b111)
-				//	step <= 0;
-	end	
+    if (clear) begin
+        step <= 3'b000;
+    end else if (stop || halt) begin
+        step <= step;
+    end else if (run) begin
+        if (step == step_limit[opcode]) 
+            step <= 3'b000; 
+        else
+            step <= step + 1; 
+    end
+end	
 		
 	
-	 reg [31:0] code_rom [0:256]; // 16 steparooni's
-
+	
 	 initial begin
 			//this represents a load instruction
-			 code_rom[{`LD, 3'b011}] = (1 << `GRB) | (1 << `BAOUT) | (1 << `YIN) | (1 << `MUXY_SELECT);
-			 code_rom[{`LD, 3'b100}] = (1 << `COUT) | (1 << `RZ_IN) | (1 << `ALU_ADD);
-			 code_rom[{`LD, 3'b101}] = (1 << `ZLOWOUT) | (1 << `MAR_IN);
-			 code_rom[{`LD, 3'b110}] = (1 << `MDR_IN) | (1 << `MDR_READ);
-			 code_rom[{`LD, 3'b111}] = (1 << `GRA) | (1 << `RIN) | (1 << `MDR_OUT);
+			 code_rom[{`LD, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`LD, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`LD, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN); 
+			 code_rom[{`LD, 3'b110}] = `BIT(`MDR_IN) | `BIT(`MDR_READ); 
+			 code_rom[{`LD, 3'b111}] = `BIT(`GRA) | `BIT(`RIN) | `BIT(`MDR_OUT); 
+			 step_limit[`LD] = 3'b111;
 			 
-			 code_rom[{`LDI, 3'b011}] = (1 << `GRB) | (1 << `BAOUT) | (1 << `YIN) | (1 << `MUXY_SELECT);
-			 code_rom[{`LDI, 3'b100}] = (1 << `COUT) | (1 << `RZ_IN);
-			 code_rom[{`LDI, 3'b101}] = (1 << `ZLOWOUT) | (1 << `GRA) | (1 << `RIN);
-			
+			 code_rom[{`LDI, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`LDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD); 
+			 code_rom[{`LDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`LDI] = 3'b101;
 
+			 
+			 
 	 end
+	 
+	 
+	 
 	 always @(step) begin
 	 control_signals = 32'b0;
 		 case(step)
-			3'b000: control_signals = (1 << `PC_OUT) | (1 << `MAR_IN) | (1 << `INC_PC) | (1 << `RZ_IN);
-			3'b001: control_signals = (1 << `MDR_READ) | (1 << `MDR_IN) | (1 << `ZLOWOUT) | (1 << `PC_IN);													
-			3'b010: control_signals = (1 << `MDR_OUT) | (1 << `IR_IN);
+			3'b000: control_signals = `BIT(`PC_OUT) | `BIT(`MAR_IN) | `BIT(`INC_PC) | `BIT(`RZ_IN);
+			3'b001: control_signals = `BIT(`MDR_READ) | `BIT(`MDR_IN) | `BIT(`ZLOWOUT) | `BIT(`PC_IN);													
+			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
 			default: begin
 				if(step <= 3'b110)
 					control_signals = code_rom[{opcode, step}];

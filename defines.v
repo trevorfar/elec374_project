@@ -1,6 +1,8 @@
 `ifndef DEFINES_V 
 `define DEFINES_V
 	
+	`define BIT(x) (1 << (x))
+
 	`define PLACEHOLDER	0
 	`define HI_OUT       1 
 	`define LO_OUT       2

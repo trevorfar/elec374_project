@@ -2,7 +2,8 @@
 
 
 module datapath(
-    input wire clk, clear, input wire [31:0] inport_data_in,
+    input wire clk, clear, run, stop, halt,
+	 input wire [31:0] inport_data_in,
 	 output wire [31:0] bus_data,
 	 output wire con_out,
 	 output [15:0] reg_out, reg_in,
@@ -27,7 +28,7 @@ module datapath(
 		  end
 	end
 	
-	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .opcode(opcode), .step(step));
+	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .opcode(opcode), .step(step), .run(run), .stop(stop), .halt(halt));
    wire [31:0] C_sign_extended, r0_data_out_and; 
 	 	
 	encoder_32_to_5 bus_encoder(

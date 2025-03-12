@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 
 module control_unit_tb;
-	reg clk, clear;
+	 reg clk, clear, run, stop, halt;
     reg [31:0] inport_data_in;
     wire [31:0] bus_data;
     wire con_out;
@@ -57,7 +57,10 @@ module control_unit_tb;
         .RY_immediate(RY_immediate), 
         .ir_data_out(ir_data_out),
 		  .control_signals(control_signals),
-		  .step(step)
+		  .step(step),
+		  .run(run),
+		  .stop(stop),
+		  .halt(halt)
     );
 
 always #10 clk <= ~clk;
@@ -66,11 +69,10 @@ always #10 clk <= ~clk;
 initial begin
 	clk = 0;
 	clear = 1;
+	stop <= 0; 
+	halt <= 0;
 	#5 clear = 0;
-	
-	
-	  $monitor("Time: %0t | Opcode: %b | Control Signals: %b",
-                  $time, opcode, DUT.cu.control_signals);
+	run <= 1;
 end
 
 
