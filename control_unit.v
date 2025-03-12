@@ -56,23 +56,49 @@ end
   			 code_rom[{`ST, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN);
 			 code_rom[{`ST, 3'b110}] = `BIT(`GRA) | `BIT(`BAOUT) | `BIT(`MDR_IN);
 			 code_rom[{`ST, 3'b111}] = `BIT(`WREN);
-			 step_limit[`ST] = 3'b111;
+			 step_limit[`ST] = 3'b111; // ST
 			 
-			 code_rom[{`ADD, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
-			 step_limit[`ADD]
+			 code_rom[{`ADDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN); 
+			 code_rom[{`ADDI, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD); 
+			 code_rom[{`ADDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`ADDI] = 3'b101; // ADDI
 			 
-			 Grb <= 1; Rout <= 1; Yin <= 1; 
-					@(posedge clk)
-					Grb <= 0; Rout <= 0; Yin <= 0; 
-					///////// T4 //////////
-					Cout <= 1; rz_in <= 1;
-					@(posedge clk)
-					Cout <= 0; rz_in <= 0;
-					///////// T5 //////////
-					ZLowout <= 1; Gra <= 1; Rin <= 1;
-					@(posedge clk)
-					ZLowout <= 0; Gra <= 0; Rin <= 0;
+			 //`I_FORMAT(ANDI)
+			 //`I_FORMAT(ORI)
 			 
+			 
+			 
+			 // LDI r3, 0x65 = 0000 1001 1000 0000 0x09800065
+			 //LDI r3, 3(R3) = 0000 1001 1001 1000 000 0x09980003
+			 //ADDI r2, r3, r3 = 0011 0001 0001 1000 =0x61180032
+			 // 0110 0001 0001 1000
+			 
+			 
+//			 `ALU(SHL)
+//			 `ALU(SHR)
+//			 `ALU(SHRA)
+//			 `ALU(AND)
+//			 `ALU(ADDI)
+//			 `ALU(ANDI)
+//			 `ALU(ORI)
+//			 `ALU(SUB)
+//			 `ALU(OR)
+//			 `ALU(ROR)
+//			 `ALU(ROL)
+			 
+			 
+			 
+			// `ALU(MUL)
+			// `ALU(DIV)
+			// `ALU(NEG)
+			// `ALU(NOT)
+			// 1000 0001 1001 1 = 0x81980000
+			 
+//			 code_rom[{`SHL, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+//			 code_rom[{`SHL, 3'b011}] = `BIT(`COUT) | `BIT(`RZ_IN);
+//			 code_rom[{`SHL, 3'b011}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN);
+//			 step_limit[`SHL] = 3'b101;
+/*			 
 			 step_limit[`SUB]
 			 
 			 step_limit[`AND]
@@ -121,6 +147,7 @@ end
 			 step_limit[`NOP]
 			 
 			 step_limit[`HALT]
+			 */
 	 end
 	 
 	 

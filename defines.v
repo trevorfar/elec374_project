@@ -64,7 +64,13 @@
 	`define MFHI 5'b11001
 	`define NOP 5'b11010
 	`define HALT 5'b11011
-	
-	`define IS_ALU_OP(op) ((op) >= 5'b00011 && (op) <= 5'b01101)
+		
+	`define I_FORMAT(OP) \
+    code_rom[{`OP, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN); \
+    code_rom[{`OP, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN); \
+    code_rom[{`OP, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); \
+    step_limit[`OP] = 3'b101;
+
+
 	
 	`endif  // DEFINES_V
