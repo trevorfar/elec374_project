@@ -1,6 +1,8 @@
 `timescale 1ns/10ps
 `include "defines.v"
 
+`define OPCODE ir_data_out[31:27]
+
 module control_unit(
 input wire clk, clear,
 input  [31:0] ir_data_out,
@@ -19,14 +21,14 @@ control signals, (this creates one hot encoding) and then or'ing them. It is the
 
 	reg [31:0] code_rom [0:256]; // LUT for instructions
    reg [2:0] step_limit [0:31]; // LUT to hold how many steps (cycles) each instruction holds (better approach somewhere maybe?)
-
+	
 	always @(posedge clk or posedge clear) begin
     if (clear) begin
         step <= 3'b000;
     end else if (stop || halt) begin
         step <= step;
     end else if (run) begin
-        if (step == step_limit[ir_data_out[31:27]]) 
+        if (step == step_limit[`OPCODE]) 
             step <= 3'b000; 
         else
             step <= step + 1; 
@@ -36,19 +38,91 @@ end
 	
 	
 	 initial begin
-			//this represents a load instruction
+			
 			 code_rom[{`LD, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`LD, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`LD, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN); 
 			 code_rom[{`LD, 3'b110}] = `BIT(`MDR_IN) | `BIT(`MDR_READ); 
 			 code_rom[{`LD, 3'b111}] = `BIT(`GRA) | `BIT(`RIN) | `BIT(`MDR_OUT); 
-			 step_limit[`LD] = 3'b111;
+			 step_limit[`LD] = 3'b111; //LD
 			 
 			 code_rom[{`LDI, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`LDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD); 
 			 code_rom[{`LDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
-			 step_limit[`LDI] = 3'b101;			 
+			 step_limit[`LDI] = 3'b101; //LDI		 
+			 
+			 code_rom[{`ST, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+ 			 code_rom[{`ST, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+  			 code_rom[{`ST, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN);
+			 code_rom[{`ST, 3'b110}] = `BIT(`GRA) | `BIT(`BAOUT) | `BIT(`MDR_IN);
+			 code_rom[{`ST, 3'b111}] = `BIT(`WREN);
+			 step_limit[`ST] = 3'b111;
+			 
+			 code_rom[{`ADD, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 step_limit[`ADD]
+			 
+			 Grb <= 1; Rout <= 1; Yin <= 1; 
+					@(posedge clk)
+					Grb <= 0; Rout <= 0; Yin <= 0; 
+					///////// T4 //////////
+					Cout <= 1; rz_in <= 1;
+					@(posedge clk)
+					Cout <= 0; rz_in <= 0;
+					///////// T5 //////////
+					ZLowout <= 1; Gra <= 1; Rin <= 1;
+					@(posedge clk)
+					ZLowout <= 0; Gra <= 0; Rin <= 0;
+			 
+			 step_limit[`SUB]
+			 
+			 step_limit[`AND]
+			 
+			 step_limit[`OR]
+			 
+			 step_limit[`ROR]
+			 
+			 step_limit[`ROL]
+			 
+			 step_limit[`SHR]
+			 
+			 step_limit[`SHRA]
+			 
+			 step_limit[`SHL]
+			 
+			 step_limit[`ADDI]
+			 
+			 step_limit[`ANDI]
+			 
+			 step_limit[`ORI]
+			 
+			 step_limit[`MUL]
+			 
+			 step_limit[`DIV]
+			 
+			 step_limit[`NEG]
+			 
+			 
+			 step_limit[`NOT]
+			 
+			 step_limit[`BRANCH]
+			 
+			 step_limit[`JAL]
+			 
+			 step_limit[`JR]
+			 
+			 step_limit[`IN]
+			 
+			 step_limit[`OUT]
+			 
+			 step_limit[`MFLO]
+			 
+			 step_limit[`MFHI]
+			 
+			 step_limit[`NOP]
+			 
+			 step_limit[`HALT]
 	 end
+	 
 	 
 	 
 	 
@@ -60,7 +134,7 @@ end
 			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
 			default: begin
 				if(step <= 3'b110)
-					control_signals = code_rom[{ir_data_out[31:27], step}];
+					control_signals = code_rom[{`OPCODE, step}];
 			end
 		 endcase
 	 end
