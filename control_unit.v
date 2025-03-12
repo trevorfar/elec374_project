@@ -4,7 +4,6 @@
 module control_unit(
 input wire clk, clear,
 input  [31:0] ir_data_out,
-input [4:0] opcode,
 output reg [31:0] control_signals,
 output reg [2:0] step,
 input wire run, stop, halt
@@ -27,7 +26,7 @@ control signals, (this creates one hot encoding) and then or'ing them. It is the
     end else if (stop || halt) begin
         step <= step;
     end else if (run) begin
-        if (step == step_limit[opcode]) 
+        if (step == step_limit[ir_data_out[31:27]]) 
             step <= 3'b000; 
         else
             step <= step + 1; 
@@ -48,10 +47,7 @@ end
 			 code_rom[{`LDI, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`LDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD); 
 			 code_rom[{`LDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
-			 step_limit[`LDI] = 3'b101;
-
-			 
-			 
+			 step_limit[`LDI] = 3'b101;			 
 	 end
 	 
 	 
@@ -59,12 +55,12 @@ end
 	 always @(step) begin
 	 control_signals = 32'b0;
 		 case(step)
-			3'b000: control_signals = `BIT(`PC_OUT) | `BIT(`MAR_IN) | `BIT(`INC_PC) | `BIT(`RZ_IN);
-			3'b001: control_signals = `BIT(`MDR_READ) | `BIT(`MDR_IN) | `BIT(`ZLOWOUT) | `BIT(`PC_IN);													
+			3'b000: control_signals = `BIT(`PC_OUT) | `BIT(`MAR_IN) | `BIT(`RZ_IN);
+			3'b001: control_signals = `BIT(`MDR_READ) | `BIT(`MDR_IN) | `BIT(`ZLOWOUT) | `BIT(`PC_IN) | `BIT(`INC_PC);													
 			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
 			default: begin
 				if(step <= 3'b110)
-					control_signals = code_rom[{opcode, step}];
+					control_signals = code_rom[{ir_data_out[31:27], step}];
 			end
 		 endcase
 	 end
