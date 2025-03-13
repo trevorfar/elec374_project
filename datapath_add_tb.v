@@ -100,6 +100,7 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
 					reset_signals();
 					present_state <= load_regA1;
             end
+			
 				load_regA1: begin
 					Mdatain <= 32'h00000022;
 					muxy_select <= 0;
@@ -162,6 +163,7 @@ $monitor("clk=%b, reg_in[3]=%b, bus_data=%h, r3_data_out=%h", clk, reg_in[3], bu
 					 present_state <= T3;
 
             end
+				
 
             T3: begin
 					#10 Yin = 1; reg_out[3] <= 1; 

@@ -32,8 +32,8 @@ module datapath(
    wire [31:0] C_sign_extended, r0_data_out_and; 
 	 	
 	encoder_32_to_5 bus_encoder(
-	 .encoder_input({{8{1'b0}}, control_signals[`COUT],  control_signals[`INPORT_OUT], control_signals[`MDR_OUT], control_signals[`PC_OUT], control_signals[`ZLOWOUT],
-		control_signals[`ZHIGHOUT], control_signals[`LO_OUT], control_signals[`HI_OUT], {reg_out}}),
+	 .encoder_input({{8{1'b0}}, control_signals[`COUT],  control_signals[`INPORT_OUT], control_signals[`MDR_OUT], control_signals[`PC_OUT], 
+	 control_signals[`ZLOWOUT], control_signals[`ZHIGHOUT], control_signals[`LO_OUT], control_signals[`HI_OUT], {reg_out}}),
     .encoder_output(bus_select)
 	);
   

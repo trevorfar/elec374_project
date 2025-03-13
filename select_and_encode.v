@@ -12,7 +12,7 @@ assign decoder_input = (instruction[26:23] & {4{Gra}}) | (instruction[22:19] & {
 
 decoder_4_to_16 decoderStuff(.decoder_input(decoder_input), .decoder_output(decoder_output));
 
-assign reg_in = (decoder_output & {16{Rin}}); // theoretically should be fine? It'd be like saying 000....001 & 111.....111 = 000....001 which would be r0
+assign reg_in = (decoder_output & {16{Rin}}); // IS FINE should be fine? It'd be like saying 000....001 & 111.....111 = 000....001 which would be r0
 assign reg_out = decoder_output & ({16{Rout}} | {16{BAout}});
 assign C_sign_extended = {{13{instruction[18]}},instruction[18:0]};
 

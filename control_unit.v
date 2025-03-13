@@ -56,33 +56,87 @@ end
   			 code_rom[{`ST, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN);
 			 code_rom[{`ST, 3'b110}] = `BIT(`GRA) | `BIT(`BAOUT) | `BIT(`MDR_IN);
 			 code_rom[{`ST, 3'b111}] = `BIT(`WREN);
-			 step_limit[`ST] = 3'b111; // ST
+			 step_limit[`ST] = 3'b111; // ST NOT TESTED
 			 
-			 code_rom[{`ADDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN); 
-			 code_rom[{`ADDI, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD); 
+			 code_rom[{`ADDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`ADDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`ADDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
 			 step_limit[`ADDI] = 3'b101; // ADDI
 			 
-			 //`I_FORMAT(ANDI)
-			 //`I_FORMAT(ORI)
+			 code_rom[{`ANDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`ANDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`ANDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`ANDI] = 3'b101; // ANDI NOT TESTED
 			 
 			 
+			 code_rom[{`ORI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`ORI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`ORI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`ORI] = 3'b101; // ORI NOT TESTED
+
+			 code_rom[{`ADD, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`ADD, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`ADD, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`ADD] = 3'b101; // ADD NOT TESTED
 			 
+			 code_rom[{`SUB, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`SUB, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`SUB, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`SUB] = 3'b101; // SUB NOT TESTED
+			 
+			 code_rom[{`AND, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`AND, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`AND, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`AND] = 3'b101; // AND NOT TESTED
+			 
+			 code_rom[{`OR, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`OR, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`OR, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`OR] = 3'b101; // OR NOT TESTED
+			 
+			 code_rom[{`SHL, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`SHL, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`SHL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`SHL] = 3'b101; // SHL NOT TESTED
+			 
+			 code_rom[{`SHR, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`SHR, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`SHR, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`SHR] = 3'b101; // SHR NOT TESTED
+			 
+			 code_rom[{`SHRA, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`SHRA, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`SHRA, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`SHRA] = 3'b101; // SHRA NOT TESTED
+			 
+			 code_rom[{`ROR, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`ROR, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`ROR, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`ROR] = 3'b101; // ROR NOT TESTED
+			 
+			 code_rom[{`ROL, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`ROL, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`ROL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`ROL] = 3'b101; // ROL NOT TESTED
+			 
+			  
+			 code_rom[{`MUL, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`MUL, 3'b100}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`MUL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`ROUT)| `BIT(`LO_IN) | `BIT(`RIN); 
+			 code_rom[{`MUL, 3'b110}] = `BIT(`ZHIGHOUT) | `BIT(`ROUT)| `BIT(`HI_IN) | `BIT(`RIN); 
+			 step_limit[`MUL] = 3'b110; // MUL DONT WORKY, FIGURE DIS OUT
+			 
+			//10000 0010 0011
+			//0x81180000
+      
+			
+			 //ADDI r3, r2, r3 0001 1001 1001 1001 0 = 0x19990000 
 			 // LDI r3, 0x65 = 0000 1001 1000 0000 0x09800065
 			 //LDI r3, 3(R3) = 0000 1001 1001 1000 000 0x09980003
 			 //ADDI r2, r3, r3 = 00110 0010 0011 000 =0x61180032
-			 // 0110 0001 0001 1000
-			 
-			 
-//			 `ALU(SHL)
-//			 `ALU(SHR)
-//			 `ALU(SHRA)
-//			 `ALU(AND)
-//			 `ALU(ADDI)
-//			 `ALU(ANDI)
-//			 `ALU(ORI)
-//			 `ALU(SUB)
-//			 `ALU(OR)
+			
+
+
 //			 `ALU(ROR)
 //			 `ALU(ROL)
 			 

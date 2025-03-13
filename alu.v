@@ -30,10 +30,6 @@ module alu(
 
 	always @(*) begin
 		case(opcode)
-			`ADD: begin
-				RZ[63:32] <= 32'b0;
-				RZ[31:0] <= add_out;
-			end
 			`SUB: begin
 				RZ[63:0] <= $signed(sub_out);
 			end
@@ -72,9 +68,9 @@ module alu(
 			`NOT: begin
 				RZ[63:0] <= $signed(not_out);
 			end
-			`LD, `LDI, `ST, `ADDI: begin
-				RZ[31:0] <= (add_out);
-				RZ[63:32] <= 32'b0;
+			`LD, `LDI, `ST, `ADDI, `ADD: begin
+				//RZ[31:0] <= (add_out);
+				RZ[63:0] <= $signed(add_out);
 			end
 			`BRANCH : begin
 				if(branch_flag == 1'b1) begin
