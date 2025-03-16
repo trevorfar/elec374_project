@@ -44,7 +44,7 @@ end
 			 code_rom[{`LD, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN); 
 			 code_rom[{`LD, 3'b110}] = `BIT(`MDR_IN) | `BIT(`MDR_READ); 
 			 code_rom[{`LD, 3'b111}] = `BIT(`GRA) | `BIT(`RIN) | `BIT(`MDR_OUT); 
-			 step_limit[`LD] = 3'b111; //LD
+			 step_limit[`LD] = 3'b111; //LD NOT TESTED
 			 
 			 code_rom[{`LDI, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`LDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD); 
@@ -126,7 +126,9 @@ end
 			 code_rom[{`MUL, 3'b110}] = `BIT(`ZHIGHOUT) | `BIT(`ROUT)| `BIT(`HI_IN) | `BIT(`RIN); 
 			 step_limit[`MUL] = 3'b110; // MUL DONT WORKY, FIGURE DIS OUT
 			 
-			//10000 0010 0011
+			 
+			
+			//1000 0001 0001 1 
 			//0x81180000
       
 			
@@ -214,7 +216,7 @@ end
 			3'b001: control_signals = `BIT(`MDR_READ) | `BIT(`MDR_IN) | `BIT(`ZLOWOUT) | `BIT(`PC_IN) | `BIT(`INC_PC);													
 			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
 			default: begin
-				if(step <= 3'b110)
+				if(step <= 3'b111)
 					control_signals = code_rom[{`OPCODE, step}];
 			end
 		 endcase
