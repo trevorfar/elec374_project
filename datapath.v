@@ -69,7 +69,7 @@ module datapath(
 	reg_32_bit outport(.clk(clk), .clear(clear), .enable(control_signals[`OUTPORT_IN]), .BusMuxOut(bus_data), .BusMuxIn(outport_data_out));
 	 
 	
-	pc_32_bit PC(.clk(clk), .clear(clear), .enable(control_signals[`PC_IN]), .immediate(bus_data), .pc(pc_data_out), .inc_pc(control_signals[`INC_PC]));
+	pc_32_bit PC(.clk(clk), .clear(clear), .enable(control_signals[`PC_IN]),  .immediate(bus_data), .con_out(con_out), .pc(pc_data_out), .inc_pc(control_signals[`INC_PC]));
    reg_32_bit RY(.clk(clk), .clear(clear), .enable(control_signals[`YIN]), .BusMuxOut(bus_data), .BusMuxIn(ry_data_out));
 	mar_32_bit MAR(.clk(clk), .clear(clear), .mar_in(control_signals[`MAR_IN]), .bus_data(bus_data), .mar_address_out(mar_address_out));
 	 

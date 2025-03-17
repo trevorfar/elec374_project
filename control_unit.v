@@ -17,6 +17,7 @@ input wire run, stop, halt
 control signals, (this creates one hot encoding) and then or'ing them. It is then producing a string (control signals) that is passed to the datapath. Each control signal is set to 0 every step.  
 */		
 
+
 	reg [31:0] code_rom [0:255]; // LUT for instructions
    reg [2:0] step_limit [0:31]; // LUT to hold how many steps (cycles) each instruction holds (better approach somewhere maybe?)
 	wire [4:0] opcode = ir_data_out[31:27];
@@ -37,7 +38,6 @@ end
 	
 	
 	 initial begin
-			
 			 code_rom[{`LD, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`LD, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`LD, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN); 
@@ -118,76 +118,68 @@ end
 			 code_rom[{`ROL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
 			 step_limit[`ROL] = 3'b101; // ROL NOT TESTED
 			 
+			 code_rom[{`NEG, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`NEG, 3'b100}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`NEG, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`NEG] = 3'b101; // NEG NOT TESTED
+			 
+			 code_rom[{`NOT, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`NOT, 3'b100}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`NOT, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+			 step_limit[`NOT] = 3'b101; // NOT isnt TESTED
+			 
 			  
 			 code_rom[{`MUL, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`YIN);
 			 code_rom[{`MUL, 3'b100}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`RZ_IN);
 			 code_rom[{`MUL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`LO_IN);
 			 code_rom[{`MUL, 3'b110}] = `BIT(`ZHIGHOUT)| `BIT(`HI_IN); 
-			 step_limit[`MUL] = 3'b110; // MUL DONT WORKY, FIGURE DIS OUT
+			 step_limit[`MUL] = 3'b110; // MUL WORK AND IS TESTED
 			 
 			 
+			 code_rom[{`DIV, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`YIN);
+			 code_rom[{`DIV, 3'b100}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`RZ_IN);
+			 code_rom[{`DIV, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`LO_IN);
+			 code_rom[{`DIV, 3'b110}] = `BIT(`ZHIGHOUT)| `BIT(`HI_IN); 
+			 step_limit[`DIV] = 3'b110; // DIV NOT TESTED 
+			 
+			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`BRANCH, 3'b101}] = `BIT(`PC_OUT) | `BIT(`YIN)  | `BIT(`MUXY_SELECT);
+			 code_rom[{`BRANCH, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
+			 step_limit[`BRANCH] = 3'b110; //BRANCH NOT TESTED
+			 
+			// 10011 1001 0000 0000   0x9C800004
+			// 10
 			
-			// 0000 1011 0000 0000 0x09000002 
-			// 0000 1011 1000 0000 0x09800003
-			// 1000 0011 0011 1000 = 0x8338
-		
-			//10000 0010 0011 
-			//0x81180000
-      
+			 
 			
-			 //ADDI r3, r2, r3 0001 1001 1001 1001 0 = 0x19990000 
-			 // LDI r3, 0x65 = 0000 1001 1000 0000 0x09800065
-			 //LDI r3, 3(R3) = 0000 1001 1001 1000 000 0x09980003
-			 //ADDI r2, r3, r3 = 00110 0010 0011 000 =0x61180032
-			
+//				code_rom[{`ADDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+//				code_rom[{`ADDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+//				code_rom[{`ADDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
+//				step_limit[`ADDI] = 3'b101; // ADDI
+//			
+//					// T4 //
+//					pc_out <= 1; Yin <= 1;
+//					@(posedge clk) 
+//					pc_out <= 0; Yin <= 0;
+//					
+//					// T5 // 
+//					Cout <= 1; opcode <= 5'b00011; rz_in <= 1;
+//					@(posedge clk)
+//					Cout <= 0; rz_in <= 0;
+//			
+//					// T6 //
+//					ZLowout <= 1; pc_in <= con_out;
+//					@(posedge clk)
+//					ZLowout <= 0; pc_in <= 0;
+//				end
+//	
+//			 
+			 
 
-
-//			 `ALU(ROR)
-//			 `ALU(ROL)
-			 
-			 
-			 
-			// `ALU(MUL)
-			// `ALU(DIV)
-			// `ALU(NEG)
-			// `ALU(NOT)
-			// 1000 0001 1001 1 = 0x81980000
-			 
-//			 code_rom[{`SHL, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
-//			 code_rom[{`SHL, 3'b011}] = `BIT(`COUT) | `BIT(`RZ_IN);
-//			 code_rom[{`SHL, 3'b011}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN);
-//			 step_limit[`SHL] = 3'b101;
-/*			 
-			 step_limit[`SUB]
-			 
-			 step_limit[`AND]
-			 
-			 step_limit[`OR]
-			 
-			 step_limit[`ROR]
-			 
-			 step_limit[`ROL]
-			 
-			 step_limit[`SHR]
-			 
-			 step_limit[`SHRA]
-			 
-			 step_limit[`SHL]
-			 
-			 step_limit[`ADDI]
-			 
-			 step_limit[`ANDI]
-			 
-			 step_limit[`ORI]
-			 
-			 step_limit[`MUL]
-			 
-			 step_limit[`DIV]
-			 
-			 step_limit[`NEG]
-			 
-			 
-			 step_limit[`NOT]
+			 // 0110 0101 0001 0000 = 0x65100032 
+/*//10011 0011 000 1000 0000000000 
+			 //ox99880004
 			 
 			 step_limit[`BRANCH]
 			 
@@ -210,6 +202,7 @@ end
 	 end
 	 
 	 
+	  
 	 
 	 
 	 always @(step) begin
@@ -222,6 +215,7 @@ end
 				if(step <= 3'b111)
 					control_signals = code_rom[{opcode, step}];
 			end
+				
 		 endcase
 	 end
 	endmodule
