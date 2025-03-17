@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 `include "defines.v"
 
-`define OPCODE ir_data_out[31:27]
+
 
 module control_unit(
 input wire clk, clear,
@@ -11,24 +11,23 @@ output reg [2:0] step,
 input wire run, stop, halt
 );	 
 
-
-
 // BONUS MARK DESIGN DECISIONS: 
 /*
 * Converted the control unit to a LUT (look up table) approach. instructions are indexed in essentially a "rom", and are grabbed based off of bitshifting the indexed values of the specific
 control signals, (this creates one hot encoding) and then or'ing them. It is then producing a string (control signals) that is passed to the datapath. Each control signal is set to 0 every step.  
 */		
 
-	reg [31:0] code_rom [0:256]; // LUT for instructions
+	reg [31:0] code_rom [0:255]; // LUT for instructions
    reg [2:0] step_limit [0:31]; // LUT to hold how many steps (cycles) each instruction holds (better approach somewhere maybe?)
-	
+	wire [4:0] opcode = ir_data_out[31:27];
+
 	always @(posedge clk or posedge clear) begin
     if (clear) begin
         step <= 3'b000;
     end else if (stop || halt) begin
         step <= step;
     end else if (run) begin
-        if (step == step_limit[`OPCODE]) 
+        if (step == step_limit[opcode]) 
             step <= 3'b000; 
         else
             step <= step + 1; 
@@ -122,13 +121,17 @@ end
 			  
 			 code_rom[{`MUL, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`YIN);
 			 code_rom[{`MUL, 3'b100}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`RZ_IN);
-			 code_rom[{`MUL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`ROUT)| `BIT(`LO_IN) | `BIT(`RIN); 
-			 code_rom[{`MUL, 3'b110}] = `BIT(`ZHIGHOUT) | `BIT(`ROUT)| `BIT(`HI_IN) | `BIT(`RIN); 
+			 code_rom[{`MUL, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`LO_IN);
+			 code_rom[{`MUL, 3'b110}] = `BIT(`ZHIGHOUT)| `BIT(`HI_IN); 
 			 step_limit[`MUL] = 3'b110; // MUL DONT WORKY, FIGURE DIS OUT
 			 
 			 
 			
-			//1000 0001 0001 1 
+			// 0000 1011 0000 0000 0x09000002 
+			// 0000 1011 1000 0000 0x09800003
+			// 1000 0011 0011 1000 = 0x8338
+		
+			//10000 0010 0011 
 			//0x81180000
       
 			
@@ -217,7 +220,7 @@ end
 			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
 			default: begin
 				if(step <= 3'b111)
-					control_signals = code_rom[{`OPCODE, step}];
+					control_signals = code_rom[{opcode, step}];
 			end
 		 endcase
 	 end

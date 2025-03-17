@@ -28,6 +28,11 @@ module datapath(
 		  end
 	end
 	
+	// 0x0000 1011 0000 00
+	// 0x0000 1011 1000 00
+	// 0x090
+	// 1000 0011 0011 1 = 0x8338
+	//0x098
 	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .step(step), .run(run), .stop(stop), .halt(halt));
    wire [31:0] C_sign_extended, r0_data_out_and; 
 	 	
