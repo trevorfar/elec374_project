@@ -16,10 +16,12 @@ always @(posedge clk or posedge clear) begin
 		end else if (con_out == 1'b1 && enable) begin
 			q <= immediate;
 		end
-		else if (enable == 1'b1 && inc_pc == 1'b1) begin
-			q <= q + 1;
-		end else if (enable ==1'b1) begin
-			q <= immediate;
+		else if (enable == 1'b1) begin
+			if(inc_pc == 1'b1) begin
+				q <= q + 1;
+			end else begin
+				q <= immediate;
+			end
 		end
 		pc <= q[DATA_WIDTH_OUT-1:0];
 	end

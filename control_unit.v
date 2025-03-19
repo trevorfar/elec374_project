@@ -142,15 +142,13 @@ end
 			 code_rom[{`DIV, 3'b110}] = `BIT(`ZHIGHOUT)| `BIT(`HI_IN); 
 			 step_limit[`DIV] = 3'b110; // DIV NOT TESTED 
 			 
-			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN) | `BIT(`MUXY_SELECT);
-			 code_rom[{`BRANCH, 3'b101}] = `BIT(`PC_OUT) | `BIT(`YIN)  | `BIT(`MUXY_SELECT);
+			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN);
+			 code_rom[{`BRANCH, 3'b101}] = `BIT(`PC_OUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`BRANCH, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
 			 step_limit[`BRANCH] = 3'b110; //BRANCH NOT TESTED
 			 
-			// 10011 1001 0000 0000   0x9C800004
-			// 10
-			
+			 
 			 
 			
 //				code_rom[{`ADDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
@@ -200,10 +198,6 @@ end
 			 step_limit[`HALT]
 			 */
 	 end
-	 
-	 
-	  
-	 
 	 
 	 always @(step) begin
 	 control_signals = 32'b0;

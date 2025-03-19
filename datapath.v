@@ -108,6 +108,7 @@ module datapath(
 	 z_reg RZ(.z_high_data_out(z_high_data_out), .z_low_data_out(z_low_data_out),
 				 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(control_signals[`RZ_IN]));
 	 
+	 
 	 CON_FF conff(.bus_data(bus_data), .ir_input(ir_data_out[20:19]), .clk(clk), .con_in(control_signals[`CON_IN]), .con_out(con_out));
 
 endmodule

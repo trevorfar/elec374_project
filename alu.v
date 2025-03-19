@@ -69,17 +69,10 @@ module alu(
 				RZ[63:0] <= $signed(not_out);
 			end
 			`LD, `LDI, `ST, `ADDI, `ADD: begin
-				//RZ[31:0] <= (add_out);
 				RZ[63:0] <= $signed(add_out);
 			end
 			`BRANCH : begin
-				if(branch_flag == 1'b1) begin
-					RZ[31:0] <= (add_out);
-					RZ[63:32] <= 32'b0;
-				end else begin
-					RZ[31:0] <= RY[31:0];
-					RZ[63:32] <= 32'b0;
-				end
+				RZ[63:0] <= $signed(add_out);
 			end
 			`IN: begin
 				RZ[63:0] <= 64'b0;

@@ -1,21 +1,25 @@
-module D_flip_flop(D,clk, con_in, Q, Q_not);
+module D_flip_flop(D,clk, con_in, Q, Q_not, reset);
 
 input D; 
 input clk;
 input con_in;
+input reset;
 output reg Q; 
-output reg Q_not;
+output Q_not;
 
 initial begin
 	Q <= 0;
-	Q_not <= 1;
 end
 
-always @(posedge clk) 
+
+always @(posedge clk or posedge reset) 
 	begin
-	if (con_in == 1'b1) begin 
-		Q <= D; 
-		Q_not <= ~D;
-	end 
-end
+	 if(reset) 
+		@(negedge clk)
+		Q <= 0;
+    else if (con_in) 
+      Q <= D;
+    end
+
+	 assign Q_not = ~Q;
 endmodule 
