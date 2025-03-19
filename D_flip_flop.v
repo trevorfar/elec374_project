@@ -15,7 +15,6 @@ end
 always @(posedge clk or posedge reset) 
 	begin
 	 if(reset) 
-		@(negedge clk)
 		Q <= 0;
     else if (con_in) 
       Q <= D;

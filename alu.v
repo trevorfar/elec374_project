@@ -4,6 +4,7 @@ module alu(
 	input wire [31:0] RA, 
 	input wire [31:0] RB,
 	input wire [31:0] RY,
+	input con_out,
 	input wire [4:0] opcode,
 	output reg [63:0] RZ
 );
@@ -72,7 +73,12 @@ module alu(
 				RZ[63:0] <= $signed(add_out);
 			end
 			`BRANCH : begin
-				RZ[63:0] <= $signed(add_out);
+				if(con_out == 1'b1) begin
+					RZ[63:0] <= $signed(add_out);
+				end
+				else begin
+					RZ[63:0] <= $signed(RY[31:0]);
+				end
 			end
 			`IN: begin
 				RZ[63:0] <= 64'b0;

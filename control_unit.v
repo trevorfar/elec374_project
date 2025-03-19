@@ -143,8 +143,8 @@ end
 			 step_limit[`DIV] = 3'b110; // DIV NOT TESTED 
 			 
 			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN);
-			 code_rom[{`BRANCH, 3'b101}] = `BIT(`PC_OUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
-			 code_rom[{`BRANCH, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`BRANCH, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
 			 step_limit[`BRANCH] = 3'b110; //BRANCH NOT TESTED
 			 

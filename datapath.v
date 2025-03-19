@@ -28,11 +28,7 @@ module datapath(
 		  end
 	end
 	
-	// 0x0000 1011 0000 00
-	// 0x0000 1011 1000 00
-	// 0x090
-	// 1000 0011 0011 1 = 0x8338
-	//0x098
+
 	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .step(step), .run(run), .stop(stop), .halt(halt));
    wire [31:0] C_sign_extended, r0_data_out_and; 
 	 	
@@ -69,7 +65,7 @@ module datapath(
 	reg_32_bit outport(.clk(clk), .clear(clear), .enable(control_signals[`OUTPORT_IN]), .BusMuxOut(bus_data), .BusMuxIn(outport_data_out));
 	 
 	
-	pc_32_bit PC(.clk(clk), .clear(clear), .enable(control_signals[`PC_IN]),  .immediate(bus_data), .con_out(con_out), .pc(pc_data_out), .inc_pc(control_signals[`INC_PC]));
+	pc_32_bit PC(.clk(clk), .clear(clear), .enable(control_signals[`PC_IN]),  .immediate(bus_data), .pc(pc_data_out), .inc_pc(control_signals[`INC_PC]));
    reg_32_bit RY(.clk(clk), .clear(clear), .enable(control_signals[`YIN]), .BusMuxOut(bus_data), .BusMuxIn(ry_data_out));
 	mar_32_bit MAR(.clk(clk), .clear(clear), .mar_in(control_signals[`MAR_IN]), .bus_data(bus_data), .mar_address_out(mar_address_out));
 	 
@@ -87,7 +83,7 @@ module datapath(
     );
 
     // ALU and bus mux
-    mux_2_to_1 muxy(.input0(ry_data_out), .input1(RY_immediate), .select(control_signals[`MUXY_SELECT]), .mux_output(muxy_data_out));
+    mux_2_to_1 muxy(.input0(ry_data_out), .input1(C_sign_extended), .select(control_signals[`MUXY_SELECT]), .mux_output(muxy_data_out));
 	 
     mux_32_bit bus(
         .R0(r0_data_out), .R1(r1_data_out), .R2(r2_data_out), .R3(r3_data_out), .R4(r4_data_out), .R5(r5_data_out), 
@@ -103,7 +99,7 @@ module datapath(
 	 .Rout(control_signals[`ROUT]), .BAout(control_signals[`BAOUT]), .instruction(ir_data_out),
 	 .reg_in(reg_in), .reg_out(reg_out), .C_sign_extended(C_sign_extended));
 	 
-    alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out), .RY(ry_data_out));
+    alu ALU(.RA(muxy_data_out), .RB(bus_data), .opcode(opcode), .RZ(rz_data_out), .RY(ry_data_out), .con_out(con_out));
 	 
 	 z_reg RZ(.z_high_data_out(z_high_data_out), .z_low_data_out(z_low_data_out),
 				 .Zdatain(rz_data_out), .clk(clk), .clear(clear), .rz_in(control_signals[`RZ_IN]));
