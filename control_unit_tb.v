@@ -1,7 +1,7 @@
 `timescale 1ns/10ps
 
 module control_unit_tb;
-	 reg clk, clear, run, stop, halt;
+	 reg clk, clear, stop, halt;
     reg [31:0] inport_data_in;
     wire [31:0] bus_data;
     wire con_out;
@@ -14,6 +14,7 @@ module control_unit_tb;
                 z_high_data_out, HI_data_out, z_low_data_out, muxy_data_out, RY_immediate, ir_data_out, control_signals;
     wire [63:0] rz_data_out;
 	 wire [2:0] step;
+	 wire run;
     
 		  datapath DUT (
         .clk(clk), 
@@ -59,8 +60,7 @@ module control_unit_tb;
 		  .control_signals(control_signals),
 		  .step(step),
 		  .run(run),
-		  .stop(stop),
-		  .halt(halt)
+		  .stop(stop)
     );
 
 always #10 clk <= ~clk;
@@ -72,7 +72,6 @@ initial begin
 	stop <= 0; 
 	halt <= 0;
 	#5 clear = 0;
-	run <= 1;
 end
 
 
