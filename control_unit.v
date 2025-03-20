@@ -44,8 +44,6 @@ control signals, (this creates one hot encoding) and then or'ing them. It is the
     end
 end	
 		
-	
-	
 	 initial begin
 			 code_rom[{`LD, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`LD, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
@@ -175,17 +173,11 @@ end
 			 code_rom[{`MFHI, 3'b011}] = `BIT(`GRA) | `BIT(`RIN) | `BIT(`HI_OUT);
 			 step_limit[`MFHI] = 3'b011; // MFHI
 			 
-			 code_rom[{`NOP, 3'b000}] = 32'b0;
-			 step_limit[`NOP] = 3'b000; // NOP
+			 code_rom[{`NOP, 3'b011}] = 32'b0;
+			 step_limit[`NOP] = 3'b011; // NOP
 			 
-			 code_rom[{`HALT, 3'b000}] = 32'b0;
-			 step_limit[`HALT] = 3'b000;
-		
-		
-		
-/*					 
-			 step_limit[`HALT]
-			 */
+			 code_rom[{`HALT, 3'b011}] = 32'b0;
+			 step_limit[`HALT] = 3'b011;		
 	 end
 	 
 	 always @(step) begin
