@@ -81,7 +81,7 @@ end
 			 step_limit[`ORI] = 3'b101; // ORI NOT TESTED
 
 			 code_rom[{`ADD, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
-			 code_rom[{`ADD, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`ADD, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
 			 code_rom[{`ADD, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
 			 step_limit[`ADD] = 3'b101; // ADD NOT TESTED
 			 
@@ -190,7 +190,12 @@ end
 			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
 			default: begin
 				if(step <= 3'b111)
-					control_signals = code_rom[{opcode, step}];
+					if(opcode == 5'b11111) begin
+						control_signals = 32'b0;
+					end
+					else begin
+						control_signals = code_rom[{opcode, step}];
+					end
 			end
 				
 		 endcase

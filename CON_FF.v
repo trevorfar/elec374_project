@@ -12,7 +12,11 @@ output con_out
 	assign nor_out = ~(|bus_data);
 	decoder_2_to_4 decoderMod(.decoder_input(ir_input), .decoder_output(decoder));
 	assign D = (decoder[0] & nor_out) | (decoder[1] & (~nor_out)) | (decoder[2] & ~bus_data[31]) | (decoder[3] & bus_data[31]);
-	wire reset_signal; //= con_out;
+	reg reset_signal;
+	
+//	@(posedge clk);
+//	reset_signal <= 0;
+	
 	D_flip_flop flip(.D(D), .clk(clk), .con_in(con_in), .Q(Q), .reset(reset_signal), .Q_not(Q_not));
 	assign con_out = Q;
 

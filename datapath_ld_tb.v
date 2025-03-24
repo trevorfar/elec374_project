@@ -78,8 +78,8 @@ module datapath_ld_tb();
 	  task ld_task(input [2:0] ld_case_num); begin
 	 
 		case(ld_case_num) 
-		CASE1: begin
-			init_task();
+		CASE1: begin  
+			init_task(); 
 			////// T3  /////
 			Grb <= 1; BAout <= 1; Yin <= 1; muxy_select <= 1;
 			@(posedge clk)
