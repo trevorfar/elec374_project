@@ -34,7 +34,7 @@
 	`define ROUT         28
 	`define CON_IN       29
 	`define ALU_ADD		30	
-	`define PLACEHOLDER1 31 
+	`define R8_IN 31 
 		
 	`define LD 5'b00000
 	`define LDI 5'b00001
@@ -65,14 +65,8 @@
 	`define NOP 5'b11010
 	`define HALT 5'b11011
 	
+	
 	`define OPCODE ir_data_out[31:27]
-		
-	`define I_FORMAT(OP) \
-    code_rom[{`OP, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN); \
-    code_rom[{`OP, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN); \
-    code_rom[{`OP, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); \
-    step_limit[`OP] = 3'b101;
-
 
 	
 	`endif  // DEFINES_V

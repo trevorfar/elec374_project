@@ -38,7 +38,8 @@ module datapath(
     .encoder_output(bus_select)
 	);
   
-
+	assign reg_in_8 = control_signals[`R8_IN] | reg_in[8];
+	
 	assign r0_data_out = {32{!control_signals[`BAOUT]}} & r0_data_out_and;
 	
 	reg_32_bit r0(.clk(clk), .clear(clear), .enable(reg_in[0]), .BusMuxOut(bus_data), .BusMuxIn(r0_data_out_and)); 
@@ -49,7 +50,7 @@ module datapath(
    reg_32_bit r5(.clk(clk), .clear(clear), .enable(reg_in[5]), .BusMuxOut(bus_data), .BusMuxIn(r5_data_out));
    reg_32_bit r6(.clk(clk), .clear(clear), .enable(reg_in[6]), .BusMuxOut(bus_data), .BusMuxIn(r6_data_out));
    reg_32_bit r7(.clk(clk), .clear(clear), .enable(reg_in[7]), .BusMuxOut(bus_data), .BusMuxIn(r7_data_out));
-   reg_32_bit r8(.clk(clk), .clear(clear), .enable(reg_in[8]), .BusMuxOut(bus_data), .BusMuxIn(r8_data_out));
+   reg_32_bit r8(.clk(clk), .clear(clear), .enable(reg_in_8), .BusMuxOut(bus_data), .BusMuxIn(r8_data_out));
    reg_32_bit r9(.clk(clk), .clear(clear), .enable(reg_in[9]), .BusMuxOut(bus_data), .BusMuxIn(r9_data_out));
    reg_32_bit r10(.clk(clk), .clear(clear), .enable(reg_in[10]), .BusMuxOut(bus_data), .BusMuxIn(r10_data_out));
    reg_32_bit r11(.clk(clk), .clear(clear), .enable(reg_in[11]), .BusMuxOut(bus_data), .BusMuxIn(r11_data_out));

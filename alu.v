@@ -82,6 +82,9 @@ module alu(
 			end
 			`IN: begin
 				RZ[63:0] <= 64'b0;
+			end 
+			`NOP, `HALT: begin
+				RZ[63:0] <= 64'b0;
 			end
 		endcase 
 	end

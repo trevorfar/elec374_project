@@ -155,9 +155,11 @@ end
 			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
 			 step_limit[`BRANCH] = 3'b110; //BRANCH NOT TESTED
 			 
-			 code_rom[{`JAL, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`PC_IN);
-			 step_limit[`JAL] = 3'b011; //JAL NOT TESTED
-	
+			 code_rom[{`JAL, 3'b011}] = `BIT(`PC_OUT) | `BIT(`R8_IN);
+			 code_rom[{`JAL, 3'b100}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`PC_IN);
+			 step_limit[`JAL] = 3'b100; //JAL NOT TESTED
+			 
+			
 			 code_rom[{`JR, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`PC_IN);
 			 step_limit[`JR] = 3'b011; // JR NOT TESTED 
 			 

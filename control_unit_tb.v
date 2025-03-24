@@ -1,4 +1,4 @@
-`timescale 1ns/10ps
+`timescale 1ns/1ps
 
 module control_unit_tb;
 	 reg clk, clear, stop;
@@ -63,6 +63,16 @@ module control_unit_tb;
     );
 
 always #10 clk <= ~clk;
+
+always @(opcode) begin
+    if (opcode == 5'b11010)
+        $display("Time %0t: opcode hit nop!", $time);
+	 else if(opcode == 5'b11011)
+		  $display("Time %0t: opcode hit halt!", $time);
+	 else if(opcode == 5'b10011)
+		  $display("Time %0t: opcode hit branch!", $time);
+end
+
 
 
 initial begin
