@@ -13,12 +13,15 @@ output con_out
 	decoder_2_to_4 decoderMod(.decoder_input(ir_input), .decoder_output(decoder));
 	assign D = (decoder[0] & nor_out) | (decoder[1] & (~nor_out)) | (decoder[2] & ~bus_data[31]) | (decoder[3] & bus_data[31]);
 	reg reset_signal;
-	
-//	@(posedge clk);
-//	reset_signal <= 0;
+		
+	always @(posedge clk) begin
+		 reset_signal <= con_out;
+	end
 	
 	D_flip_flop flip(.D(D), .clk(clk), .con_in(con_in), .Q(Q), .reset(reset_signal), .Q_not(Q_not));
 	assign con_out = Q;
+	
+	
 
 
 endmodule 

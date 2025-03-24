@@ -20,5 +20,10 @@ always @(posedge clk or posedge reset)
       Q <= D;
     end
 
+
+
 	 assign Q_not = ~Q;
+
+	
 endmodule 
+
