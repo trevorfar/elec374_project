@@ -1,6 +1,6 @@
 Analysis & Elaboration report for ALU
-Wed Mar 26 21:47:58 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Thu Mar 27 01:16:58 2025
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
 ---------------------
@@ -9,9 +9,19 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Analysis & Elaboration Settings
-  5. Analysis & Elaboration Messages
-  6. Analysis & Elaboration Suppressed Messages
+  4. Source assignments for memram:ram|altsyncram:altsyncram_component|altsyncram_lnn1:auto_generated
+  5. Parameter Settings for User Entity Instance: PC_register:PC
+  6. Parameter Settings for User Entity Instance: ALU:alu
+  7. Parameter Settings for User Entity Instance: memram:ram|altsyncram:altsyncram_component
+  8. altsyncram Parameter Settings by Entity Instance
+  9. Analysis & Elaboration Settings
+ 10. Port Connectivity Checks: "Bus:bus|Mux32to1:multiplexer"
+ 11. Port Connectivity Checks: "encoder_32_to_5:bus_encoder"
+ 12. Port Connectivity Checks: "ALU:alu|rotateRight:ror_op"
+ 13. Port Connectivity Checks: "ALU:alu|subtractor:sub_op|adder:add1"
+ 14. Port Connectivity Checks: "MAR_register:MAR|register:MAR"
+ 15. Analysis & Elaboration Messages
+ 16. Analysis & Elaboration Suppressed Messages
 
 
 
@@ -34,22 +44,22 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------------+
-; Analysis & Elaboration Summary                                                  ;
-+-------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status ; Failed - Wed Mar 26 21:47:58 2025               ;
-; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
-; Revision Name                 ; ALU                                             ;
-; Top-level Entity Name         ; DataPath                                        ;
-; Family                        ; Cyclone V                                       ;
-; Logic utilization (in ALMs)   ; N/A until Partition Merge                       ;
-; Total registers               ; N/A until Partition Merge                       ;
-; Total pins                    ; N/A until Partition Merge                       ;
-; Total virtual pins            ; N/A until Partition Merge                       ;
-; Total block memory bits       ; N/A until Partition Merge                       ;
-; Total PLLs                    ; N/A until Partition Merge                       ;
-; Total DLLs                    ; N/A until Partition Merge                       ;
-+-------------------------------+-------------------------------------------------+
++-----------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                              ;
++-------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status ; Successful - Thu Mar 27 01:16:58 2025       ;
+; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                 ; ALU                                         ;
+; Top-level Entity Name         ; DataPath                                    ;
+; Family                        ; Cyclone V                                   ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
+; Total registers               ; N/A until Partition Merge                   ;
+; Total pins                    ; N/A until Partition Merge                   ;
+; Total virtual pins            ; N/A until Partition Merge                   ;
+; Total block memory bits       ; N/A until Partition Merge                   ;
+; Total PLLs                    ; N/A until Partition Merge                   ;
+; Total DLLs                    ; N/A until Partition Merge                   ;
++-------------------------------+---------------------------------------------+
 
 
 +------------------------------------------+
@@ -57,8 +67,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 10          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -66,6 +76,145 @@ refer to the applicable agreement for further details.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 +----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Source assignments for memram:ram|altsyncram:altsyncram_component|altsyncram_lnn1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------+
+; Assignment                      ; Value              ; From ; To                                 ;
++---------------------------------+--------------------+------+------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                  ;
++---------------------------------+--------------------+------+------------------------------------+
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: PC_register:PC         ;
++----------------+----------------------------------+-----------------+
+; Parameter Name ; Value                            ; Type            ;
++----------------+----------------------------------+-----------------+
+; DATA_WIDTH_IN  ; 32                               ; Signed Integer  ;
+; DATA_WIDTH_OUT ; 32                               ; Signed Integer  ;
+; INIT           ; 00000000000000000000000000000001 ; Unsigned Binary ;
++----------------+----------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ALU:alu ;
++----------------+-------+-----------------------------+
+; Parameter Name ; Value ; Type                        ;
++----------------+-------+-----------------------------+
+; add_code       ; 00011 ; Unsigned Binary             ;
+; sub_code       ; 00100 ; Unsigned Binary             ;
+; mul_code       ; 01111 ; Unsigned Binary             ;
+; div_code       ; 10000 ; Unsigned Binary             ;
+; and_code       ; 00101 ; Unsigned Binary             ;
+; or_code        ; 00110 ; Unsigned Binary             ;
+; shr_code       ; 01001 ; Unsigned Binary             ;
+; shra_code      ; 01010 ; Unsigned Binary             ;
+; shl_code       ; 01011 ; Unsigned Binary             ;
+; ror_code       ; 00111 ; Unsigned Binary             ;
+; rol_code       ; 01000 ; Unsigned Binary             ;
+; neg_code       ; 10001 ; Unsigned Binary             ;
+; not_code       ; 10010 ; Unsigned Binary             ;
+; ld             ; 00000 ; Unsigned Binary             ;
+; ldi            ; 00001 ; Unsigned Binary             ;
+; st             ; 00010 ; Unsigned Binary             ;
+; addi           ; 01101 ; Unsigned Binary             ;
+; andi           ; 01101 ; Unsigned Binary             ;
+; ori            ; 01110 ; Unsigned Binary             ;
+; branch         ; 10011 ; Unsigned Binary             ;
+; jal            ; 10100 ; Unsigned Binary             ;
+; jr             ; 10101 ; Unsigned Binary             ;
+; in             ; 10110 ; Unsigned Binary             ;
+; out            ; 10111 ; Unsigned Binary             ;
+; mflo           ; 11000 ; Unsigned Binary             ;
+; mfhi           ; 11001 ; Unsigned Binary             ;
+; nop            ; 11010 ; Unsigned Binary             ;
+; halt           ; 11011 ; Unsigned Binary             ;
++----------------+-------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memram:ram|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------+
+; Parameter Name                     ; Value                ; Type                        ;
++------------------------------------+----------------------+-----------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                     ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                  ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE              ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                     ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                     ;
+; WIDTH_A                            ; 32                   ; Signed Integer              ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer              ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer              ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                     ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                     ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                     ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                     ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                     ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                     ;
+; WIDTH_B                            ; 1                    ; Untyped                     ;
+; WIDTHAD_B                          ; 1                    ; Untyped                     ;
+; NUMWORDS_B                         ; 1                    ; Untyped                     ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                     ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                     ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                     ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                     ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                     ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                     ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                     ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                     ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                     ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                     ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                     ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                     ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer              ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                     ;
+; RAM_BLOCK_TYPE                     ; M10K                 ; Untyped                     ;
+; BYTE_SIZE                          ; 8                    ; Untyped                     ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                     ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                     ;
+; INIT_FILE                          ; ld.hex               ; Untyped                     ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                     ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                     ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                     ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                     ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                     ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                     ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                     ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                     ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                     ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                     ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                     ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                     ;
+; CBXI_PARAMETER                     ; altsyncram_lnn1      ; Untyped                     ;
++------------------------------------+----------------------+-----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                       ;
++-------------------------------------------+--------------------------------------------+
+; Name                                      ; Value                                      ;
++-------------------------------------------+--------------------------------------------+
+; Number of entity instances                ; 1                                          ;
+; Entity Instance                           ; memram:ram|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                ;
+;     -- WIDTH_A                            ; 32                                         ;
+;     -- NUMWORDS_A                         ; 512                                        ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                               ;
+;     -- WIDTH_B                            ; 1                                          ;
+;     -- NUMWORDS_B                         ; 1                                          ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                     ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                               ;
+;     -- RAM_BLOCK_TYPE                     ; M10K                                       ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                  ;
++-------------------------------------------+--------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -155,138 +304,316 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
++----------------------------------------------------------+
+; Port Connectivity Checks: "Bus:bus|Mux32to1:multiplexer" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; I24  ; Input ; Info     ; Stuck at GND                   ;
+; I25  ; Input ; Info     ; Stuck at GND                   ;
+; I26  ; Input ; Info     ; Stuck at GND                   ;
+; I27  ; Input ; Info     ; Stuck at GND                   ;
+; I28  ; Input ; Info     ; Stuck at GND                   ;
+; I29  ; Input ; Info     ; Stuck at GND                   ;
+; I30  ; Input ; Info     ; Stuck at GND                   ;
+; I31  ; Input ; Info     ; Stuck at GND                   ;
++------+-------+----------+--------------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "encoder_32_to_5:bus_encoder" ;
++-----------------------+-------+----------+--------------+
+; Port                  ; Type  ; Severity ; Details      ;
++-----------------------+-------+----------+--------------+
+; encoder_input[31..24] ; Input ; Info     ; Stuck at GND ;
++-----------------------+-------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu|rotateRight:ror_op"                                                                                                                                                       ;
++--------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                                                                                                                          ;
++--------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; rotate ; Input ; Warning  ; Input port expression (6 bits) is wider than the input port (5 bits) it drives.  The 1 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++--------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------+
+; Port Connectivity Checks: "ALU:alu|subtractor:sub_op|adder:add1" ;
++----------+-------+----------+------------------------------------+
+; Port     ; Type  ; Severity ; Details                            ;
++----------+-------+----------+------------------------------------+
+; B[31..1] ; Input ; Info     ; Stuck at GND                       ;
+; B[0]     ; Input ; Info     ; Stuck at VCC                       ;
++----------+-------+----------+------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MAR_register:MAR|register:MAR"                                                                 ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; BusMuxIn[31..9] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +---------------------------------+
 ; Analysis & Elaboration Messages ;
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
-    Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Wed Mar 26 21:47:47 2025
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Thu Mar 27 01:16:43 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ALU -c ALU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file memram_bb.v
-    Info (12023): Found entity 1: memram File: C:/Users/21tof1/ELEC374/memram_bb.v Line: 34
-Info (12021): Found 0 design units, including 0 entities, in source file memram.v
+Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file memram.v
+    Info (12023): Found entity 1: memram File: C:/intelFPGA_lite/18.1/elec374_project/memram.v Line: 39
 Info (12021): Found 1 design units, including 1 entities, in source file subtractor_test.v
-    Info (12023): Found entity 1: subtractor_tb File: C:/Users/21tof1/ELEC374/subtractor_test.v Line: 3
+    Info (12023): Found entity 1: subtractor_tb File: C:/intelFPGA_lite/18.1/elec374_project/subtractor_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file subtractor.v
-    Info (12023): Found entity 1: subtractor File: C:/Users/21tof1/ELEC374/subtractor.v Line: 1
+    Info (12023): Found entity 1: subtractor File: C:/intelFPGA_lite/18.1/elec374_project/subtractor.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file sra.v
-    Info (12023): Found entity 1: sra File: C:/Users/21tof1/ELEC374/sra.v Line: 1
+    Info (12023): Found entity 1: sra File: C:/intelFPGA_lite/18.1/elec374_project/sra.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file shiftleft.v
-    Info (12023): Found entity 1: shiftLeft File: C:/Users/21tof1/ELEC374/shiftLeft.v Line: 1
+    Info (12023): Found entity 1: shiftLeft File: C:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file selectandencoder_tb.v
-    Info (12023): Found entity 1: selectAndEncoder_tb File: C:/Users/21tof1/ELEC374/selectAndEncoder_tb.v Line: 2
+    Info (12023): Found entity 1: selectAndEncoder_tb File: C:/intelFPGA_lite/18.1/elec374_project/selectAndEncoder_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file selectandencoder.v
-    Info (12023): Found entity 1: SelectAndEncoder File: C:/Users/21tof1/ELEC374/SelectAndEncoder.v Line: 1
+    Info (12023): Found entity 1: SelectAndEncoder File: C:/intelFPGA_lite/18.1/elec374_project/SelectAndEncoder.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file rotateright.v
-    Info (12023): Found entity 1: rotateRight File: C:/Users/21tof1/ELEC374/rotateRight.v Line: 1
+    Info (12023): Found entity 1: rotateRight File: C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file rotateleft.v
-    Info (12023): Found entity 1: rotLeft File: C:/Users/21tof1/ELEC374/rotateLeft.v Line: 1
+    Info (12023): Found entity 1: rotLeft File: C:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file register_test.v
-    Info (12023): Found entity 1: register_tb File: C:/Users/21tof1/ELEC374/register_test.v Line: 3
+    Info (12023): Found entity 1: register_tb File: C:/intelFPGA_lite/18.1/elec374_project/register_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file register_r0.v
-    Info (12023): Found entity 1: register_R0 File: C:/Users/21tof1/ELEC374/register_R0.v Line: 1
+    Info (12023): Found entity 1: register_R0 File: C:/intelFPGA_lite/18.1/elec374_project/register_R0.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file register_64.v
-    Info (12023): Found entity 1: register_64 File: C:/Users/21tof1/ELEC374/register_64.v Line: 1
+    Info (12023): Found entity 1: register_64 File: C:/intelFPGA_lite/18.1/elec374_project/register_64.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file register.v
-    Info (12023): Found entity 1: register File: C:/Users/21tof1/ELEC374/register.v Line: 1
+    Info (12023): Found entity 1: register File: C:/intelFPGA_lite/18.1/elec374_project/register.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file pc_register_tb.v
-    Info (12023): Found entity 1: PC_register_tb File: C:/Users/21tof1/ELEC374/PC_register_tb.v Line: 3
+    Info (12023): Found entity 1: PC_register_tb File: C:/intelFPGA_lite/18.1/elec374_project/PC_register_tb.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file pc_register.v
-    Info (12023): Found entity 1: PC_register File: C:/Users/21tof1/ELEC374/PC_register.v Line: 1
+    Info (12023): Found entity 1: PC_register File: C:/intelFPGA_lite/18.1/elec374_project/PC_register.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file oralu.v
-    Info (12023): Found entity 1: orALU File: C:/Users/21tof1/ELEC374/orALU.v Line: 1
+    Info (12023): Found entity 1: orALU File: C:/intelFPGA_lite/18.1/elec374_project/orALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file notalu.v
-    Info (12023): Found entity 1: notALU File: C:/Users/21tof1/ELEC374/notALU.v Line: 1
+    Info (12023): Found entity 1: notALU File: C:/intelFPGA_lite/18.1/elec374_project/notALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file negalu.v
-    Info (12023): Found entity 1: negALU File: C:/Users/21tof1/ELEC374/negALU.v Line: 1
+    Info (12023): Found entity 1: negALU File: C:/intelFPGA_lite/18.1/elec374_project/negALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file mux_32to1.v
-    Info (12023): Found entity 1: Mux32to1 File: C:/Users/21tof1/ELEC374/Mux_32to1.v Line: 1
+    Info (12023): Found entity 1: Mux32to1 File: C:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file mux_2to1.v
-    Info (12023): Found entity 1: Mux_2to1 File: C:/Users/21tof1/ELEC374/Mux_2to1.v Line: 1
+    Info (12023): Found entity 1: Mux_2to1 File: C:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file mux32to1_test.v
-    Info (12023): Found entity 1: Mux32to1_test File: C:/Users/21tof1/ELEC374/Mux32to1_test.v Line: 3
+    Info (12023): Found entity 1: Mux32to1_test File: C:/intelFPGA_lite/18.1/elec374_project/Mux32to1_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file mdr_test.v
-    Info (12023): Found entity 1: MDR_register_tb File: C:/Users/21tof1/ELEC374/MDR_test.v Line: 3
+    Info (12023): Found entity 1: MDR_register_tb File: C:/intelFPGA_lite/18.1/elec374_project/MDR_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file mdr_register.v
-    Info (12023): Found entity 1: MDR_register File: C:/Users/21tof1/ELEC374/MDR_register.v Line: 1
+    Info (12023): Found entity 1: MDR_register File: C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file mar_register.v
-    Info (12023): Found entity 1: MAR_register File: C:/Users/21tof1/ELEC374/MAR_register.v Line: 1
+    Info (12023): Found entity 1: MAR_register File: C:/intelFPGA_lite/18.1/elec374_project/MAR_register.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file io_tb.v
-    Info (12023): Found entity 1: io_tb File: C:/Users/21tof1/ELEC374/io_tb.v Line: 3
+    Info (12023): Found entity 1: io_tb File: C:/intelFPGA_lite/18.1/elec374_project/io_tb.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file io.v
-    Info (12023): Found entity 1: io File: C:/Users/21tof1/ELEC374/io.v Line: 1
+    Info (12023): Found entity 1: io File: C:/intelFPGA_lite/18.1/elec374_project/io.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file encoder32to5_test.v
-    Info (12023): Found entity 1: Encoder32to5_test File: C:/Users/21tof1/ELEC374/Encoder32to5_test.v Line: 3
+    Info (12023): Found entity 1: Encoder32to5_test File: C:/intelFPGA_lite/18.1/elec374_project/Encoder32to5_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file encoder32to5.v
-    Info (12023): Found entity 1: Encoder32to5 File: C:/Users/21tof1/ELEC374/Encoder32to5.v Line: 1
+    Info (12023): Found entity 1: Encoder32to5 File: C:/intelFPGA_lite/18.1/elec374_project/Encoder32to5.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file divisor_tb.v
-    Info (12023): Found entity 1: divisor_tb File: C:/Users/21tof1/ELEC374/divisor_tb.v Line: 3
+    Info (12023): Found entity 1: divisor_tb File: C:/intelFPGA_lite/18.1/elec374_project/divisor_tb.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file divisor.v
-    Info (12023): Found entity 1: divisor File: C:/Users/21tof1/ELEC374/divisor.v Line: 1
+    Info (12023): Found entity 1: divisor File: C:/intelFPGA_lite/18.1/elec374_project/divisor.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file decoder4to16.v
-    Info (12023): Found entity 1: decoder4to16 File: C:/Users/21tof1/ELEC374/decoder4to16.v Line: 1
+    Info (12023): Found entity 1: decoder4to16 File: C:/intelFPGA_lite/18.1/elec374_project/decoder4to16.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file decoder2to4.v
-    Info (12023): Found entity 1: decoder2_to_4 File: C:/Users/21tof1/ELEC374/decoder2to4.v Line: 1
+    Info (12023): Found entity 1: decoder2_to_4 File: C:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file datapath_test.v
-    Info (12023): Found entity 1: DataPath_tb File: C:/Users/21tof1/ELEC374/DataPath_test.v Line: 3
+    Info (12023): Found entity 1: DataPath_tb File: C:/intelFPGA_lite/18.1/elec374_project/DataPath_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file datapath_p2_tb.v
-    Info (12023): Found entity 1: DataPath_P2_tb File: C:/Users/21tof1/ELEC374/DataPath_P2_tb.v Line: 3
-Error (10170): Verilog HDL syntax error at DataPath.v(89) near text: "=";  expecting ")". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/21tof1/ELEC374/DataPath.v Line: 89
-Error (10112): Ignored design unit "DataPath" at DataPath.v(3) due to previous errors File: C:/Users/21tof1/ELEC374/DataPath.v Line: 3
-Info (12021): Found 0 design units, including 0 entities, in source file datapath.v
+    Info (12023): Found entity 1: DataPath_P2_tb File: C:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file datapath.v
+    Info (12023): Found entity 1: DataPath File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file c_sign_extender.v
-    Info (12023): Found entity 1: C_sign_extender File: C:/Users/21tof1/ELEC374/C_sign_extender.v Line: 1
+    Info (12023): Found entity 1: C_sign_extender File: C:/intelFPGA_lite/18.1/elec374_project/C_sign_extender.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file con_ff.v
-    Info (12023): Found entity 1: CON_FF File: C:/Users/21tof1/ELEC374/CON_FF.v Line: 1
+    Info (12023): Found entity 1: CON_FF File: C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file con_ff testbench.v
-    Info (12023): Found entity 1: CON_FF_tb File: C:/Users/21tof1/ELEC374/CON_FF testbench.v Line: 3
+    Info (12023): Found entity 1: CON_FF_tb File: C:/intelFPGA_lite/18.1/elec374_project/CON_FF testbench.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file bus_test.v
-    Info (12023): Found entity 1: Bus_tb File: C:/Users/21tof1/ELEC374/Bus_test.v Line: 3
-Error (10170): Verilog HDL syntax error at Bus.v(9) near text: "input";  expecting ")". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/21tof1/ELEC374/Bus.v Line: 9
-Error (10112): Ignored design unit "Bus" at Bus.v(1) due to previous errors File: C:/Users/21tof1/ELEC374/Bus.v Line: 1
-Info (12021): Found 0 design units, including 0 entities, in source file bus.v
+    Info (12023): Found entity 1: Bus_tb File: C:/intelFPGA_lite/18.1/elec374_project/Bus_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file bus.v
+    Info (12023): Found entity 1: Bus File: C:/intelFPGA_lite/18.1/elec374_project/Bus.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file boothalgorithm1b_tb.v
-    Info (12023): Found entity 1: boothAlgorithm1b_tb File: C:/Users/21tof1/ELEC374/boothAlgorithm1b_tb.v Line: 3
+    Info (12023): Found entity 1: boothAlgorithm1b_tb File: C:/intelFPGA_lite/18.1/elec374_project/boothAlgorithm1b_tb.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file boothalgorithm1b.v
-    Info (12023): Found entity 1: boothAlgorithm1b File: C:/Users/21tof1/ELEC374/boothAlgorithm1b.v Line: 1
+    Info (12023): Found entity 1: boothAlgorithm1b File: C:/intelFPGA_lite/18.1/elec374_project/boothAlgorithm1b.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file booth.v
-    Info (12023): Found entity 1: booth File: C:/Users/21tof1/ELEC374/booth.v Line: 1
+    Info (12023): Found entity 1: booth File: C:/intelFPGA_lite/18.1/elec374_project/booth.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file andalu.v
-    Info (12023): Found entity 1: andALU File: C:/Users/21tof1/ELEC374/andALU.v Line: 1
+    Info (12023): Found entity 1: andALU File: C:/intelFPGA_lite/18.1/elec374_project/andALU.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu_tb.v
-    Info (12023): Found entity 1: ALU_tb File: C:/Users/21tof1/ELEC374/ALU_tb.v Line: 2
+    Info (12023): Found entity 1: ALU_tb File: C:/intelFPGA_lite/18.1/elec374_project/ALU_tb.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file adder_test.v
-    Info (12023): Found entity 1: adder_tb File: C:/Users/21tof1/ELEC374/adder_test.v Line: 3
+    Info (12023): Found entity 1: adder_tb File: C:/intelFPGA_lite/18.1/elec374_project/adder_test.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file adder.v
-    Info (12023): Found entity 1: adder File: C:/Users/21tof1/ELEC374/adder.v Line: 1
+    Info (12023): Found entity 1: adder File: C:/intelFPGA_lite/18.1/elec374_project/adder.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file alu.v
-    Info (12023): Found entity 1: ALU File: C:/Users/21tof1/ELEC374/ALU.v Line: 1
+    Info (12023): Found entity 1: ALU File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file shiftright.v
-    Info (12023): Found entity 1: shiftRight File: C:/Users/21tof1/ELEC374/shiftRight.v Line: 1
+    Info (12023): Found entity 1: shiftRight File: C:/intelFPGA_lite/18.1/elec374_project/shiftRight.v Line: 1
 Warning (12019): Can't analyze file -- file shiftRight_tb.v is missing
 Info (12021): Found 0 design units, including 0 entities, in source file alugood/divisor.v
 Info (12021): Found 1 design units, including 1 entities, in source file decoder_4_to_16.v
-    Info (12023): Found entity 1: decoder_4_to_16 File: C:/Users/21tof1/ELEC374/decoder_4_to_16.v Line: 1
+    Info (12023): Found entity 1: decoder_4_to_16 File: C:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file select_and_encoder.v
-    Info (12023): Found entity 1: select_and_encoder File: C:/Users/21tof1/ELEC374/select_and_encoder.v Line: 2
+    Info (12023): Found entity 1: select_and_encoder File: C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file mux_2_to_1.v
-    Info (12023): Found entity 1: mux_2_to_1 File: C:/Users/21tof1/ELEC374/mux_2_to_1.v Line: 1
+    Info (12023): Found entity 1: mux_2_to_1 File: C:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file encoder_32_to_5.v
-    Info (12023): Found entity 1: encoder_32_to_5 File: C:/Users/21tof1/ELEC374/encoder_32_to_5.v Line: 1
-Info (144001): Generated suppressed messages file C:/Users/21tof1/ELEC374/output_files/ALU.map.smsg
-Error: Quartus Prime Analysis & Elaboration was unsuccessful. 4 errors, 2 warnings
-    Error: Peak virtual memory: 4779 megabytes
-    Error: Processing ended: Wed Mar 26 21:47:58 2025
-    Error: Elapsed time: 00:00:11
-    Error: Total CPU time (on all processors): 00:00:09
+    Info (12023): Found entity 1: encoder_32_to_5 File: C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v Line: 1
+Info (12127): Elaborating entity "DataPath" for the top level hierarchy
+Info (12128): Elaborating entity "select_and_encoder" for hierarchy "select_and_encoder:sel_enc" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 33
+Info (12128): Elaborating entity "decoder_4_to_16" for hierarchy "select_and_encoder:sel_enc|decoder_4_to_16:decoderStuff" File: C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v Line: 14
+Info (12128): Elaborating entity "register" for hierarchy "register:R0" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 38
+Info (12128): Elaborating entity "MAR_register" for hierarchy "MAR_register:MAR" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 64
+Info (12128): Elaborating entity "register_64" for hierarchy "register_64:Z" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 65
+Info (12128): Elaborating entity "PC_register" for hierarchy "PC_register:PC" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 66
+Info (12128): Elaborating entity "MDR_register" for hierarchy "MDR_register:MDR" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 68
+Info (12128): Elaborating entity "mux_2_to_1" for hierarchy "MDR_register:MDR|mux_2_to_1:MDRmux" File: C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v Line: 13
+Info (12128): Elaborating entity "Mux_2to1" for hierarchy "Mux_2to1:muxY" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 71
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:alu" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 74
+Warning (10272): Verilog HDL Case Statement warning at ALU.v(88): case item expression covers a value already covered by a previous case item File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 88
+Warning (10270): Verilog HDL Case Statement warning at ALU.v(45): incomplete case statement has no default case item File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(45): inferring latch(es) for variable "result", which holds its previous value in one or more paths through the always construct File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[0]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[1]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[2]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[3]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[4]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[5]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[6]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[7]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[8]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[9]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[10]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[11]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[12]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[13]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[14]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[15]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[16]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[17]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[18]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[19]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[20]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[21]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[22]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[23]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[24]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[25]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[26]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[27]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[28]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[29]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[30]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[31]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[32]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[33]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[34]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[35]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[36]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[37]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[38]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[39]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[40]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[41]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[42]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[43]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[44]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[45]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[46]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[47]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[48]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[49]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[50]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[51]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[52]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[53]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[54]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[55]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[56]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[57]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[58]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[59]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[60]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[61]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[62]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (10041): Inferred latch for "result[63]" at ALU.v(45) File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 45
+Info (12128): Elaborating entity "andALU" for hierarchy "ALU:alu|andALU:and_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 21
+Info (12128): Elaborating entity "orALU" for hierarchy "ALU:alu|orALU:or_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 22
+Info (12128): Elaborating entity "notALU" for hierarchy "ALU:alu|notALU:not_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 23
+Info (12128): Elaborating entity "adder" for hierarchy "ALU:alu|adder:add_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 24
+Info (12128): Elaborating entity "subtractor" for hierarchy "ALU:alu|subtractor:sub_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 25
+Warning (10230): Verilog HDL assignment warning at subtractor.v(9): truncated value with size 64 to match size of target (32) File: C:/intelFPGA_lite/18.1/elec374_project/subtractor.v Line: 9
+Info (12128): Elaborating entity "booth" for hierarchy "ALU:alu|booth:mult_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 26
+Warning (10199): Verilog HDL Case Statement warning at booth.v(27): case item expression never matches the case expression File: C:/intelFPGA_lite/18.1/elec374_project/booth.v Line: 27
+Warning (10199): Verilog HDL Case Statement warning at booth.v(29): case item expression never matches the case expression File: C:/intelFPGA_lite/18.1/elec374_project/booth.v Line: 29
+Warning (10199): Verilog HDL Case Statement warning at booth.v(31): case item expression never matches the case expression File: C:/intelFPGA_lite/18.1/elec374_project/booth.v Line: 31
+Warning (10199): Verilog HDL Case Statement warning at booth.v(33): case item expression never matches the case expression File: C:/intelFPGA_lite/18.1/elec374_project/booth.v Line: 33
+Info (12128): Elaborating entity "shiftLeft" for hierarchy "ALU:alu|shiftLeft:shl_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 27
+Info (12128): Elaborating entity "shiftRight" for hierarchy "ALU:alu|shiftRight:shr_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 28
+Info (12128): Elaborating entity "sra" for hierarchy "ALU:alu|sra:sra_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 29
+Info (12128): Elaborating entity "rotLeft" for hierarchy "ALU:alu|rotLeft:rol_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 30
+Info (12128): Elaborating entity "rotateRight" for hierarchy "ALU:alu|rotateRight:ror_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 31
+Info (12128): Elaborating entity "negALU" for hierarchy "ALU:alu|negALU:neg_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 32
+Info (12128): Elaborating entity "divisor" for hierarchy "ALU:alu|divisor:div_op" File: C:/intelFPGA_lite/18.1/elec374_project/ALU.v Line: 41
+Info (12128): Elaborating entity "encoder_32_to_5" for hierarchy "encoder_32_to_5:bus_encoder" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 81
+Warning (10762): Verilog HDL Case Statement warning at encoder_32_to_5.v(5): can't check case statement for completeness because the case expression has too many possible states File: C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v Line: 5
+Info (10264): Verilog HDL Case Statement information at encoder_32_to_5.v(5): all case item expressions in this case statement are onehot File: C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v Line: 5
+Info (12128): Elaborating entity "Bus" for hierarchy "Bus:bus" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 91
+Info (12128): Elaborating entity "Mux32to1" for hierarchy "Bus:bus|Mux32to1:multiplexer" File: C:/intelFPGA_lite/18.1/elec374_project/Bus.v Line: 28
+Info (12128): Elaborating entity "memram" for hierarchy "memram:ram" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 94
+Info (12128): Elaborating entity "altsyncram" for hierarchy "memram:ram|altsyncram:altsyncram_component" File: C:/intelFPGA_lite/18.1/elec374_project/memram.v Line: 85
+Info (12130): Elaborated megafunction instantiation "memram:ram|altsyncram:altsyncram_component" File: C:/intelFPGA_lite/18.1/elec374_project/memram.v Line: 85
+Info (12133): Instantiated megafunction "memram:ram|altsyncram:altsyncram_component" with the following parameter: File: C:/intelFPGA_lite/18.1/elec374_project/memram.v Line: 85
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "ld.hex"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "READ_LATENCY=0"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "512"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "ram_block_type" = "M10K"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "9"
+    Info (12134): Parameter "width_a" = "32"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_lnn1.tdf
+    Info (12023): Found entity 1: altsyncram_lnn1 File: C:/intelFPGA_lite/18.1/elec374_project/db/altsyncram_lnn1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_lnn1" for hierarchy "memram:ram|altsyncram:altsyncram_component|altsyncram_lnn1:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Critical Warning (127004): Memory depth (512) in the design file differs from memory depth (515) in the Memory Initialization File "C:/intelFPGA_lite/18.1/elec374_project/ld.hex" -- truncated remaining initial content value to fit RAM File: C:/intelFPGA_lite/18.1/elec374_project/memram.v Line: 85
+Info (12128): Elaborating entity "CON_FF" for hierarchy "CON_FF:con_ff" File: C:/intelFPGA_lite/18.1/elec374_project/DataPath.v Line: 103
+Info (12128): Elaborating entity "decoder2_to_4" for hierarchy "CON_FF:con_ff|decoder2_to_4:decoder" File: C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v Line: 16
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (144001): Generated suppressed messages file C:/intelFPGA_lite/18.1/elec374_project/output_files/ALU.map.smsg
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 13 warnings
+    Info: Peak virtual memory: 4798 megabytes
+    Info: Processing ended: Thu Mar 27 01:16:58 2025
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:27
 
 
 +--------------------------------------------+
 ; Analysis & Elaboration Suppressed Messages ;
 +--------------------------------------------+
-The suppressed messages can be found in C:/Users/21tof1/ELEC374/output_files/ALU.map.smsg.
+The suppressed messages can be found in C:/intelFPGA_lite/18.1/elec374_project/output_files/ALU.map.smsg.
 
 

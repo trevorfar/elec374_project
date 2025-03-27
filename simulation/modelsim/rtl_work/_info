@@ -7,47 +7,47 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/21tof1/ELEC374/simulation/modelsim
+Z0 dC:/intelFPGA_lite/18.1/elec374_project/simulation/modelsim
 vadder
-Z1 !s110 1743039537
+Z1 !s110 1743052629
 !i10b 1
-!s100 gOmzC9mmiGH2bWX6IC=_B0
-I@=az6<EozkO`QaCEg?zEe1
+!s100 B]WSKelc@jVDiXiFNM9ib2
+I^IGojJn0G94I^TK2IBzC>0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1743034243
-8C:/Users/21tof1/ELEC374/adder.v
-FC:/Users/21tof1/ELEC374/adder.v
+Z3 w1743051636
+8C:/intelFPGA_lite/18.1/elec374_project/adder.v
+FC:/intelFPGA_lite/18.1/elec374_project/adder.v
 L0 1
 Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1743039537.000000
-!s107 C:/Users/21tof1/ELEC374/adder.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/adder.v|
+Z5 !s108 1743052629.000000
+!s107 C:/intelFPGA_lite/18.1/elec374_project/adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/adder.v|
 !i113 1
 Z6 o-vlog01compat -work work
-Z7 !s92 -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374
+Z7 !s92 -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project
 Z8 tCvgOpt 0
 vALU
 R1
 !i10b 1
-!s100 En_`lUZCAkbbfWWLWAW[Q2
-Ij3@0bKj<AlCaDBB=zcfgf3
+!s100 GT5oVI[Wd98akPKg11P]k0
+Ib2lzbi_ThF>5mGgEOR^Vf2
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/ALU.v
-FC:/Users/21tof1/ELEC374/ALU.v
-L0 1
+w1743051966
+8C:/intelFPGA_lite/18.1/elec374_project/ALU.v
+FC:/intelFPGA_lite/18.1/elec374_project/ALU.v
+L0 2
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/ALU.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/ALU.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/ALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/ALU.v|
 !i113 1
 R6
 R7
@@ -56,21 +56,21 @@ n@a@l@u
 vandALU
 R1
 !i10b 1
-!s100 ^]:N3;^58YNL]9A>G0P>l1
-I2RI_fWOc^6QHJLj^`S^O]0
+!s100 Q?c<zn3C32iJE4zAgONN:1
+IJ^5eS<Ad:0WQ<TdWL1@e^1
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/andALU.v
-FC:/Users/21tof1/ELEC374/andALU.v
+Z9 w1743051559
+8C:/intelFPGA_lite/18.1/elec374_project/andALU.v
+FC:/intelFPGA_lite/18.1/elec374_project/andALU.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/andALU.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/andALU.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/andALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/andALU.v|
 !i113 1
 R6
 R7
@@ -80,134 +80,134 @@ vbooth
 R1
 !i10b 1
 !s100 ?VCgfJCTIF[z``_cN2A:A0
-Inn[@3CDTL3>@3aYnO0B@R1
+I^=F8^W3WYmI0onF>7IF4?2
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/booth.v
-FC:/Users/21tof1/ELEC374/booth.v
+Z10 w1743041307
+8C:/intelFPGA_lite/18.1/elec374_project/booth.v
+FC:/intelFPGA_lite/18.1/elec374_project/booth.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/booth.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/booth.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/booth.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/booth.v|
 !i113 1
 R6
 R7
 R8
 vBus
-Z9 !s110 1743039536
+R1
 !i10b 1
-!s100 hFeAi@DjfVECa5Jn9cPO31
-Ij7NAgJjH76GI:jC_P<j2C3
+!s100 OQ0BL>@H`N1?B^9d_<J_53
+IMZcDCa6i]ZS?IcdRLd^7F1
 R2
 R0
-w1743039318
-8C:/Users/21tof1/ELEC374/Bus.v
-FC:/Users/21tof1/ELEC374/Bus.v
+w1743052192
+8C:/intelFPGA_lite/18.1/elec374_project/Bus.v
+FC:/intelFPGA_lite/18.1/elec374_project/Bus.v
 L0 1
 R4
 r1
 !s85 0
 31
-Z10 !s108 1743039536.000000
-!s107 C:/Users/21tof1/ELEC374/Bus.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/Bus.v|
+R5
+!s107 C:/intelFPGA_lite/18.1/elec374_project/Bus.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/Bus.v|
 !i113 1
 R6
 R7
 R8
 n@bus
 vCON_FF
-R9
+R1
 !i10b 1
 !s100 [1E<IQJBnV:FNAokRS2<<2
-I_F012?EHSk2c>D1ESVK9B3
+IGC=Y2OeAlPLD^76^0R@Ln1
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/CON_FF.v
-FC:/Users/21tof1/ELEC374/CON_FF.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v
+FC:/intelFPGA_lite/18.1/elec374_project/CON_FF.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/CON_FF.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/CON_FF.v|
+R5
+!s107 C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v|
 !i113 1
 R6
 R7
 R8
 n@c@o@n_@f@f
 vDataPath
-R9
+R1
 !i10b 1
-!s100 Xe5>aPi6MED8bFZJ1Olo23
-IzS@Pfg=:h4jNobM70D9251
+!s100 no6eO7Q3`BAiQ1L_Hg]CZ3
+I<O@1IV1hE^iRG47n59BTE1
 R2
 R0
-Z11 w1743039505
-8C:/Users/21tof1/ELEC374/DataPath.v
-FC:/Users/21tof1/ELEC374/DataPath.v
-L0 3
-R4
-r1
-!s85 0
-31
-R10
-!s107 C:/Users/21tof1/ELEC374/DataPath.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/DataPath.v|
-!i113 1
-R6
-R7
-R8
-n@data@path
-vDataPath_P2_tb
-!s110 1743039538
-!i10b 1
-!s100 >nDR0MH@YzcHgFkhDU9kz2
-I8Z^@1U7MDQTYCb6<BLN_=2
-R2
-R0
-R11
-8C:/Users/21tof1/ELEC374/DataPath_P2_tb.v
-FC:/Users/21tof1/ELEC374/DataPath_P2_tb.v
+w1743052515
+8C:/intelFPGA_lite/18.1/elec374_project/DataPath.v
+FC:/intelFPGA_lite/18.1/elec374_project/DataPath.v
 L0 3
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/DataPath_P2_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/DataPath_P2_tb.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/DataPath.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/DataPath.v|
+!i113 1
+R6
+R7
+R8
+n@data@path
+vDataPath_P2_tb
+R1
+!i10b 1
+!s100 Sh=VU8QiW3PlH8416UOE73
+I`R1e1ggX8[TKH3]W?LgW52
+R2
+R0
+w1743052602
+8C:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v
+FC:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v|
 !i113 1
 R6
 R7
 R8
 n@data@path_@p2_tb
 vdecoder2_to_4
-R9
+R1
 !i10b 1
 !s100 FkMT=H:fLkLNO;bmzM5U31
-I`EI8ONQalhKI05iodFQz82
+I:PB9j`7zj2okoE>]iUYER2
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/decoder2to4.v
-FC:/Users/21tof1/ELEC374/decoder2to4.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v
+FC:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/decoder2to4.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/decoder2to4.v|
+Z11 !s108 1743052628.000000
+!s107 C:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v|
 !i113 1
 R6
 R7
@@ -216,42 +216,42 @@ vdecoder_4_to_16
 R1
 !i10b 1
 !s100 RI:=D6WRU?N;]K_BO^Mf<1
-Ii7Y^AXQlMca;[8L4C>:b43
+I@<HA[F6IUY7>>D0Y]R6Nm3
 R2
 R0
-w1743035915
-8C:/Users/21tof1/ELEC374/decoder_4_to_16.v
-FC:/Users/21tof1/ELEC374/decoder_4_to_16.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v
+FC:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/decoder_4_to_16.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/decoder_4_to_16.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v|
 !i113 1
 R6
 R7
 R8
 vdivisor
-R9
+Z12 !s110 1743052628
 !i10b 1
 !s100 BFTBD6hHS@^J[gNhfDmiM0
-Ii2V`@kAo>M86F8Q2iGUi?2
+I9Di1ldQkXPeOC1:f]9Gb>3
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/divisor.v
-FC:/Users/21tof1/ELEC374/divisor.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/divisor.v
+FC:/intelFPGA_lite/18.1/elec374_project/divisor.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/divisor.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/divisor.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/divisor.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/divisor.v|
 !i113 1
 R6
 R7
@@ -260,110 +260,110 @@ vencoder_32_to_5
 R1
 !i10b 1
 !s100 iaf0i<JI4><Hzz]^oAY5U3
-I][KEnJ_c[:^=:Ih_:f@7<2
+IJZ`m96RV@`4Zz2V_i4P^53
 R2
 R0
-w1743038984
-8C:/Users/21tof1/ELEC374/encoder_32_to_5.v
-FC:/Users/21tof1/ELEC374/encoder_32_to_5.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v
+FC:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/encoder_32_to_5.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/encoder_32_to_5.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v|
 !i113 1
 R6
 R7
 R8
 vMAR_register
-R9
+R12
 !i10b 1
 !s100 Gg3lEa38Pnh]Ic638j<NE3
-I<bMW@[UzhoHanmf7T4J<Q2
+I2NUZWYb=13l_c>16C7C>:3
 R2
 R0
-Z12 w1743038375
-8C:/Users/21tof1/ELEC374/MAR_register.v
-FC:/Users/21tof1/ELEC374/MAR_register.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/MAR_register.v
+FC:/intelFPGA_lite/18.1/elec374_project/MAR_register.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/MAR_register.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/MAR_register.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/MAR_register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/MAR_register.v|
 !i113 1
 R6
 R7
 R8
 n@m@a@r_register
 vMDR_register
-R9
+R12
 !i10b 1
 !s100 ;=8LXI9Ym3ih<=fANj4k<1
-ImJ@Ukd@AUO9_3Y:E31YcM1
+IX>>m>h2zeS]:58Yh7KA9X2
 R2
 R0
-R12
-8C:/Users/21tof1/ELEC374/MDR_register.v
-FC:/Users/21tof1/ELEC374/MDR_register.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v
+FC:/intelFPGA_lite/18.1/elec374_project/MDR_register.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/MDR_register.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/MDR_register.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v|
 !i113 1
 R6
 R7
 R8
 n@m@d@r_register
 vmemram
-Z13 !s110 1743039535
+Z13 !s110 1743052627
 !i10b 1
-!s100 nHc=jDY;14i?<kKAF@XG]3
-I8V1SnCYhQaIG_mObOfLXJ2
+!s100 >]4IQzYcdO:n]fzJnk8AZ0
+IbaECX9IYWQJ;WP74iUmn^2
 R2
 R0
-Z14 w1743034773
-8C:/Users/21tof1/ELEC374/memram_bb.v
-FC:/Users/21tof1/ELEC374/memram_bb.v
-L0 34
+w1743050459
+8C:/intelFPGA_lite/18.1/elec374_project/memram.v
+FC:/intelFPGA_lite/18.1/elec374_project/memram.v
+L0 39
 R4
 r1
 !s85 0
 31
-Z15 !s108 1743039535.000000
-!s107 C:/Users/21tof1/ELEC374/memram_bb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/memram_bb.v|
+Z14 !s108 1743052627.000000
+!s107 C:/intelFPGA_lite/18.1/elec374_project/memram.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/memram.v|
 !i113 1
 R6
 R7
 R8
 vMux32to1
-R9
+R12
 !i10b 1
 !s100 FZ?IFAO;fPb?<48De:di?2
-IIaCg<20_[T^3ciJVI]a6;2
+IV=anB>T@ME53mCM]NZeZ12
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/Mux_32to1.v
-FC:/Users/21tof1/ELEC374/Mux_32to1.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v
+FC:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/Mux_32to1.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/Mux_32to1.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v|
 !i113 1
 R6
 R7
@@ -373,224 +373,224 @@ vmux_2_to_1
 R1
 !i10b 1
 !s100 2MS][z@M7lj2e59S9K8@?1
-I<4f9[FmoNHF7B7NAl]<2?3
+Idz3eAPJ[L_[Rj8=UVMN0V0
 R2
 R0
-w1743038424
-8C:/Users/21tof1/ELEC374/mux_2_to_1.v
-FC:/Users/21tof1/ELEC374/mux_2_to_1.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v
+FC:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/mux_2_to_1.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/mux_2_to_1.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v|
 !i113 1
 R6
 R7
 R8
 vMux_2to1
-R9
+R12
 !i10b 1
 !s100 NWUd58V1G;27>8MoN5`YS1
-IzdQd^XQcUdKdXG@Eef7]a2
+Idl3SFHU3>40QMX_G]0[=<2
 R2
 R0
-R14
-8C:/Users/21tof1/ELEC374/Mux_2to1.v
-FC:/Users/21tof1/ELEC374/Mux_2to1.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v
+FC:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/Mux_2to1.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/Mux_2to1.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v|
 !i113 1
 R6
 R7
 R8
 n@mux_2to1
 vnegALU
-R9
+R12
 !i10b 1
-!s100 @bU8KWR:bJ=n;ZF;;DH=L0
-IbN?e_e_oBnRIkLHZ?Zk`S3
+!s100 BK>PbO;]>j>LTH5hkR[UE1
+IjR6]2ieX`Dfa]ZT7lCEGY2
 R2
 R0
 R3
-8C:/Users/21tof1/ELEC374/negALU.v
-FC:/Users/21tof1/ELEC374/negALU.v
+8C:/intelFPGA_lite/18.1/elec374_project/negALU.v
+FC:/intelFPGA_lite/18.1/elec374_project/negALU.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/negALU.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/negALU.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/negALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/negALU.v|
 !i113 1
 R6
 R7
 R8
 nneg@a@l@u
 vnotALU
-R9
+R12
 !i10b 1
-!s100 VAoD?La?4C^Ehjo<nlS]J2
-IEoJ>icjI[jfLjOCkJWz[A0
+!s100 hN^JgRcA^fmTOW1`<>AQ30
+IX@IW]kF@Y][4AgBTn0CGd2
 R2
 R0
 R3
-8C:/Users/21tof1/ELEC374/notALU.v
-FC:/Users/21tof1/ELEC374/notALU.v
+8C:/intelFPGA_lite/18.1/elec374_project/notALU.v
+FC:/intelFPGA_lite/18.1/elec374_project/notALU.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/notALU.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/notALU.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/notALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/notALU.v|
 !i113 1
 R6
 R7
 R8
 nnot@a@l@u
 vorALU
-R9
+R12
 !i10b 1
-!s100 hWmmAG`LgYZCk1eo6d=FS0
-I5D7P2loNSY68mc`lV0dK91
+!s100 6CoLFA:Q=8HSC_=ZMBf6j3
+IjCAeCNMhA97NS`67M9hIW0
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/orALU.v
-FC:/Users/21tof1/ELEC374/orALU.v
+R9
+8C:/intelFPGA_lite/18.1/elec374_project/orALU.v
+FC:/intelFPGA_lite/18.1/elec374_project/orALU.v
 L0 1
 R4
 r1
 !s85 0
 31
-R10
-!s107 C:/Users/21tof1/ELEC374/orALU.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/orALU.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/orALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/orALU.v|
 !i113 1
 R6
 R7
 R8
 nor@a@l@u
 vPC_register
-R13
+R12
 !i10b 1
-!s100 IEz[f[Y?Q4VH5;P68N>ZH2
-I<>9dTj:MfUHcA`A_?TIl^2
+!s100 g9V^`NcFRkn7nDVaiMIO^2
+ISbJT6=F[?K`<NigmKlU[G1
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/PC_register.v
-FC:/Users/21tof1/ELEC374/PC_register.v
+w1743051394
+8C:/intelFPGA_lite/18.1/elec374_project/PC_register.v
+FC:/intelFPGA_lite/18.1/elec374_project/PC_register.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/PC_register.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/PC_register.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/PC_register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/PC_register.v|
 !i113 1
 R6
 R7
 R8
 n@p@c_register
 vregister
-R13
+R12
 !i10b 1
 !s100 _T>_JGD:_FJHc6KPzPioV1
-I`RzHkD8KnS4dC7lbHh<<a3
+I6K@^jU0ECH>:lc=MSaEg[2
 R2
 R0
-w1743037963
-8C:/Users/21tof1/ELEC374/register.v
-FC:/Users/21tof1/ELEC374/register.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/register.v
+FC:/intelFPGA_lite/18.1/elec374_project/register.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/register.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/register.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/register.v|
 !i113 1
 R6
 R7
 R8
 vregister_64
-R13
+R12
 !i10b 1
-!s100 jUaFSLlBT9a:5mCR[cGC[2
-IS@CW;]HzZ90M100]Sj[_41
+!s100 ^RAC;;OlA@D8C2KLXd9YQ1
+I_PD195aDVIhU008ST9kUk1
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/register_64.v
-FC:/Users/21tof1/ELEC374/register_64.v
+R10
+8C:/intelFPGA_lite/18.1/elec374_project/register_64.v
+FC:/intelFPGA_lite/18.1/elec374_project/register_64.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/register_64.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/register_64.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/register_64.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/register_64.v|
 !i113 1
 R6
 R7
 R8
 vrotateRight
-R13
+R12
 !i10b 1
-!s100 SU5DQM89^[DkAWC?MhAz_3
-I?RKVDb0BFYYU;U[ZQ2SP12
+!s100 iX;UX[:]VMF9V8ff3R3R52
+I67Qhf1bY2eClTVGeoRG4i1
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/rotateRight.v
-FC:/Users/21tof1/ELEC374/rotateRight.v
+R9
+8C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v
+FC:/intelFPGA_lite/18.1/elec374_project/rotateRight.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/rotateRight.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/rotateRight.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v|
 !i113 1
 R6
 R7
 R8
 nrotate@right
 vrotLeft
-R13
+R12
 !i10b 1
-!s100 ^63MP0[3gnf@<j=ZY1`R@1
-Ig3:Mbhe[@QJeYmajc@kmS2
+!s100 Y4HcU874n:Nafim9oBZ1W1
+IfhfTQG:?`WaeQTL3Z9V2[0
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/rotateLeft.v
-FC:/Users/21tof1/ELEC374/rotateLeft.v
+R9
+8C:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v
+FC:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/rotateLeft.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/rotateLeft.v|
+R11
+!s107 C:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v|
 !i113 1
 R6
 R7
@@ -599,21 +599,21 @@ nrot@left
 vselect_and_encoder
 R1
 !i10b 1
-!s100 chD8N?SBzd2Ze6H7iHLQo1
-I2UkjLV4_FB_UF=m4gmihV2
+!s100 kQhL85Q>P<]<5Ia8OI3@70
+Iol[12NIMKEO[19Z;7nDGT0
 R2
 R0
-w1743036163
-8C:/Users/21tof1/ELEC374/select_and_encoder.v
-FC:/Users/21tof1/ELEC374/select_and_encoder.v
+w1743046458
+8C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v
+FC:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v
 L0 2
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/select_and_encoder.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/select_and_encoder.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v|
 !i113 1
 R6
 R7
@@ -621,21 +621,21 @@ R8
 vshiftLeft
 R13
 !i10b 1
-!s100 XBmQUl8A4EWJVeKQJI40V3
-I6d^n1GbU[8Z?KBl<ReHdl2
+!s100 9W;6lDA9P1m^o6Z6OndLM0
+I55W6V=k5I`2<=S^D]J0F^3
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/shiftLeft.v
-FC:/Users/21tof1/ELEC374/shiftLeft.v
+Z15 w1743051864
+8C:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v
+FC:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/shiftLeft.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/shiftLeft.v|
+R14
+!s107 C:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v|
 !i113 1
 R6
 R7
@@ -644,21 +644,21 @@ nshift@left
 vshiftRight
 R1
 !i10b 1
-!s100 Q9Of18J8MSPXMkG[]lSUG0
-I5G^fWz^d1c5Vh`HF@Shb13
+!s100 PZj<@;O9UfD2TS0jRoN9=1
+IBGPRVD_oWh8E<a_W:?lkG0
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/shiftRight.v
-FC:/Users/21tof1/ELEC374/shiftRight.v
+Z16 w1743051863
+8C:/intelFPGA_lite/18.1/elec374_project/shiftRight.v
+FC:/intelFPGA_lite/18.1/elec374_project/shiftRight.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/Users/21tof1/ELEC374/shiftRight.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/shiftRight.v|
+!s107 C:/intelFPGA_lite/18.1/elec374_project/shiftRight.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/shiftRight.v|
 !i113 1
 R6
 R7
@@ -667,21 +667,21 @@ nshift@right
 vsra
 R13
 !i10b 1
-!s100 dNU=zFTQWIGC>^89P3k>E2
-IH[UZ08O?LT5SG=mQmU^dI1
+!s100 2UWHo=M3MEM=9X2LG5^S_2
+Ih0EfIGQoXVVIE8VHK34I30
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/sra.v
-FC:/Users/21tof1/ELEC374/sra.v
+R15
+8C:/intelFPGA_lite/18.1/elec374_project/sra.v
+FC:/intelFPGA_lite/18.1/elec374_project/sra.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/sra.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/sra.v|
+R14
+!s107 C:/intelFPGA_lite/18.1/elec374_project/sra.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/sra.v|
 !i113 1
 R6
 R7
@@ -689,21 +689,21 @@ R8
 vsubtractor
 R13
 !i10b 1
-!s100 4EBeMk`E28nHLdJ3_Ai262
-I_JbH2k<5bT2>zLNe__T773
+!s100 Af8Zf4id[1Vgi^87OMNCI2
+IcbdY9=9i88AG9ahYRTobd0
 R2
 R0
-R3
-8C:/Users/21tof1/ELEC374/subtractor.v
-FC:/Users/21tof1/ELEC374/subtractor.v
+R16
+8C:/intelFPGA_lite/18.1/elec374_project/subtractor.v
+FC:/intelFPGA_lite/18.1/elec374_project/subtractor.v
 L0 1
 R4
 r1
 !s85 0
 31
-R15
-!s107 C:/Users/21tof1/ELEC374/subtractor.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/21tof1/ELEC374|C:/Users/21tof1/ELEC374/subtractor.v|
+R14
+!s107 C:/intelFPGA_lite/18.1/elec374_project/subtractor.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/intelFPGA_lite/18.1/elec374_project|C:/intelFPGA_lite/18.1/elec374_project/subtractor.v|
 !i113 1
 R6
 R7

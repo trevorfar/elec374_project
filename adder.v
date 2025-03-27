@@ -1,7 +1,7 @@
 module adder(A, B, Result);
 
 	input [31:0] A, B;
-	output reg[63:0] Result; 
+	output reg[31:0] Result; 
 
 	reg [32:0] LocalCarry;
 
@@ -15,6 +15,5 @@ module adder(A, B, Result);
 				Result[i] = A[i]^B[i]^LocalCarry[i];
 				LocalCarry[i+1] = (A[i]&B[i])|(LocalCarry[i]&(A[i]|B[i]));
 			end
-			Result[63:32] = 31'b0;
 	end
 endmodule 

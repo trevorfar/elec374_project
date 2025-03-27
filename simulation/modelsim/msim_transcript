@@ -1,4 +1,4 @@
-# Reading C:/intelFPGA/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# Reading C:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
 # do ALU_run_msim_rtl_verilog.do
 # if {[file exists rtl_work]} {
 # 	vdel -lib rtl_work -all
@@ -7,324 +7,324 @@
 # vmap work rtl_work
 # Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
 # vmap work rtl_work 
-# Copying C:/intelFPGA/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Copying C:/intelFPGA_lite/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/memram_bb.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/memram.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/memram_bb.v 
+# Start time: 01:17:07 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/memram.v 
 # -- Compiling module memram
 # 
 # Top level modules:
 # 	memram
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:07 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/subtractor.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/subtractor.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/subtractor.v 
+# Start time: 01:17:07 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/subtractor.v 
 # -- Compiling module subtractor
 # 
 # Top level modules:
 # 	subtractor
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:07 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/sra.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/sra.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/sra.v 
+# Start time: 01:17:07 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/sra.v 
 # -- Compiling module sra
 # 
 # Top level modules:
 # 	sra
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:07 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/shiftLeft.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/shiftLeft.v 
+# Start time: 01:17:07 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/shiftLeft.v 
 # -- Compiling module shiftLeft
 # 
 # Top level modules:
 # 	shiftLeft
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:07 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/rotateRight.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/rotateRight.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v 
 # -- Compiling module rotateRight
 # 
 # Top level modules:
 # 	rotateRight
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/rotateLeft.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/rotateLeft.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/rotateLeft.v 
 # -- Compiling module rotLeft
 # 
 # Top level modules:
 # 	rotLeft
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/register_64.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/register_64.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/register_64.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/register_64.v 
 # -- Compiling module register_64
 # 
 # Top level modules:
 # 	register_64
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/register.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/register.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/register.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/register.v 
 # -- Compiling module register
 # 
 # Top level modules:
 # 	register
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/PC_register.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/PC_register.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:55 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/PC_register.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/PC_register.v 
 # -- Compiling module PC_register
 # 
 # Top level modules:
 # 	PC_register
-# End time: 21:38:55 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/orALU.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/orALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/orALU.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/orALU.v 
 # -- Compiling module orALU
 # 
 # Top level modules:
 # 	orALU
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/notALU.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/notALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/notALU.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/notALU.v 
 # -- Compiling module notALU
 # 
 # Top level modules:
 # 	notALU
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/negALU.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/negALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/negALU.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/negALU.v 
 # -- Compiling module negALU
 # 
 # Top level modules:
 # 	negALU
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Mux_32to1.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/Mux_32to1.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/Mux_32to1.v 
 # -- Compiling module Mux32to1
 # 
 # Top level modules:
 # 	Mux32to1
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Mux_2to1.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/Mux_2to1.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/Mux_2to1.v 
 # -- Compiling module Mux_2to1
 # 
 # Top level modules:
 # 	Mux_2to1
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/MDR_register.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/MDR_register.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/MDR_register.v 
 # -- Compiling module MDR_register
 # 
 # Top level modules:
 # 	MDR_register
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/MAR_register.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/MAR_register.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/MAR_register.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/MAR_register.v 
 # -- Compiling module MAR_register
 # 
 # Top level modules:
 # 	MAR_register
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/divisor.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/divisor.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/divisor.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/divisor.v 
 # -- Compiling module divisor
 # 
 # Top level modules:
 # 	divisor
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:08 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/decoder2to4.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/decoder2to4.v 
+# Start time: 01:17:08 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/decoder2to4.v 
 # -- Compiling module decoder2_to_4
 # 
 # Top level modules:
 # 	decoder2_to_4
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/DataPath.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/DataPath.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/DataPath.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/DataPath.v 
 # -- Compiling module DataPath
 # 
 # Top level modules:
 # 	DataPath
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/CON_FF.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/CON_FF.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/CON_FF.v 
 # -- Compiling module CON_FF
 # 
 # Top level modules:
 # 	CON_FF
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Bus.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/Bus.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:56 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/Bus.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/Bus.v 
 # -- Compiling module Bus
 # 
 # Top level modules:
 # 	Bus
-# End time: 21:38:56 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/booth.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/booth.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/booth.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/booth.v 
 # -- Compiling module booth
 # 
 # Top level modules:
 # 	booth
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/andALU.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/andALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/andALU.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/andALU.v 
 # -- Compiling module andALU
 # 
 # Top level modules:
 # 	andALU
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/adder.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/adder.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/adder.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/adder.v 
 # -- Compiling module adder
 # 
 # Top level modules:
 # 	adder
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/ALU.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/ALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/ALU.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/ALU.v 
 # -- Compiling module ALU
 # 
 # Top level modules:
 # 	ALU
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/shiftRight.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/shiftRight.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/shiftRight.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/shiftRight.v 
 # -- Compiling module shiftRight
 # 
 # Top level modules:
 # 	shiftRight
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/decoder_4_to_16.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/decoder_4_to_16.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/decoder_4_to_16.v 
 # -- Compiling module decoder_4_to_16
 # 
 # Top level modules:
 # 	decoder_4_to_16
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/select_and_encoder.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/select_and_encoder.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/select_and_encoder.v 
 # -- Compiling module select_and_encoder
 # 
 # Top level modules:
 # 	select_and_encoder
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/mux_2_to_1.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/mux_2_to_1.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/mux_2_to_1.v 
 # -- Compiling module mux_2_to_1
 # 
 # Top level modules:
 # 	mux_2_to_1
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/encoder_32_to_5.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/encoder_32_to_5.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/encoder_32_to_5.v 
 # -- Compiling module encoder_32_to_5
 # 
 # Top level modules:
 # 	encoder_32_to_5
-# End time: 21:38:57 on Mar 26,2025, Elapsed time: 0:00:00
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/DataPath_P2_tb.v}
+# vlog -vlog01compat -work work +incdir+C:/intelFPGA_lite/18.1/elec374_project {C:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 21:38:57 on Mar 26,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/21tof1/ELEC374" C:/Users/21tof1/ELEC374/DataPath_P2_tb.v 
+# Start time: 01:17:09 on Mar 27,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/intelFPGA_lite/18.1/elec374_project" C:/intelFPGA_lite/18.1/elec374_project/DataPath_P2_tb.v 
 # -- Compiling module DataPath_P2_tb
 # 
 # Top level modules:
 # 	DataPath_P2_tb
-# End time: 21:38:58 on Mar 26,2025, Elapsed time: 0:00:01
+# End time: 01:17:09 on Mar 27,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  DataPath_P2_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" DataPath_P2_tb 
-# Start time: 21:38:58 on Mar 26,2025
+# Start time: 01:17:10 on Mar 27,2025
 # Loading work.DataPath_P2_tb
 # Loading work.DataPath
 # Loading work.select_and_encoder
@@ -354,18 +354,14 @@
 # Loading work.Bus
 # Loading work.Mux32to1
 # Loading work.memram
+# Loading altera_mf_ver.altsyncram
 # Loading work.CON_FF
 # Loading work.decoder2_to_4
-# ** Warning: (vsim-3015) C:/Users/21tof1/ELEC374/subtractor.v(12): [PCDPC] - Port size (32) does not match connection size (64) for port 'A'. The port definition is at: C:/Users/21tof1/ELEC374/adder.v(1).
-#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/alu/sub_op/add1 File: C:/Users/21tof1/ELEC374/adder.v
-# ** Warning: (vsim-3015) C:/Users/21tof1/ELEC374/subtractor.v(12): [PCDPC] - Port size (32) does not match connection size (64) for port 'B'. The port definition is at: C:/Users/21tof1/ELEC374/adder.v(1).
-#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/alu/sub_op/add1 File: C:/Users/21tof1/ELEC374/adder.v
-# ** Warning: (vsim-3015) C:/Users/21tof1/ELEC374/subtractor.v(15): [PCDPC] - Port size (32) does not match connection size (64) for port 'A'. The port definition is at: C:/Users/21tof1/ELEC374/adder.v(1).
-#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/alu/sub_op/add2 File: C:/Users/21tof1/ELEC374/adder.v
-# ** Warning: (vsim-3015) C:/Users/21tof1/ELEC374/subtractor.v(15): [PCDPC] - Port size (32) does not match connection size (64) for port 'B'. The port definition is at: C:/Users/21tof1/ELEC374/adder.v(1).
-#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/alu/sub_op/add2 File: C:/Users/21tof1/ELEC374/adder.v
-# ** Warning: (vsim-3015) C:/Users/21tof1/ELEC374/ALU.v(27): [PCDPC] - Port size (5) does not match connection size (6) for port 'rotate'. The port definition is at: C:/Users/21tof1/ELEC374/rotateRight.v(4).
-#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/alu/ror_op File: C:/Users/21tof1/ELEC374/rotateRight.v
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/elec374_project/ALU.v(31): [PCDPC] - Port size (5) does not match connection size (6) for port 'rotate'. The port definition is at: C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/alu/ror_op File: C:/intelFPGA_lite/18.1/elec374_project/rotateRight.v
 # 
 # add wave *
 # view structure
@@ -373,5 +369,5 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run 500 ns
-# End time: 21:39:56 on Mar 26,2025, Elapsed time: 0:00:58
-# Errors: 0, Warnings: 5
+# ** Warning: (vsim-PLI-3412) Memory address read on line 1025 of file "ld.ver" is out of bounds specified for readmem command.  (Current address [512], address range [0:511])    : /build/swbuild/SJ/nightly/18.1std/625/l64/work/modelsim/eda/sim_lib/altera_mf.v(48976)
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/UUT/ram/altsyncram_component/m_default/altsyncram_inst

@@ -1,0 +1,13 @@
+Warning (10268): Verilog HDL information at datapath_sub_tb.v(95): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_sub_tb.v Line: 95
+Warning (10268): Verilog HDL information at datapath_shr_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_shr_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_shra_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_shra_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_shl_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_shl_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_ror_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_ror_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_rol_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_rol_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_or_tb.v(95): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_or_tb.v Line: 95
+Warning (10268): Verilog HDL information at datapath_not_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_not_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_neg_tb.v(93): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_neg_tb.v Line: 93
+Warning (10268): Verilog HDL information at datapath_mul_tb.v(100): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_mul_tb.v Line: 100
+Warning (10268): Verilog HDL information at datapath_div_tb.v(100): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_div_tb.v Line: 100
+Warning (10268): Verilog HDL information at datapath_add_tb.v(95): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_add_tb.v Line: 95
+Warning (10268): Verilog HDL information at datapath_tb.v(88): always construct contains both blocking and non-blocking assignments File: C:/intelFPGA_lite/18.1/elec374_project/datapath_tb.v Line: 88

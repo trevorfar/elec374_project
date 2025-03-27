@@ -2,15 +2,14 @@
 
 module DataPath (
     input wire clk, clear, read,
-    input wire [31:0] fromInPort,
     input wire [4:0] opcode,
     input wire [7:0] pc_offset,
     input wire set_pc_flag,
 
     input wire HIin, LOin, MARin, MDRin, Yin, Zin, PCin, IRin,
     input wire HIout, LOout, MARout, MDRout, PCout, Cout, Inout, Outout,
-    input wire IncPC, wren, muxSignal,
-    input wire Gra, Grb, Grc, Rin, Rout, BAout,
+    input wire IncPC, wren, muxSignal, zhighout, zlowout,
+    input wire Gra, Grb, Grc, Rin, Rout, BAout, inport_in, outport_in,
     input wire con_in,
 
     output wire [31:0] BusLine,
@@ -18,9 +17,8 @@ module DataPath (
     output wire [31:0] R5_data, R6_data, R7_data, R8_data, R9_data,
     output wire [31:0] R10_data, R11_data, R12_data, R13_data, R14_data,
     output wire [31:0] R15_data, HI_data, LO_data, MDR_data,
-    output wire [31:0] Y_data, Z_data, PC_data, IR_data, Ram_data, C_data, z_high_data_out, z_low_data_out,
+    output wire [31:0] Y_data, PC_data, IR_data, Ram_data, C_data, z_high_data_out, z_low_data_out,
     output wire [31:0] InPort_data, OutUnit, YLine,
-    output wire [4:0] encoded_signal,
     output wire [4:0] select_signals,
     output wire [63:0] ZLine,
     output wire [15:0] Result_in, Result_out,
@@ -34,8 +32,10 @@ module DataPath (
         .Result_in(Result_in), .Result_out(Result_out), .c_sign_extended(C_data)
     );
 
+	 wire [31:0] r0_data_out_and;
+	 assign R0_data = {32{!BAout}} & r0_data_out_and;
     // Register file (R0-R15)
-    register R0 (clear, clk, Result_in[0], BusLine, R0_data);
+    register R0 (clear, clk, Result_in[0], BusLine, r0_data_out_and);
     register R1 (clear, clk, Result_in[1], BusLine, R1_data);
     register R2 (clear, clk, Result_in[2], BusLine, R2_data);
     register R3 (clear, clk, Result_in[3], BusLine, R3_data);
@@ -57,13 +57,13 @@ module DataPath (
     register LO (clear, clk, LOin, BusLine, LO_data);
     register IR (clear, clk, IRin, BusLine, IR_data);
     register Y (clear, clk, Yin, BusLine, Y_data);
-    register InPort (clear, clk, 1'b1, fromInPort, InPort_data);
-    register OutPort (clear, clk, 1'b1, BusLine, OutUnit);
+    register InPort (clear, clk, inport_in, BusLine, InPort_data);
+    register OutPort (clear, clk, outport_in, BusLine, OutUnit);
 
 	 
     MAR_register MAR (.clear(clear), .clk(clk), .mar_in(MARin), .bus_data(BusLine), .mar_address_out(MAR_address));
-	 register_64 Z(.z_high_data_out(z_high_data_out), .Zdatain(Z_data), .clear(clear), .clk(clk), .rz_in(Zin), .z_low_data_out(z_low_data_out));
-	 PC_register PC (clear, clk, PCin, PCout, IncPC, BusLine, PC_data);
+	 register_64 Z(.z_high_data_out(z_high_data_out), .Zdatain(ZLine), .clear(clear), .clk(clk), .rz_in(Zin), .z_low_data_out(z_low_data_out));
+	 PC_register PC (clear, clk, PCin, IncPC, BusLine, PC_data);
 
     MDR_register MDR (.clear(clear), .Mdatain(Ram_data), .bus_mux_out(BusLine), .clk(clk), .mdr_in(MDRin), .mdr_read(read), .mdr_data_out(MDR_data));
 
@@ -71,7 +71,7 @@ module DataPath (
     Mux_2to1 muxY (.I0(Y_data), .I1(C_data), .signal(muxSignal), .MuxOut(YLine));
 
     // ALU
-    ALU alu(.clk(clk), .signal(opcode), .A(YLine), .B(BusLine), .Result(ZLine));
+    ALU alu(.clk(clk), .signal(opcode), .A(YLine), .B(BusLine), .result(ZLine));
 
 
 	 encoder_32_to_5 bus_encoder(
@@ -85,11 +85,9 @@ module DataPath (
         .R0_data(R0_data), .R1_data(R1_data), .R2_data(R2_data), .R3_data(R3_data), .R4_data(R4_data),
         .R5_data(R5_data), .R6_data(R6_data), .R7_data(R7_data), .R8_data(R8_data), .R9_data(R9_data),
         .R10_data(R10_data), .R11_data(R11_data), .R12_data(R12_data), .R13_data(R13_data), .R14_data(R14_data),
-        .R15_data(R15_data), .HI_data(HI_data), .LO_data(LO_data), .MDR_data(MDR_data), z_low_data_out(z_low_data_out), .z_high_data_out(z_high_data_out),
-        = .PC_data(PC_data), .clock(clk), .C_data(C_data), .InPort_data(InPort_data),
-        .BusMuxOut(BusLine), .encoded_signal(encoded_signal)
-		  
-		  
+        .R15_data(R15_data), .HI_data(HI_data), .LO_data(LO_data), .MDR_data(MDR_data), .z_low_data_out(z_low_data_out), .z_high_data_out(z_high_data_out),
+        .PC_data(PC_data), .clock(clk), .C_data(C_data), .InPort_data(InPort_data),
+        .muxOut(BusLine)
     );
 
     // Memory

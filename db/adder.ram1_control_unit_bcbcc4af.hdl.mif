@@ -1,0 +1,43 @@
+-- begin_signature
+-- control_unit
+-- end_signature
+WIDTH=3;
+DEPTH=32;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=BIN;
+
+CONTENT BEGIN
+	31 :	XXX;
+	30 :	XXX;
+	29 :	XXX;
+	28 :	XXX;
+	27 :	XXX;
+	26 :	XXX;
+	25 :	XXX;
+	24 :	XXX;
+	23 :	XXX;
+	22 :	XXX;
+	21 :	XXX;
+	20 :	XXX;
+	19 :	XXX;
+	18 :	XXX;
+	17 :	XXX;
+	16 :	XXX;
+	15 :	XXX;
+	14 :	XXX;
+	13 :	XXX;
+	12 :	101;
+	11 :	XXX;
+	10 :	XXX;
+	9 :	XXX;
+	8 :	XXX;
+	7 :	XXX;
+	6 :	XXX;
+	5 :	XXX;
+	4 :	XXX;
+	3 :	XXX;
+	2 :	111;
+	1 :	101;
+	0 :	111;
+END;

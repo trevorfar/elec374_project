@@ -1,20 +1,24 @@
-module ALU (
-    input wire clk,               // Clock input for division
-    input wire [4:0] signal,      // Operation selection from signal input 
-    input wire [31:0] A, B,       // 32-bit Inputs
-    output reg [63:0] Result      // 64-bit Result to go into register Z 
+
+module ALU(
+	input wire [31:0] A, 
+	input wire [31:0] B,
+	//input wire [31:0] Y,
+	input wire clk,
+	input wire [4:0] signal,
+	output reg [63:0] result
 );
 
-    // Wires to store outputs from the submodules
-    wire [63:0] and_result, or_result, not_result, add_result, sub_result;
-    wire [63:0] mul_result, shl_result, shr_result, shra_result, rol_result, ror_result, neg_result;
-    
-    // Division result needs a register to hold output for multiple clock cycles
-    wire [63:0] div_result;
-    reg [5:0] div_counter;  // Counter for 32-cycle division tracking
+	parameter add_code = 5'b00011, sub_code = 5'b00100, mul_code = 5'b01111, div_code = 5'b10000, 
+	and_code = 5'b00101, or_code = 5'b00110, shr_code = 5'b01001, shra_code = 5'b01010, shl_code = 5'b01011,
+	 ror_code = 5'b00111, rol_code = 5'b01000, neg_code = 5'b10001, not_code = 5'b10010, ld = 5'b00000, ldi = 5'b00001, st = 5'b00010,
+	 addi = 5'b01101, andi = 5'b01101, ori = 5'b01110, branch = 5'b10011, jal = 5'b10100, jr = 5'b10101, in = 5'b10110, out = 5'b10111, mflo = 5'b11000,
+	 mfhi = 5'b11001, nop =5'b11010, halt = 5'b11011; 
+	 
+	wire add_cout, sub_cout, div_remainder, cout, branch_flag;
+	wire [31:0] add_result, sub_result, and_result, or_result, shr_result, shra_result, shl_result, ror_result, rol_result, neg_result, not_result;
+	wire [63:0] mul_result, div_result;
 
-    // Instantiate ALU operation modules
-    andALU and_op (.A(A), .B(B), .Result(and_result));
+	 andALU and_op (.A(A), .B(B), .Result(and_result));
     orALU or_op (.A(A), .B(B), .Result(or_result));
     notALU not_op (.A(B), .Result(not_result));
     adder add_op (.A(A), .B(B), .Result(add_result));
@@ -36,42 +40,67 @@ module ALU (
         .Result(div_result)
     );
 
-    always @(posedge clk) begin
-        // Default values
-        Result = 64'b0;
-
-        case (signal)
-            5'b00000: Result = and_result;   // AND
-            5'b00001: Result = or_result;    // OR
-            5'b00010: Result = not_result;   // NOT
-            5'b00011: Result = add_result;   // ADD
-            5'b00100: Result = sub_result;   // SUB
-            5'b00101: Result = mul_result;   // MUL
-            5'b00111: Result = shl_result;   // SHL
-            5'b01000: Result = shr_result;   // SHR
-            5'b01001: Result = shra_result;  // SRA
-            5'b01010: Result = rol_result;   // ROL
-            5'b01011: Result = ror_result;   // ROR
-            5'b01100: Result = neg_result;   // NEG
-
-            5'b00110: Result = div_result;  // Assign after 33 cycles
-
-				/*
-				begin  //DIVISION (Clock-Based)
-                if (div_counter < 33) begin
-                    div_counter <= div_counter + 1; // Increment counter
-                end 
-                else begin
-                    Result <= div_result;  // Assign after 33 cycles
-                    div_counter <= 0;  // Reset counter
-                end
-            end*/
-
-            default: begin
-                Result = 64'b0;
-                div_counter = 0; // Reset counter when not dividing
-            end
-        endcase
-    end
-
+	
+always @(*) begin
+		case(signal)
+			add_code : begin
+				result[63:32] <= 32'b0;
+				result[31:0] <= add_result;
+			end
+			sub_code : begin
+				result[63:0] <= $signed(sub_result);
+			end
+			mul_code : begin
+				result[63:0] <= $signed(mul_result);
+			end
+			div_code : begin
+				result[63:32] <= (div_result[63:32]); // FIGURE DIS OUT HERE
+				result[31:0] <= (div_result[31:0]);
+			end
+			and_code, andi : begin
+				result[63:32] <= 32'b0;
+				result[31:0] <= and_result;
+			end
+			or_code, ori : begin
+				result[63:0] <= $signed(or_result);
+			end
+			shr_code : begin
+				result[63:0] <= $signed(shr_result);
+			end
+			shra_code : begin
+				result[63:0] <= $signed(shra_result);
+			end
+			shl_code : begin
+				result[63:0] <= $signed(shl_result);
+			end
+			ror_code : begin
+				result[63:0] <= $signed(ror_result);
+			end
+			rol_code : begin
+				result[63:0] <= $signed(rol_result);
+			end
+			neg_code : begin
+				result[63:0] <= $signed(neg_result);
+			end
+			not_code : begin
+				result[63:0] <= $signed(not_result);
+			end
+			ld, ldi, st, addi : begin
+				result[31:0] <= (add_result);
+				result[63:32] <= 32'b0;
+			end
+//			branch : begin
+//				if(branch_flag == 1'b1) begin
+//					result[31:0] <= (add_result);
+//					result[63:32] <= 32'b0;
+//				end else begin
+//					result[31:0] <= RY[31:0];
+//					result[63:32] <= 32'b0;
+//				end
+//			end
+			in: begin
+				result[63:0] <= 64'b0;
+			end
+		endcase 
+end
 endmodule

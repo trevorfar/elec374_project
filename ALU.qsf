@@ -57,7 +57,11 @@ set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "500 ns" -section_id Data
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name QIP_FILE memram_bb.qip
+set_global_assignment -name EDA_TEST_BENCH_FILE DataPath_P2_tb.v -section_id DataPath_P2_tb
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name HEX_FILE ld.hex
 set_global_assignment -name QIP_FILE memram.qip
 set_global_assignment -name VERILOG_FILE subtractor_test.v
 set_global_assignment -name VERILOG_FILE subtractor.v
@@ -110,10 +114,6 @@ set_global_assignment -name VERILOG_FILE ALU.v
 set_global_assignment -name VERILOG_FILE shiftRight.v
 set_global_assignment -name VERILOG_FILE shiftRight_tb.v
 set_global_assignment -name VERILOG_FILE ALUGOOD/divisor.v
-set_global_assignment -name EDA_TEST_BENCH_FILE DataPath_P2_tb.v -section_id DataPath_P2_tb
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name VERILOG_FILE decoder_4_to_16.v
 set_global_assignment -name VERILOG_FILE select_and_encoder.v
 set_global_assignment -name VERILOG_FILE mux_2_to_1.v
