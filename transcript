@@ -1,8 +1,174 @@
-# vsim boothAlgorithm1b_tb 
-# Start time: 15:49:55 on Feb 01,2025
-# Loading work.boothAlgorithm1b_tb
-# Loading work.boothAlgorithm1b
-run 100ns
-# Time=10000 | M=11111111111111111111111111001011 | Q=11111111111111111111111111000010| Result=0000000000000000000000000000000000000000000000000000110011010110
-# End time: 15:50:09 on Feb 01,2025, Elapsed time: 0:00:14
-# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/andALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/booth.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/C_sign_extender.v {C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF testbench.v} C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder2to4.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder4to16.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MAR_register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb_bb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_2to1.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_32to1.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux32to1_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/negALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/notALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/orALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_64.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_R0.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateLeft.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/SelectAndEncoder.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/selectAndEncoder_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftLeft.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftRight.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/sra.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor_test.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:20:39 on Mar 24,2025
+# vlog -reportprogress 300 -work work C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/andALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/booth.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/C_sign_extender.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF testbench.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder2to4.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder4to16.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MAR_register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb_bb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_2to1.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_32to1.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux32to1_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/negALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/notALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/orALU.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_64.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_R0.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_test.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateLeft.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/SelectAndEncoder.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/selectAndEncoder_tb.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftLeft.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftRight.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/sra.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor_test.v 
+# -- Compiling module adder
+# -- Compiling module adder_tb
+# -- Compiling module ALU
+# -- Compiling module ALU_tb
+# -- Compiling module andALU
+# -- Compiling module booth
+# -- Compiling module boothAlgorithm1b
+# -- Compiling module boothAlgorithm1b_tb
+# -- Compiling module Bus
+# -- Compiling module Bus_tb
+# -- Compiling module C_sign_extender
+# -- Compiling module CON_FF_tb
+# -- Compiling module CON_FF
+# -- Compiling module DataPath
+# -- Compiling module DataPath_P2_tb
+# -- Compiling module DataPath_tb
+# -- Compiling module decoder2_to_4
+# -- Compiling module decoder4to16
+# -- Compiling module divisor
+# -- Compiling module divisor_tb
+# -- Compiling module Encoder32to5
+# -- Compiling module Encoder32to5_test
+# -- Compiling module io
+# -- Compiling module io_tb
+# -- Compiling module MAR_register
+# -- Compiling module MDR_register
+# -- Compiling module MDR_register_tb
+# -- Compiling module memram
+# ** Warning: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v(34): (vlog-2275) 'memram' already exists and will be overwritten.
+# -- Compiling module memram
+# -- Compiling module memram_bb
+# -- Compiling module Mux_2to1
+# -- Compiling module Mux32to1
+# -- Compiling module Mux32to1_test
+# -- Compiling module negALU
+# -- Compiling module notALU
+# -- Compiling module orALU
+# -- Compiling module PC_register
+# -- Compiling module PC_register_tb
+# -- Compiling module register
+# -- Compiling module register_64
+# -- Compiling module register_R0
+# -- Compiling module register_tb
+# -- Compiling module rotLeft
+# -- Compiling module rotateRight
+# -- Compiling module SelectAndEncoder
+# -- Compiling module selectAndEncoder_tb
+# -- Compiling module shiftLeft
+# -- Compiling module shiftRight
+# -- Compiling module sra
+# -- Compiling module subtractor
+# -- Compiling module subtractor_tb
+# 
+# Top level modules:
+# 	adder_tb
+# 	ALU_tb
+# 	boothAlgorithm1b_tb
+# 	Bus_tb
+# 	CON_FF_tb
+# 	DataPath_P2_tb
+# 	DataPath_tb
+# 	divisor_tb
+# 	Encoder32to5_test
+# 	io_tb
+# 	MDR_register_tb
+# 	memram_bb
+# 	Mux32to1_test
+# 	PC_register_tb
+# 	register_R0
+# 	register_tb
+# 	selectAndEncoder_tb
+# 	subtractor_tb
+# End time: 20:20:39 on Mar 24,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+vsim work.DataPath_P2_tb
+# vsim work.DataPath_P2_tb 
+# Start time: 20:20:52 on Mar 24,2025
+# Loading work.DataPath_P2_tb
+# Loading work.DataPath
+# Loading work.SelectAndEncoder
+# Loading work.decoder4to16
+# Loading work.register
+# Loading work.MAR_register
+# Loading work.register_64
+# Loading work.PC_register
+# Loading work.MDR_register
+# Loading work.CON_FF
+# Loading work.decoder2_to_4
+# Loading work.Bus
+# Loading work.Encoder32to5
+# Loading work.Mux32to1
+# Loading work.Mux_2to1
+# Loading work.ALU
+# Loading work.andALU
+# Loading work.orALU
+# Loading work.notALU
+# Loading work.adder
+# Loading work.subtractor
+# Loading work.booth
+# Loading work.shiftLeft
+# Loading work.shiftRight
+# Loading work.sra
+# Loading work.rotLeft
+# Loading work.rotateRight
+# Loading work.negALU
+# Loading work.divisor
+# Loading work.memram
+# Loading work.C_sign_extender
+# ** Warning: (vsim-3017) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Too few port connections. Expected 70, found 39.
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'fromInPort'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R0_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R1_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R2_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R3_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R5_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R6_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R7_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R8_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R9_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R10_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R11_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R12_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R13_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R14_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'R15_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'HI_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'LO_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'Y_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'Ram_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'C_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'InPort_data'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'OutUnit'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'encoded_signal'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'select_signals'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'YLine'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'ZLine'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'Result_in'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'Result_out'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'MAR_address'.
+# ** Warning: (vsim-3722) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(15): [TFMPC] - Missing connection for port 'con_out'.
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v(65): [PCDPC] - Port size (1) does not match connection size (32) for port 'Rout'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/Y File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v(67): [PCDPC] - Port size (1) does not match connection size (32) for port 'Rout'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/IR File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v(69): [PCDPC] - Port size (32) does not match connection size (1) for port 'Mdatain'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/MDR File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v(12): [PCDPC] - Port size (32) does not match connection size (64) for port 'A'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/alu/sub_op/add1 File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v(12): [PCDPC] - Port size (32) does not match connection size (64) for port 'B'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/alu/sub_op/add1 File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v(15): [PCDPC] - Port size (32) does not match connection size (64) for port 'A'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/alu/sub_op/add2 File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v(15): [PCDPC] - Port size (32) does not match connection size (64) for port 'B'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/alu/sub_op/add2 File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v(27): [PCDPC] - Port size (5) does not match connection size (6) for port 'rotate'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/alu/ror_op File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v(99): [PCDPC] - Port size (32) does not match connection size (1) for port 'q'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v(39).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/ram File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v(103): [PCDPC] - Port size (1) does not match connection size (32) for port 'Rin'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/InPort File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v
+# ** Warning: (vsim-3015) C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v(104): [PCDPC] - Port size (1) does not match connection size (32) for port 'Rin'. The port definition is at: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /DataPath_P2_tb/uut/OutPort File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v
+run -all
+# ❌ FAIL: R4 = zzzzzzzz (Expected 00000097)
+# ** Note: $stop    : C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v(96)
+#    Time: 191 ns  Iteration: 0  Instance: /DataPath_P2_tb
+# Break in Module DataPath_P2_tb at C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v line 96
+# End time: 20:25:58 on Mar 24,2025, Elapsed time: 0:05:06
+# Errors: 0, Warnings: 43

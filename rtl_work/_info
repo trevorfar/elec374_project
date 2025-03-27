@@ -1,0 +1,1093 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/intelFPGA_lite/18.1/ELEC374/ELEC374
+vadder
+Z1 !s110 1742862039
+!i10b 1
+!s100 gOmzC9mmiGH2bWX6IC=_B0
+Il3PGKlkb6[lJ@H1:93RgX0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1741023039
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1742862039.000000
+Z6 !s107 C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/sra.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftRight.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftLeft.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/selectAndEncoder_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/SelectAndEncoder.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateLeft.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_R0.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_64.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/orALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/notALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/negALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux32to1_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_32to1.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_2to1.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb_bb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MAR_register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder4to16.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder2to4.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF testbench.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/C_sign_extender.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/booth.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/andALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v|
+Z7 !s90 -reportprogress|300|-work|work|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/andALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/booth.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/C_sign_extender.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF testbench.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder2to4.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder4to16.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MAR_register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb_bb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_2to1.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_32to1.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux32to1_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/negALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/notALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/orALU.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_64.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_R0.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_test.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateLeft.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/SelectAndEncoder.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/selectAndEncoder_tb.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftLeft.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftRight.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/sra.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v|C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor_test.v|
+!i113 1
+Z8 o-work work
+Z9 tCvgOpt 0
+vadder_tb
+R1
+!i10b 1
+!s100 _SB?6el^LX81IPlMANak`3
+InilJ?KD`nQg?ePAk`eFN:1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/adder_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vALU
+R1
+!i10b 1
+!s100 inJV9MQzidOmUWH:UDh^L2
+I@nQkE`7zYJBc40ja^hfXg0
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@a@l@u
+vALU_tb
+R1
+!i10b 1
+!s100 edWbCECO[z?PcoZg]5N`D2
+IGgIi;KD8CBH^LO9A6I_E83
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALU_tb.v
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@a@l@u_tb
+vandALU
+R1
+!i10b 1
+!s100 SW7^8_N>@bJl>A29@0nBA3
+I?in@OoX]e`44H2<]V^CzB0
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/andALU.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/andALU.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nand@a@l@u
+vbooth
+R1
+!i10b 1
+!s100 XXmQ=D;Hm5P;[m41o>25C0
+ITcDRHgKC@Nm3ECMi?lfJQ1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/booth.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/booth.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vboothAlgorithm1b
+R1
+!i10b 1
+!s100 52jIIAnN8C;Ig6dd0QNZg2
+IAYBTCzXDajY<6mD`IEN@R1
+R2
+R0
+w1738550100
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nbooth@algorithm1b
+vboothAlgorithm1b_tb
+R1
+!i10b 1
+!s100 HMRG=Wbj7ST:W^fV07mhY1
+IcGNYC@lDS0hkOd8fB[[hj0
+R2
+R0
+w1738550178
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/boothAlgorithm1b_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nbooth@algorithm1b_tb
+vBus
+R1
+!i10b 1
+!s100 ?6`7Ij1zonbVzI?6aHUP31
+IP8ElHbmo9XNHZ[KnZF^ID0
+R2
+R0
+w1742829515
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@bus
+vBus_tb
+R1
+!i10b 1
+!s100 V=:]h9h5:613M<EHm:WP]0
+IbXH1olgN1@KUd@Lh5E>5;2
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Bus_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@bus_tb
+vC_sign_extender
+R1
+!i10b 1
+!s100 TTg:BAbz=@^m5<<jXon_a2
+Io`AQVQYPDjJk8TnU95lG<0
+R2
+R0
+Z10 w1742829516
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/C_sign_extender.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/C_sign_extender.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@c_sign_extender
+vCON_FF
+R1
+!i10b 1
+!s100 oDhYU2<4n:neJBP5`RSdf1
+I<?7;>_zN^1EIb]RU?dBQT3
+R2
+R0
+R10
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@c@o@n_@f@f
+vCON_FF_tb
+R1
+!i10b 1
+!s100 SNdZ8`4PJM`d72EY0coaf0
+ISADODa<@dE@3e5m34nFUQ3
+R2
+R0
+R10
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF testbench.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/CON_FF testbench.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@c@o@n_@f@f_tb
+vDataPath
+R1
+!i10b 1
+!s100 ai`JT72@lBgjPD3Cke>ED2
+I1M`1]IzzPji<Hb6SAkXAB1
+R2
+R0
+w1742839217
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@data@path
+vDataPath_P2_tb
+R1
+!i10b 1
+!s100 51^@>oDP^ll6FFllNKYJK3
+IeYTjHN<Nnzc=?hh4R:;Ye3
+R2
+R0
+w1742861948
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_P2_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@data@path_@p2_tb
+vDataPath_tb
+R1
+!i10b 1
+!s100 VW@<LH<k=10I;Sm0UVC:?2
+IP>]PO9XLDj`=d1U@:jiC82
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/DataPath_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@data@path_tb
+vdecoder2_to_4
+R1
+!i10b 1
+!s100 ^jCgWL;Y0]eHek5Sg[h:?1
+Il5EPmeSUM6V5^;F;c^9z03
+R2
+R0
+Z11 w1742829517
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder2to4.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder2to4.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vdecoder4to16
+R1
+!i10b 1
+!s100 zVZZaE>1z8C_n8@6dbW_53
+I[C5_JChXZH<c<]oMPFZEf2
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder4to16.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/decoder4to16.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vdivisor
+R1
+!i10b 1
+!s100 Y1[f^TlK5;^Y9c71Y[NBo3
+I^Cg<?DHj[SgionW_CzM9R3
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vdivisor_tb
+R1
+!i10b 1
+!s100 Nai_38L75cK<WRJ4EQeS42
+IeYA1;c`C:_jgA:9zVDFJS2
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/divisor_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vEncoder32to5
+R1
+!i10b 1
+!s100 >YM6zIlfEj^:OOh1NB[nD0
+IeQZ`>B23<F65dfPYbk81d3
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@encoder32to5
+vEncoder32to5_test
+R1
+!i10b 1
+!s100 nnU>8>lHbbVUCH68<6W>>1
+I>aGiS0cWjA0NaVTBQej=g3
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Encoder32to5_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@encoder32to5_test
+vio
+R1
+!i10b 1
+!s100 V^W:X<zK5ho9I2852Rd6X1
+If^[4MnK3MLg3:AoHZdIRl1
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/io.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vio_tb
+R1
+!i10b 1
+!s100 YXG8VU4C]`lHHni@KBMzP1
+I[_kif]M0112]13_Cmh8i]2
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/io_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/io_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vMAR_register
+R1
+!i10b 1
+!s100 CdSLC4_21GGEo>Yb1lk1`2
+IVnUZV?z:oZ0_Hhe0oe9I]1
+R2
+R0
+R10
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MAR_register.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/MAR_register.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@m@a@r_register
+vMDR_register
+R1
+!i10b 1
+!s100 PcX]kmVgDia9gf]fzfiR[0
+Iz]03fz`CT@h[F7gO<;^LV1
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_register.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@m@d@r_register
+vMDR_register_tb
+R1
+!i10b 1
+!s100 QccAZLe0H8k1kIGHHg3e92
+IRn19FR[D<8i[?ib64YFV;2
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/MDR_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@m@d@r_register_tb
+vmemram
+R1
+!i10b 1
+!s100 g`]CHjQJMnCHb0?hi8I_l2
+IToBEAIo6P7QknOHzjeKd=2
+R2
+R0
+w1742844768
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb.v
+L0 34
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vmemram_bb
+R1
+!i10b 1
+!s100 OHUEP`mO``kzV^Vam2jK;1
+I]nbb_@RMUHOd>819<g3Ub2
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb_bb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/memram_bb_bb.v
+L0 35
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vMux32to1
+R1
+!i10b 1
+!s100 PSIMcco?KP8g4fh6ihj0h0
+Ie^6@_W>V97G`@L6HUGcGe1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_32to1.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_32to1.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@mux32to1
+vMux32to1_test
+R1
+!i10b 1
+!s100 KbfG2E2`@AlfNR4lHc`K<3
+IkjYSDXKKi:I2Wb5<;A90T1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux32to1_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux32to1_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@mux32to1_test
+vMux_2to1
+R1
+!i10b 1
+!s100 5=IgH:z]zeTWgaWWTmS7U3
+Ik[6e]D[__2ET31g2LoOR51
+R2
+R0
+w1742841994
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_2to1.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/Mux_2to1.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@mux_2to1
+vnegALU
+R1
+!i10b 1
+!s100 im]MhX7F2E3gZQn>0UddA1
+IIYbV[2kZR`;k?hAVaJlRE3
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/negALU.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/negALU.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nneg@a@l@u
+vnotALU
+R1
+!i10b 1
+!s100 SEA^`nbBG1<am_T]E66]62
+IT9J5K1`ZFlhVz;FfCSRn82
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/notALU.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/notALU.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nnot@a@l@u
+vorALU
+R1
+!i10b 1
+!s100 k4SOk>>nXO>Z::]U43Ei:3
+ID`ezZd5nX6L?f^SJS26;I3
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/orALU.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/orALU.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nor@a@l@u
+vPC_register
+R1
+!i10b 1
+!s100 ZZkc6_kfmf@bkONzc6Q@D2
+IQKQ=LSRXU;aChh4HdokeG1
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@p@c_register
+vPC_register_tb
+R1
+!i10b 1
+!s100 28P>^Pkal21SIQZI6iM4A0
+IJQbGS[X3H6XXlVoW[Ae^20
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/PC_register_tb.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@p@c_register_tb
+vregister
+R1
+!i10b 1
+!s100 A`n>K;DWNiz`?9KAKT[gR2
+IPd:5z4[oRFS?AFTMnKfil1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/register.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vregister_64
+R1
+!i10b 1
+!s100 :eE6^UQ3]UbM[V0?3Lh?M3
+I6j;eE]=O<z9aSOQObK85B2
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_64.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_64.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vregister_R0
+R1
+!i10b 1
+!s100 nZiPPI0@AjaOk5IOEQcT<2
+I@4S9zUz^AK5WCj<lJP>6=3
+R2
+R0
+Z12 w1742829518
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_R0.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_R0.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nregister_@r0
+vregister_tb
+R1
+!i10b 1
+!s100 cd32U07?o=G22DO_J39<o3
+I;;F[i89]V0]i;ajJ81Zfb2
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/register_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vrotateRight
+R1
+!i10b 1
+!s100 l<V8EG5fHkU6]`EF31O<<2
+I_9iH^M9M@Wc[j3ePZ0TaC1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateRight.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nrotate@right
+vrotLeft
+R1
+!i10b 1
+!s100 TIM4f5nM[8=_MPam<9ER73
+I@kHgPi[KVl=I0JJFEL2PS1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateLeft.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/rotateLeft.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nrot@left
+vSelectAndEncoder
+R1
+!i10b 1
+!s100 =hk0aV6g0554=J7Fn>TnN0
+Ija2;O_QXX>Hfl;kOoW2Wb0
+R2
+R0
+R11
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/SelectAndEncoder.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/SelectAndEncoder.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+n@select@and@encoder
+vselectAndEncoder_tb
+R1
+!i10b 1
+!s100 i_kmSNQ_fTk7XQTjYF<8g2
+IdEFF?>0928`e<=Nc1<:>k1
+R2
+R0
+R12
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/selectAndEncoder_tb.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/selectAndEncoder_tb.v
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nselect@and@encoder_tb
+vshiftLeft
+R1
+!i10b 1
+!s100 LHKSjL<mdkDa1P8PaHhT^2
+Igb8@;nma7dXRI@D:0:D;23
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftLeft.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftLeft.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nshift@left
+vshiftRight
+R1
+!i10b 1
+!s100 lY<Xnfa`7D::jiQF7RKaC1
+IhmdYATFPbc=<Mf43e0;0=3
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftRight.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/shiftRight.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+nshift@right
+vsra
+R1
+!i10b 1
+!s100 @lcnRdfTfd05CT?10313k2
+IUU;nbRTm@Fz2a^cz`U5PB0
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/sra.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/sra.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vsubtractor
+R1
+!i10b 1
+!s100 cFR3fFkS`OZJh6dGZOlY:0
+Ig5_;:ME[If5j2RTeoGdJ@1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vsubtractor_tb
+R1
+!i10b 1
+!s100 N1i6FI0URM5R1^5TjcGFf3
+IfLKchWHi>J=1[=Lc6?zAa1
+R2
+R0
+R3
+8C:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor_test.v
+FC:/intelFPGA_lite/18.1/ELEC374/ELEC374/subtractor_test.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
