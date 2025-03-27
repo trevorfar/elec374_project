@@ -1,16 +1,17 @@
-Analysis & Synthesis report for ALU
-Mon Feb 24 13:36:06 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Analysis & Elaboration report for ALU
+Wed Mar 26 21:47:58 2025
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
 ---------------------
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Analysis & Elaboration Settings
+  5. Analysis & Elaboration Messages
+  6. Analysis & Elaboration Suppressed Messages
 
 
 
@@ -33,31 +34,47 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Mon Feb 24 13:36:06 2025           ;
-; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name               ; ALU                                         ;
-; Top-level Entity Name       ; ALU                                         ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++---------------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                                  ;
++-------------------------------+-------------------------------------------------+
+; Analysis & Elaboration Status ; Failed - Wed Mar 26 21:47:58 2025               ;
+; Quartus Prime Version         ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name                 ; ALU                                             ;
+; Top-level Entity Name         ; DataPath                                        ;
+; Family                        ; Cyclone V                                       ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                       ;
+; Total registers               ; N/A until Partition Merge                       ;
+; Total pins                    ; N/A until Partition Merge                       ;
+; Total virtual pins            ; N/A until Partition Merge                       ;
+; Total block memory bits       ; N/A until Partition Merge                       ;
+; Total PLLs                    ; N/A until Partition Merge                       ;
+; Total DLLs                    ; N/A until Partition Merge                       ;
++-------------------------------+-------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                                             ;
+; Analysis & Elaboration Settings                                                                                           ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CEBA4F23C7        ;                    ;
-; Top-level entity name                                                           ; ALU                ; ALU                ;
+; Top-level entity name                                                           ; DataPath           ; ALU                ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -138,42 +155,138 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 10          ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Mon Feb 24 13:35:54 2025
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ALU -c ALU
+Info: Running Quartus Prime Analysis & Elaboration
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+    Info: Processing started: Wed Mar 26 21:47:47 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ALU -c ALU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
-Warning (12019): Can't analyze file -- file ALU.v is missing
-Warning (12019): Can't analyze file -- file shiftRight.v is missing
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file memram_bb.v
+    Info (12023): Found entity 1: memram File: C:/Users/21tof1/ELEC374/memram_bb.v Line: 34
+Info (12021): Found 0 design units, including 0 entities, in source file memram.v
+Info (12021): Found 1 design units, including 1 entities, in source file subtractor_test.v
+    Info (12023): Found entity 1: subtractor_tb File: C:/Users/21tof1/ELEC374/subtractor_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file subtractor.v
+    Info (12023): Found entity 1: subtractor File: C:/Users/21tof1/ELEC374/subtractor.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file sra.v
+    Info (12023): Found entity 1: sra File: C:/Users/21tof1/ELEC374/sra.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file shiftleft.v
+    Info (12023): Found entity 1: shiftLeft File: C:/Users/21tof1/ELEC374/shiftLeft.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file selectandencoder_tb.v
+    Info (12023): Found entity 1: selectAndEncoder_tb File: C:/Users/21tof1/ELEC374/selectAndEncoder_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file selectandencoder.v
+    Info (12023): Found entity 1: SelectAndEncoder File: C:/Users/21tof1/ELEC374/SelectAndEncoder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rotateright.v
+    Info (12023): Found entity 1: rotateRight File: C:/Users/21tof1/ELEC374/rotateRight.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file rotateleft.v
+    Info (12023): Found entity 1: rotLeft File: C:/Users/21tof1/ELEC374/rotateLeft.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file register_test.v
+    Info (12023): Found entity 1: register_tb File: C:/Users/21tof1/ELEC374/register_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file register_r0.v
+    Info (12023): Found entity 1: register_R0 File: C:/Users/21tof1/ELEC374/register_R0.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file register_64.v
+    Info (12023): Found entity 1: register_64 File: C:/Users/21tof1/ELEC374/register_64.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file register.v
+    Info (12023): Found entity 1: register File: C:/Users/21tof1/ELEC374/register.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file pc_register_tb.v
+    Info (12023): Found entity 1: PC_register_tb File: C:/Users/21tof1/ELEC374/PC_register_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file pc_register.v
+    Info (12023): Found entity 1: PC_register File: C:/Users/21tof1/ELEC374/PC_register.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file oralu.v
+    Info (12023): Found entity 1: orALU File: C:/Users/21tof1/ELEC374/orALU.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file notalu.v
+    Info (12023): Found entity 1: notALU File: C:/Users/21tof1/ELEC374/notALU.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file negalu.v
+    Info (12023): Found entity 1: negALU File: C:/Users/21tof1/ELEC374/negALU.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mux_32to1.v
+    Info (12023): Found entity 1: Mux32to1 File: C:/Users/21tof1/ELEC374/Mux_32to1.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mux_2to1.v
+    Info (12023): Found entity 1: Mux_2to1 File: C:/Users/21tof1/ELEC374/Mux_2to1.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mux32to1_test.v
+    Info (12023): Found entity 1: Mux32to1_test File: C:/Users/21tof1/ELEC374/Mux32to1_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file mdr_test.v
+    Info (12023): Found entity 1: MDR_register_tb File: C:/Users/21tof1/ELEC374/MDR_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file mdr_register.v
+    Info (12023): Found entity 1: MDR_register File: C:/Users/21tof1/ELEC374/MDR_register.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mar_register.v
+    Info (12023): Found entity 1: MAR_register File: C:/Users/21tof1/ELEC374/MAR_register.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file io_tb.v
+    Info (12023): Found entity 1: io_tb File: C:/Users/21tof1/ELEC374/io_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file io.v
+    Info (12023): Found entity 1: io File: C:/Users/21tof1/ELEC374/io.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file encoder32to5_test.v
+    Info (12023): Found entity 1: Encoder32to5_test File: C:/Users/21tof1/ELEC374/Encoder32to5_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file encoder32to5.v
+    Info (12023): Found entity 1: Encoder32to5 File: C:/Users/21tof1/ELEC374/Encoder32to5.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file divisor_tb.v
+    Info (12023): Found entity 1: divisor_tb File: C:/Users/21tof1/ELEC374/divisor_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file divisor.v
+    Info (12023): Found entity 1: divisor File: C:/Users/21tof1/ELEC374/divisor.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file decoder4to16.v
+    Info (12023): Found entity 1: decoder4to16 File: C:/Users/21tof1/ELEC374/decoder4to16.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file decoder2to4.v
+    Info (12023): Found entity 1: decoder2_to_4 File: C:/Users/21tof1/ELEC374/decoder2to4.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file datapath_test.v
+    Info (12023): Found entity 1: DataPath_tb File: C:/Users/21tof1/ELEC374/DataPath_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file datapath_p2_tb.v
+    Info (12023): Found entity 1: DataPath_P2_tb File: C:/Users/21tof1/ELEC374/DataPath_P2_tb.v Line: 3
+Error (10170): Verilog HDL syntax error at DataPath.v(89) near text: "=";  expecting ")". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/21tof1/ELEC374/DataPath.v Line: 89
+Error (10112): Ignored design unit "DataPath" at DataPath.v(3) due to previous errors File: C:/Users/21tof1/ELEC374/DataPath.v Line: 3
+Info (12021): Found 0 design units, including 0 entities, in source file datapath.v
+Info (12021): Found 1 design units, including 1 entities, in source file c_sign_extender.v
+    Info (12023): Found entity 1: C_sign_extender File: C:/Users/21tof1/ELEC374/C_sign_extender.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file con_ff.v
+    Info (12023): Found entity 1: CON_FF File: C:/Users/21tof1/ELEC374/CON_FF.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file con_ff testbench.v
+    Info (12023): Found entity 1: CON_FF_tb File: C:/Users/21tof1/ELEC374/CON_FF testbench.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file bus_test.v
+    Info (12023): Found entity 1: Bus_tb File: C:/Users/21tof1/ELEC374/Bus_test.v Line: 3
+Error (10170): Verilog HDL syntax error at Bus.v(9) near text: "input";  expecting ")". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/21tof1/ELEC374/Bus.v Line: 9
+Error (10112): Ignored design unit "Bus" at Bus.v(1) due to previous errors File: C:/Users/21tof1/ELEC374/Bus.v Line: 1
+Info (12021): Found 0 design units, including 0 entities, in source file bus.v
+Info (12021): Found 1 design units, including 1 entities, in source file boothalgorithm1b_tb.v
+    Info (12023): Found entity 1: boothAlgorithm1b_tb File: C:/Users/21tof1/ELEC374/boothAlgorithm1b_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file boothalgorithm1b.v
+    Info (12023): Found entity 1: boothAlgorithm1b File: C:/Users/21tof1/ELEC374/boothAlgorithm1b.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file booth.v
+    Info (12023): Found entity 1: booth File: C:/Users/21tof1/ELEC374/booth.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file andalu.v
+    Info (12023): Found entity 1: andALU File: C:/Users/21tof1/ELEC374/andALU.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file alu_tb.v
+    Info (12023): Found entity 1: ALU_tb File: C:/Users/21tof1/ELEC374/ALU_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file adder_test.v
+    Info (12023): Found entity 1: adder_tb File: C:/Users/21tof1/ELEC374/adder_test.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file adder.v
+    Info (12023): Found entity 1: adder File: C:/Users/21tof1/ELEC374/adder.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file alu.v
+    Info (12023): Found entity 1: ALU File: C:/Users/21tof1/ELEC374/ALU.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file shiftright.v
+    Info (12023): Found entity 1: shiftRight File: C:/Users/21tof1/ELEC374/shiftRight.v Line: 1
 Warning (12019): Can't analyze file -- file shiftRight_tb.v is missing
-Info (12021): Found 1 design units, including 1 entities, in source file alugood/divisor.v
-    Info (12023): Found entity 1: divisor File: C:/intelFPGA_lite/18.1/ELEC374/ELEC374/ALUGOOD/divisor.v Line: 1
-Error (12007): Top-level design entity "ALU" is undefined
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 4 warnings
-    Error: Peak virtual memory: 4773 megabytes
-    Error: Processing ended: Mon Feb 24 13:36:06 2025
-    Error: Elapsed time: 00:00:12
+Info (12021): Found 0 design units, including 0 entities, in source file alugood/divisor.v
+Info (12021): Found 1 design units, including 1 entities, in source file decoder_4_to_16.v
+    Info (12023): Found entity 1: decoder_4_to_16 File: C:/Users/21tof1/ELEC374/decoder_4_to_16.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file select_and_encoder.v
+    Info (12023): Found entity 1: select_and_encoder File: C:/Users/21tof1/ELEC374/select_and_encoder.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file mux_2_to_1.v
+    Info (12023): Found entity 1: mux_2_to_1 File: C:/Users/21tof1/ELEC374/mux_2_to_1.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file encoder_32_to_5.v
+    Info (12023): Found entity 1: encoder_32_to_5 File: C:/Users/21tof1/ELEC374/encoder_32_to_5.v Line: 1
+Info (144001): Generated suppressed messages file C:/Users/21tof1/ELEC374/output_files/ALU.map.smsg
+Error: Quartus Prime Analysis & Elaboration was unsuccessful. 4 errors, 2 warnings
+    Error: Peak virtual memory: 4779 megabytes
+    Error: Processing ended: Wed Mar 26 21:47:58 2025
+    Error: Elapsed time: 00:00:11
     Error: Total CPU time (on all processors): 00:00:09
+
+
++--------------------------------------------+
+; Analysis & Elaboration Suppressed Messages ;
++--------------------------------------------+
+The suppressed messages can be found in C:/Users/21tof1/ELEC374/output_files/ALU.map.smsg.
 
 

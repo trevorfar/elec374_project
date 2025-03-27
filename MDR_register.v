@@ -1,38 +1,25 @@
-module MDR_register #(parameter DATA_WIDTH_IN = 32, DATA_WIDTH_OUT = 32, INIT = 32'b0)(
-    input clear, clock, Rin, Rout, 
-    input [DATA_WIDTH_IN-1:0] BusMuxOut,
-    input [DATA_WIDTH_IN-1:0] Mdatain,
-    input read,
-    output wire [DATA_WIDTH_OUT-1:0] BusMuxIn
+module MDR_register(
+	input [31:0] Mdatain,
+	input [31:0] bus_mux_out,
+	input wire clk, clear, mdr_in, mdr_read,
+	output reg [31:0] mdr_data_out
 );
+	wire [31:0] D;
+//	always @(*) begin 
+//	mdr_data_out <= 32'h00000018;
+//	end
+	///*
+	
+	mux_2_to_1 MDRmux(.input0(bus_mux_out), .input1(Mdatain), .select(mdr_read), .mux_output(D));
+	//assign D = mdr_read ? Mdatain : bus_mux_out;
+	//assign D = Mdatain;
+	//assign D = 32'h00000012;
 
-reg [DATA_WIDTH_IN-1:0] d;
-initial d = INIT;
-
-always @ (*) begin
-    if (read) 
-        d = Mdatain;
-    else
-        d = BusMuxOut; 
-end
-
-reg [DATA_WIDTH_IN-1:0] q;
-initial q = INIT;
-
-always @ (posedge clock) begin
-    if (clear) begin
-        q <= {DATA_WIDTH_IN{1'b0}};
-    end else if (Rin) begin
-        q <= d;
-    end
-	// if(Rout) begin
-		//assign BusMuxIn = q[DATA_WIDTH_OUT-1:0];
-	//end
-end
-
-assign BusMuxIn = (Rout) ? q[DATA_WIDTH_OUT-1:0] : {DATA_WIDTH_OUT{1'bz}};
-//assign BusMuxIn = (Rout) ? q[DATA_WIDTH_OUT-1:0] :BusMuxOut;
-
-
-
+	always @(posedge clk or posedge clear) begin
+		if(clear) 
+			mdr_data_out <= 32'b0;
+		else if (mdr_in)
+			mdr_data_out <= D;
+	end 
+	//*/
 endmodule

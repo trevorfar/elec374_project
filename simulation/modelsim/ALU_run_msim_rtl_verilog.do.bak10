@@ -1,0 +1,45 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/memram_bb.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/subtractor.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/sra.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/shiftLeft.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/rotateRight.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/rotateLeft.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/register_64.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/register.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/PC_register.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/orALU.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/notALU.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/negALU.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Mux_32to1.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Mux_2to1.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/MDR_register.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/MAR_register.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Encoder32to5.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/divisor.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/decoder2to4.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/DataPath.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/CON_FF.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/Bus.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/booth.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/andALU.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/adder.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/ALU.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/shiftRight.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/decoder_4_to_16.v}
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/select_and_encoder.v}
+
+vlog -vlog01compat -work work +incdir+C:/Users/21tof1/ELEC374 {C:/Users/21tof1/ELEC374/DataPath_P2_tb.v}
+
+vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  DataPath_P2_tb
+
+add wave *
+view structure
+view signals
+run 500 ns

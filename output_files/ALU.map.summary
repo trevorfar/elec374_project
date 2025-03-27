@@ -1,7 +1,7 @@
-Analysis & Synthesis Status : Failed - Mon Feb 24 13:36:06 2025
-Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Analysis & Elaboration Status : Failed - Wed Mar 26 21:47:58 2025
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 Revision Name : ALU
-Top-level Entity Name : ALU
+Top-level Entity Name : DataPath
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A until Partition Merge
 Total registers : N/A until Partition Merge
