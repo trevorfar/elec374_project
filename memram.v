@@ -61,7 +61,7 @@ module memram (
 
 	altsyncram	altsyncram_component (
 				.address_a (address),
-				.clock0 (~clock),
+				.clock0 (clock),
 				.data_a (data),
 				.wren_a (wren),
 				.q_a (sub_wire0),

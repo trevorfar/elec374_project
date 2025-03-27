@@ -3,8 +3,8 @@
 	
 	`define BIT(x) (1 << (x))
 
-	`define PLACEHOLDER	0
-	`define HI_OUT       1 
+	`define PC_DEC 		0
+	`define HI_OUT       1   
 	`define LO_OUT       2
 	`define INC_PC       3
 	`define WREN         4
