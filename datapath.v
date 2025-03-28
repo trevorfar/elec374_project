@@ -10,7 +10,7 @@ module datapath(
 	 output [4:0] bus_select,
 	 output reg [4:0] opcode,
 	 output wire [8:0] mar_address_out,	 
-	 output wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out,
+	 output wire [31:0] r0_data_out, r1_data_out, r2_data_out, r3_data_out, r4_data_out, r5_data_out, r6_data_out, C_sign_extended,
 	 r7_data_out, r8_data_out, r9_data_out, r10_data_out, r11_data_out, r12_data_out, r13_data_out, r14_data_out, r15_data_out, LO_data_out, inport_data_out,
 	 outport_data_out, pc_data_out, ry_data_out, ram_data_out, mdr_data_out, z_high_data_out, HI_data_out, z_low_data_out, muxy_data_out,
 	 ir_data_out, control_signals,
@@ -30,7 +30,7 @@ module datapath(
 	end
 	
 	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .step(step), .run(run), .stop(stop));
-   wire [31:0] C_sign_extended, r0_data_out_and; 
+   wire [31:0] r0_data_out_and; 
 	 	
 	encoder_32_to_5 bus_encoder(
 	 .encoder_input({{8{1'b0}}, control_signals[`COUT],  control_signals[`INPORT_OUT], control_signals[`MDR_OUT], control_signals[`PC_OUT], 
@@ -93,8 +93,10 @@ module datapath(
         .Z_HI(z_high_data_out), .Z_LO(z_low_data_out), .PC(pc_data_out), .MDR(mdr_data_out), .IN_PORT(inport_data_out), 
         .C_sign_extended(C_sign_extended), .select(bus_select), .BusMuxOut(bus_data)
     );
-	 
-	 memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(control_signals[`WREN]), .q(ram_data_out));
+
+	
+	 ram ram_unit(.clk(clk), .wr_en(wr_en), .r_addr(mar_address_out), .w_addr(mar_address_out), .w_data(mdr_data_out), .r_data(ram_data_out));
+	 //memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(control_signals[`WREN]), .q(ram_data_out));
 	 
 	 select_and_encode sel_and_enc(.Gra(control_signals[`GRA]), .Grb(control_signals[`GRB]), .Grc(control_signals[`GRC]), .Rin(control_signals[`RIN]), 
 	 .Rout(control_signals[`ROUT]), .BAout(control_signals[`BAOUT]), .instruction(ir_data_out),

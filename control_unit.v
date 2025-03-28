@@ -36,7 +36,7 @@ control signals, (this creates one hot encoding) and then or'ing them. It is the
     end else if (run) begin
         if (step == 3'b000 && opcode == `HALT) begin
             halt <= 1;
-        end else if (step == step_limit[opcode]) begin
+        end else if (step >= step_limit[opcode]) begin
             step <= 3'b000; 
         end else begin
             step <= step + 1; 
@@ -152,7 +152,8 @@ end
 			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`BRANCH, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
-			 step_limit[`BRANCH] = 3'b110; //BRANCH NOT TESTED
+			 code_rom[{`BRANCH, 3'b111}] = `BIT(`PC_OUT);
+			 step_limit[`BRANCH] = 3'b111; //BRANCH NOT TESTED
 			 
 			 
 			 code_rom[{`JAL, 3'b011}] = `BIT(`PC_OUT) | `BIT(`R8_IN);
@@ -182,19 +183,21 @@ end
 			 step_limit[`HALT] = 3'b011;		
 	 end
 	 
+	 wire [7:0] rom_index = {opcode, step};
+	 
 	 always @(step) begin
 	 control_signals = 32'b0;
 		 case(step)
 			3'b000: control_signals = `BIT(`PC_OUT) | `BIT(`MAR_IN) | `BIT(`RZ_IN);
-			3'b001: control_signals = `BIT(`MDR_READ) | `BIT(`MDR_IN) | `BIT(`ZLOWOUT) | `BIT(`PC_IN) | `BIT(`INC_PC);													
-			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN);
+			3'b001: control_signals = `BIT(`MDR_READ) | `BIT(`MDR_IN) | `BIT(`ZLOWOUT);													
+			3'b010: control_signals = `BIT(`MDR_OUT) | `BIT(`IR_IN) | `BIT(`PC_IN) | `BIT(`INC_PC);
 			default: begin
 				if(step <= 3'b111)
 					if(opcode == 5'b11111) begin
 						control_signals = 32'b0;
 					end
 					else begin
-						control_signals = code_rom[{opcode, step}];
+						control_signals = code_rom[rom_index];
 					end
 			end
 				
