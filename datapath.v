@@ -29,7 +29,7 @@ module datapath(
 		  end
 	end
 	
-	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .step(step), .run(run), .stop(stop));
+	control_unit cu(.clk(clk), .clear(clear), .ir_data_out(ir_data_out), .control_signals(control_signals), .step(step), .run(run), .stop(stop), .con_out(con_out));
    wire [31:0] r0_data_out_and; 
 	 	
 	encoder_32_to_5 bus_encoder(
