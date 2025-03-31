@@ -60,7 +60,7 @@ end
 			 code_rom[{`ST, 3'b011}] = `BIT(`GRB) | `BIT(`BAOUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
  			 code_rom[{`ST, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
   			 code_rom[{`ST, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`MAR_IN);
-			 code_rom[{`ST, 3'b110}] = `BIT(`GRA) | `BIT(`BAOUT) | `BIT(`MDR_IN);
+			 code_rom[{`ST, 3'b110}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`MDR_IN);
 			 code_rom[{`ST, 3'b111}] = `BIT(`WREN);
 			 step_limit[`ST] = 3'b111; // ST NOT TESTED
 			 
@@ -149,11 +149,10 @@ end
 			 step_limit[`DIV] = 3'b110; // DIV NOT TESTED 
 			 
 			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN); 
-			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
+			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN);//| `BIT(`MUXY_SELECT);
 			 code_rom[{`BRANCH, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
 			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
-			 code_rom[{`BRANCH, 3'b111}] = `BIT(`PC_OUT);
-			 step_limit[`BRANCH] = 3'b111; //BRANCH NOT TESTED
+			 step_limit[`BRANCH] = 3'b110;//BRANCH NOT TESTED
 			 
 			 
 			 code_rom[{`JAL, 3'b011}] = `BIT(`PC_OUT) | `BIT(`R8_IN);

@@ -77,7 +77,7 @@ module alu(
 					RZ[63:0] <= $signed(add_out);
 				end
 				else begin
-					RZ[63:0] <= $signed(add_out);
+					RZ[63:0] <= $signed(RY[31:0]);
 				end
 			end
 			`IN: begin

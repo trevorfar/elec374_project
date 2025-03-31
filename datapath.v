@@ -95,7 +95,7 @@ module datapath(
     );
 
 	
-	 ram ram_unit(.clk(clk), .wr_en(wr_en), .r_addr(mar_address_out), .w_addr(mar_address_out), .w_data(mdr_data_out), .r_data(ram_data_out));
+	 ram ram_unit(.clk(clk), .wr_en(control_signals[`WREN]), .r_addr(mar_address_out), .w_addr(mar_address_out), .w_data(mdr_data_out), .r_data(ram_data_out));
 	 //memram ram(.address(mar_address_out), .clock(clk), .data(mdr_data_out), .wren(control_signals[`WREN]), .q(ram_data_out));
 	 
 	 select_and_encode sel_and_enc(.Gra(control_signals[`GRA]), .Grb(control_signals[`GRB]), .Grc(control_signals[`GRC]), .Rin(control_signals[`RIN]), 

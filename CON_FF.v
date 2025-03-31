@@ -18,7 +18,7 @@ output con_out
 		 reset_signal <= con_out;
 	end
 	
-	D_flip_flop flip(.D(D), .clk(clk), .con_in(con_in), .Q(Q), .reset(reset_signal), .Q_not(Q_not));
+	D_flip_flop flip(.D(D), .clk(clk), .con_in(con_in), .Q(Q), .reset(0), .Q_not(Q_not));
 	assign con_out = Q;
 	
 	

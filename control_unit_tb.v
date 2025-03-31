@@ -72,8 +72,18 @@ always @(opcode) begin
 		  $display("Time %0t: opcode hit halt!", $time);
 	 else if(opcode == 5'b10011)
 		  $display("Time %0t: opcode hit branch!", $time);
+	 else if(opcode == 5'b10111)
+		  $display("Time %0t: opcode hit OUT!", $time);
+    else if(opcode == 5'b10100)
+		  $display("Time %0t: opcode hit JAL!", $time);
+	 	 
 end
 
+//always @(*) begin
+//	if(opcode == 5'b10011 && step == 3'b111) begin
+//		$display("ZLO: %0t, Y: %0t" $z_low_data_out, $ry_data_out);
+//	end
+//end
 
 
 initial begin
