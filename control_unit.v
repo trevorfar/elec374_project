@@ -72,9 +72,21 @@ end
 			 step_limit[`ADDI] = 3'b101; // ADDI
 			 
 			 code_rom[{`ANDI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
-			 code_rom[{`ANDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`ANDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN);
 			 code_rom[{`ANDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
 			 step_limit[`ANDI] = 3'b101; // ANDI NOT TESTED
+//			 
+//			 	Grb <= 1; Rout <= 1; Yin <= 1; 
+//					@(posedge clk)
+//					Grb <= 0; Rout <= 0; Yin <= 0;
+//					///////// T4 //////////
+//					Cout <= 1; opcode <= 5'b00101; rz_in <= 1;
+//					@(posedge clk)
+//					Cout <= 0; rz_in <= 0;
+//					///////// T5 //////////
+//					ZLowout <= 1; Gra <= 1; Rin <= 1;
+//					@(posedge clk)
+//					ZLowout <= 0; Gra <= 0; Rin <= 0;
 			 
 			 
 			 code_rom[{`ORI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
@@ -88,7 +100,7 @@ end
 			 step_limit[`ADD] = 3'b101; // ADD NOT TESTED
 			 
 			 code_rom[{`SUB, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN);
-			 code_rom[{`SUB, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`SUB, 3'b100}] = `BIT(`GRC) | `BIT(`ROUT) | `BIT(`RZ_IN);
 			 code_rom[{`SUB, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
 			 step_limit[`SUB] = 3'b101; // SUB NOT TESTED
 			 
@@ -159,7 +171,8 @@ end
 			 
 			 code_rom[{`JAL, 3'b011}] = `BIT(`PC_OUT) | `BIT(`R8_IN);
 			 code_rom[{`JAL, 3'b100}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`PC_IN);
-			 step_limit[`JAL] = 3'b100; //JAL NOT TESTED
+			  code_rom[{`JAL, 3'b101}] = 32'd0;
+			 step_limit[`JAL] = 3'b101; //JAL NOT TESTED
 			 
 			
 			 code_rom[{`JR, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`PC_IN);
