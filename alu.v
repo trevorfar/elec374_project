@@ -73,12 +73,8 @@ module alu(
 				RZ[63:0] <= $signed(add_out);
 			end
 			`BRANCH : begin
-				if(con_out == 1'b1) begin
-					RZ[63:0] <= $signed(add_out);
-				end
-				else begin
-					RZ[63:0] <= $signed(RY[31:0]);
-				end
+				RZ[63:0] <= $signed(add_out);
+			
 			end
 			`IN: begin
 				RZ[63:0] <= 64'b0;

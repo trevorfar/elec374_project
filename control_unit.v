@@ -35,11 +35,7 @@ control signals, (this creates one hot encoding) and then or'ing them. It is the
     end else if (halt || stop) begin
         step <= step; 
     end else if (run) begin
-			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN); 
-			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN);//| `BIT(`MUXY_SELECT);
-			 code_rom[{`BRANCH, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
-			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT((`PC_IN) & {32{con_out}});
-			 step_limit[`BRANCH] = 3'b110;//BRANCH NOT TESTED
+			   code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | (`BIT(`PC_IN) & {32{con_out}});
         if (step == 3'b000 && opcode == `HALT) begin
             halt <= 1;
         end else if (step >= step_limit[opcode]) begin
@@ -154,11 +150,11 @@ end
 			 code_rom[{`DIV, 3'b110}] = `BIT(`ZHIGHOUT)| `BIT(`HI_IN); 
 			 step_limit[`DIV] = 3'b110; // DIV NOT TESTED 
 			 
-//			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN); 
-//			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN);//| `BIT(`MUXY_SELECT);
-//			 code_rom[{`BRANCH, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
-//			 code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | `BIT(`PC_IN);
-//			 step_limit[`BRANCH] = 3'b110;//BRANCH NOT TESTED
+			 code_rom[{`BRANCH, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`CON_IN); 
+			 code_rom[{`BRANCH, 3'b100}] = `BIT(`PC_OUT) | `BIT(`YIN);//| `BIT(`MUXY_SELECT);
+			 code_rom[{`BRANCH, 3'b101}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
+			 code_rom[{`BRANCH, 3'b111}] = 32'd0;//`BIT(`ZLOWOUT) | `BIT(`PC_IN);
+			 step_limit[`BRANCH] = 3'b111;//BRANCH NOT TESTED
 			 
 			 
 			 code_rom[{`JAL, 3'b011}] = `BIT(`PC_OUT) | `BIT(`R8_IN);

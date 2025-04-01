@@ -14,7 +14,7 @@ module ram #(
 	reg [width-1:0] memory_array [0:2**depth-1];
 	
 	
-	initial $readmemh("C:/Users/21jng3/elec374_project/ram.txt", memory_array);
+	initial $readmemh("C:/Users/21tof1/elec374_project/ram.txt", memory_array);
 	assign r_data = memory_array[r_addr];
 	always @(posedge clk) begin
 		if (wr_en) memory_array[w_addr] <= w_data; 
