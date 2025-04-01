@@ -36,7 +36,7 @@ control signals, (this creates one hot encoding) and then or'ing them. It is the
         step <= step; 
     end else if (run) begin
 			   code_rom[{`BRANCH, 3'b110}] = `BIT(`ZLOWOUT) | (`BIT(`PC_IN) & {32{con_out}});
-        if (step == 3'b000 && opcode == `HALT) begin
+        if (opcode == `HALT) begin
             halt <= 1;
         end else if (step >= step_limit[opcode]) begin
             step <= 3'b000; 
@@ -75,19 +75,6 @@ end
 			 code_rom[{`ANDI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN);
 			 code_rom[{`ANDI, 3'b101}] = `BIT(`ZLOWOUT) | `BIT(`GRA) | `BIT(`RIN); 
 			 step_limit[`ANDI] = 3'b101; // ANDI NOT TESTED
-//			 
-//			 	Grb <= 1; Rout <= 1; Yin <= 1; 
-//					@(posedge clk)
-//					Grb <= 0; Rout <= 0; Yin <= 0;
-//					///////// T4 //////////
-//					Cout <= 1; opcode <= 5'b00101; rz_in <= 1;
-//					@(posedge clk)
-//					Cout <= 0; rz_in <= 0;
-//					///////// T5 //////////
-//					ZLowout <= 1; Gra <= 1; Rin <= 1;
-//					@(posedge clk)
-//					ZLowout <= 0; Gra <= 0; Rin <= 0;
-			 
 			 
 			 code_rom[{`ORI, 3'b011}] = `BIT(`GRB) | `BIT(`ROUT) | `BIT(`YIN) | `BIT(`MUXY_SELECT);
 			 code_rom[{`ORI, 3'b100}] = `BIT(`COUT) | `BIT(`RZ_IN) | `BIT(`ALU_ADD);
@@ -194,7 +181,9 @@ end
 			 step_limit[`NOP] = 3'b011; // NOP
 			 
 			 code_rom[{`HALT, 3'b011}] = 32'b0;
-			 step_limit[`HALT] = 3'b011;		
+			 code_rom[{`HALT, 3'b100}] = 32'b0;
+			 code_rom[{`HALT, 3'b101}] = 32'b0;
+			 step_limit[`HALT] = 3'b101;		
 	 end
 	 
 	 wire [7:0] rom_index = {opcode, step};
