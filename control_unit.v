@@ -165,7 +165,8 @@ end
 			 code_rom[{`JR, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`PC_IN);
 			 step_limit[`JR] = 3'b011; // JR NOT TESTED 
 			 
-			 code_rom[{`IN, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`INPORT_OUT);
+		//	 code_rom[{`IN, 3'b011}] = `BIT(`INPORT_IN);
+			 code_rom[{`IN, 3'b011}] = `BIT(`GRA) | `BIT(`RIN) | `BIT(`INPORT_OUT);
 			 step_limit[`IN] = 3'b011; // IN
 			 
 			 code_rom[{`OUT, 3'b011}] = `BIT(`GRA) | `BIT(`ROUT) | `BIT(`OUTPORT_IN);

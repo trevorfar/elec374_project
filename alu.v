@@ -32,14 +32,13 @@ module alu(
 	always @(*) begin
 		case(opcode)
 			`SUB: begin
-				RZ[63:0] <= $signed(sub_out);
+				RZ[63:0] <= $signed(RA - RB);
 			end
 			`MUL: begin
-				RZ[63:0] <= $signed(mul_out);
+				RZ[63:0] <= $signed(RA * RB);
 			end
 			`DIV: begin
-				RZ[63:32] <= (div_out_R);
-				RZ[31:0] <= (div_out_Q);
+				RZ[63:0] <= {RA % RB, RA / RB};
 			end
 			`AND, `ANDI: begin
 				RZ[63:32] <= 32'b0;
@@ -70,10 +69,10 @@ module alu(
 				RZ[63:0] <= $signed(not_out);
 			end
 			`LD, `LDI, `ST, `ADDI, `ADD: begin
-				RZ[63:0] <= $signed(add_out);
+				RZ[63:0] <= $signed(RA + RB);
 			end
 			`BRANCH : begin
-				RZ[63:0] <= $signed(add_out);
+				RZ[63:0] <= $signed(RA + RB);
 			
 			end
 			`IN: begin

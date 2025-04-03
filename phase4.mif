@@ -1,0 +1,96 @@
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+-- Your use of Intel Corporation's design tools, logic functions 
+-- and other software and tools, and its AMPP partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Intel Program License 
+-- Subscription Agreement, the Intel Quartus Prime License Agreement,
+-- the Intel FPGA IP License Agreement, or other applicable license
+-- agreement, including, without limitation, that your use is for
+-- the sole purpose of programming logic devices manufactured by
+-- Intel and sold by Intel or its authorized distributors.  Please
+-- refer to the applicable agreement for further details.
+
+-- Quartus Prime generated Memory Initialization File (.mif)
+
+WIDTH=32;
+DEPTH=512;
+
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+	000  :   09800065;
+	001  :   09980003;
+	002  :   01000054;
+	003  :   09100001;
+	004  :   0017FFFA;
+	005  :   08800003;
+	006  :   09800057;
+	007  :   99980003;
+	008  :   09980003;
+	009  :   021FFFFA;
+	00A  :   D0000000;
+	00B  :   9A100002;
+	00C  :   0B180007;
+	00D  :   0AB7FFFC;
+	00E  :   19988000;
+	00F  :   62200002;
+	010  :   8A200000;
+	011  :   92200000;
+	012  :   6A20000F;
+	013  :   39008000;
+	014  :   72100007;
+	015  :   51208000;
+	016  :   49988000;
+	017  :   11800092;
+	018  :   41808000;
+	019  :   32880000;
+	01A  :   29180000;
+	01B  :   12900054;
+	01C  :   201A8000;
+	01D  :   59188000;
+	01E  :   0A800008;
+	01F  :   0B000017;
+	020  :   83280000;
+	021  :   CA000000;
+	022  :   C3800000;
+	023  :   7B280000;
+	024  :   0D280001;
+	025  :   0DB7FFFD;
+	026  :   0E380001;
+	027  :   0EA00004;
+	028  :   A6400000;
+	029  :   B2000000;
+	02A  :   12000055;
+	02B  :   0880002E;
+	02C  :   0B800001;
+	02D  :   0A800028;
+	02E  :   BA000000;
+	02F  :   0AAFFFFF;
+	030  :   9A800008;
+	031  :   030000F0;
+	032  :   0B37FFFF;
+	033  :   D0000000;
+	034  :   9B0FFFFD;
+	035  :   4A238000;
+	036  :   9A0FFFF7;
+	037  :   02000055;
+	038  :   A8800000;
+	039  :   0A0000AA;
+	03A  :   BA000000;
+	03B  :   D8000000;
+	[03C..053]  :   00000000;
+	054  :   00000097;
+	[055..091]  :   00000000;
+	092  :   00000046;
+	[093..0B8]  :   00000000;
+	0B9  :   1FD60000;
+	0BA  :   275E8000;
+	0BB  :   27FF0000;
+	0BC  :   AC000000;
+	[0BD..0EF]  :   00000000;
+	0F0  :   0008FFFF;
+	[0F1..1FF]  :   00000000;
+END;
